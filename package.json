@@ -1,0 +1,62 @@
+{
+  "name": "PitchAR",
+  "version": "0.0.1",
+  "description": "An online AR creation tool.",
+  "main": "lib/index.js",
+  "scripts": {
+    "build-example": "browserify tests/main.js --verbose -t babelify -t uglifyify -t [envify --NODE_ENV development ] > tests/build.js",
+    "build-lib": "mkdir -p lib && babel src/index.js -o lib/index.js",
+    "dist": "browserify src/index.js --verbose --debug --standalone registerAframeClickDragComponent -g uglifyify -t [ rollupify --config rollup.config.js ] -t babelify -t [envify --NODE_ENV production ] | exorcist dist/out.map > dist/out.js && uglifyjs dist/out.js --screw-ie8 -c -m --in-source-map dist/out.map --source-map dist/aframe-click-drag-component.min.js.map --source-map-url aframe-click-drag-component.min.js.map > dist/aframe-click-drag-component.min.js && rm dist/out*",
+    "test": "npm run test:lint",
+    "test:lint": "eslint ./src",
+    "start": "budo tests/main.js:../build.js --serve build.js --dir tests --port 80 --live --open -- --debug --verbose -t babelify -t [envify --NODE_ENV development ]",
+    "version": "version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md"
+  },
+  "peerDependencies": {
+    "aframe": "^0.4.0 || ^0.3.0"
+  },
+  "devDependencies": {
+    "aframe": "^0.8.2",
+    "aframe-extras": "^3.1.0",
+    "aframe-keyboard-controls": "^1.2.1",
+    "babel-cli": "^6.14.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "browserify-css": "^0.9.1",
+    "budo": "^9.3.0",
+    "changelog-verify": "^1.0.4",
+    "envify": "^3.4.1",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "eslint-plugin-jsx-a11y": "^2.0.1",
+    "eslint-plugin-react": "^6.8.0",
+    "exorcist": "^0.4.0",
+    "ghpages": "^0.0.8",
+    "in-publish": "^2.0.0",
+    "rollup-plugin-commonjs": "^5.0.4",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollupify": "^0.3.6",
+    "uglify-js": "^2.7.5",
+    "uglifyify": "^3.0.3",
+    "version-changelog": "^2.0.1"
+  },
+  "dependencies": {
+    "aframe-look-at-component": "^0.7.0",
+    "aframe-orbit-controls-component": "^1.0.0",
+    "aframe-orbit-controls-component-2": "^0.1.14",
+    "deep-equal": "^1.0.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  }
+}

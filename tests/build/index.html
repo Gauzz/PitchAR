@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script src="../build.js"></script>
+    <title>EXAR AR Creator</title>
+  </head>
+  <body>
+    <a-scene vr-mode-ui="enabled: false">
+      <a-assets>
+        <img src="honeycomb.jpg" crossorigin="anonymous" id="wireframe">
+        <img src="logo.png" crossorigin="anonymous" id="logo">
+        <img src="z-axis.svg" crossorigin="anonymous" id="zpos">
+        <img src="x-rot.svg" crossorigin="anonymous" id="xrot">
+        <img src="y-rot.svg" crossorigin="anonymous" id="yrot">
+        <img src="z-rot.svg" crossorigin="anonymous" id="zrot">
+        <img src="scale.svg" crossorigin="anonymous" id="scale">
+      </a-assets>
+      <a-sky color=""></a-sky>
+      <a-entity position="0 0 0">
+        <a-box  id='object' visible='false' click-drag position="0 0.5 0" rotation="0 0 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-box>
+        <a-entity id="modifier" position="0 0 0" >
+          <a-image id='zaxis' click-drag look-at='#cam' position="-1.25 0.6 0" rotation="0 0 0" src='#zpos'geometry="primitive: circle;radius:0.2;"></a-image>
+          <a-image id='rx' click-drag look-at='#cam' position="1.25 0.6 0" rotation="0 0 0" src='#xrot'geometry="primitive: circle;radius:0.2;"></a-image>
+          <a-image id='ry' click-drag look-at='#cam' position="0  -1.25 0" rotation="0 0 0" src='#yrot'geometry="primitive: circle;radius:0.2;"></a-image>
+          <a-image id='rz' click-drag look-at='#cam' position="0 2 0" rotation="0 0 0" src='#zrot' geometry="primitive: circle;radius:0.2;"></a-image>
+          <a-image id='sc' click-drag look-at='#cam' position="1.25 2 0" rotation="0 0 0" src='#scale' geometry="primitive: circle;radius:0.24;" material="color:#000000"></a-image>
+        </a-entity>
+      </a-entity>
+        <a-camera id='cam' look-controls='enabled:false;' position='0 1.5 6' rotation="0 0 0"  orbit-controls="target: #imglogo">
+          <a-animation attribute="position"
+                dur="3000"
+                easing="linear"
+                from ="0 0.5 1"
+                to="0 1.5 6"></a-animation>
+        </a-camera>
+        <a-image  src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"material="color: #ececec;opacity:0.2;" ></a-image>
+        <a-image id='imglogo'  src="#logo" position="0 0.1 0"rotation="-90 0 0" scale="2 2 0"material="color: #ececec;opacity:1;" ></a-image>
+      </a-scene>
+  <button id='but' onclick="add(this)" style='position:absolute;bottom: 10px;left:10px;'>Add entity</button>
+    </body>
+  <script>
+  function add(event){
+    obj = document.querySelector('#object');
+    obj.object3D.visible = true;
+    document.getElementById("but").style.display = "none";
+  }
+  </script>
+</html>

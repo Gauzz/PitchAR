@@ -1,10 +1,20 @@
 <html>
   <head>
     <script src="../build.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="UI.css">
+    <script src="UI.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>EXAR AR Creator</title>
   </head>
   <body>
-    <a-scene vr-mode-ui="enabled: false">
+      <div id="myEmbeddedScene" style="z-index:-1;">
+         
+    <a-scene  embedded vr-mode-ui="enabled: false">
       <a-assets>
         <img src="honeycomb.jpg" crossorigin="anonymous" id="wireframe">
         <img src="logo.png" crossorigin="anonymous" id="logo">
@@ -35,8 +45,166 @@
         <a-image  src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"material="color: #ececec;opacity:0.2;" ></a-image>
         <a-image id='imglogo'  src="#logo" position="0 0.1 0"rotation="-90 0 0" scale="2 2 0"material="color: #ececec;opacity:1;" ></a-image>
       </a-scene>
-  <button id='but' onclick="add(this)" style='position:absolute;bottom: 10px;left:10px;'>Add entity</button>
-    </body>
+    </div>
+  <button id='but' type="button" onclick="add(this)" style='position:absolute;bottom: 10px;left:10px;z-index:9999;'>Add entity</button>
+  <div id="p5">
+    <button id="p7"><i class="fa fa-rotate-left"></i></button>
+    <button id="p7"><i class="fa fa-rotate-right"></i></button>
+    <button ><div id="p6">Share</div></button>
+  </div>
+  <button type="button" data-toggle="modal" data-target="#exampleModal">
+  <div id="p4">
+    Change Marker
+  </div>
+  </button>
+    <p id="p2"></p>
+  
+  
+  <p>
+    <button  type="button" data-toggle="modal" data-target="#exampleModalLon">
+   <i  id="p1"class="fa fa-circle">
+    </i>
+    </i>
+    </button>
+    &nbsp;
+    <button type="button" data-toggle="modal" data-target="#exampleModalLong">
+  <i id="p1" class="fa fa-cube"></i>
+  </button>
+  &nbsp;
+  <button type="button" data-toggle="modal" data-target="#exampleModalLo">
+  <i id="p1" class="fa fa-text-width"></i>
+  </button>
+  &nbsp;
+  <button type="button" data-toggle="modal" data-target="#exampleModalL">
+    <i id="p1" class="fa fa-music"></i>
+    </button>
+    &nbsp;
+    <button type="button" data-toggle="modal" data-target="#exampleModalA">
+      <i id="p1" class="fa fa-caret-square-o-right"></i>
+      </button>
+    
+  </P>
+  
+  <div class="modal fade" id="exampleModalLon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1>  ...
+            </h1>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1>  ...
+            </h1>tt
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalLo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1>  ...
+            </h1>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1> 
+  
+          .....
+        </h1>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1> 
+  
+          .....
+        </h1>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div><div class="modal fade" id="exampleModalA" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1> 
+  
+          .....
+        </h1>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+</body>
   <script>
   function add(event){
     obj = document.querySelector('#object');

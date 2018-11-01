@@ -911,7 +911,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     }
 
     function onMouseDown({clientX, clientY}) {
-      event.preventDefault();
+      
       const {depth, offset, element} = selectItem(THREE, componentName, camera, clientX, clientY);
 
       if (element) {

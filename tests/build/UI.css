@@ -1,0 +1,109 @@
+#p5{
+      right: 5%;
+      top:5%;
+      position: absolute;
+      z-index:9999;
+    }
+    #p6{
+      width: 180%;
+      border-radius: 20%;
+     background: red;
+     z-index:9999;
+    }
+    #p4{
+      text-align: center;
+      background: cyan;
+      border-radius: 40%;
+      border-style:groove;
+      height: 130%; 
+      width: 200%;
+      position: absolute;
+      top: calc(10px - 100vh);
+      left: 10px;
+      z-index:9999;
+    }
+    button{
+    height: 40px;
+    width: 40px;
+    border:none;
+    background-color:white;
+    border-radius: 20px;
+    position: sticky;
+    z-index:9999;
+  }
+
+  p{
+    bottom: 10%;
+    left:40%;
+    position: absolute;
+    z-index:9999;
+  }
+  #p1{
+  font-size: 32px;
+  color:rgb(0,190,200);
+  opacity: 1;
+  z-index:9999;
+  }
+  #p2{
+  font-size:25px;
+  border-radius: 30%;
+  background-color: white;
+  border-style:double;
+  border-color: green;
+  border-width:50%;
+  height: 7.5%;
+  width: 20%;
+  opacity: 0.5;
+  left: 39%;
+  bottom: 9%;
+  position:absolute;
+  z-index:9999;
+  }
+  #p1:hover{
+  font-size:50px;
+  color: blue;
+  position: relative;
+  animation: red 1s infinite;
+  z-index:9999;
+  }
+  @keyframes red {
+  from{
+    transform: rotateY(0deg);
+  }
+  to{
+    transform: rotateY(360deg);
+  }
+  }
+  #p7{
+  background-color:cyan;
+  z-index:9999;
+  }
+  #p8{
+  background: blue;
+  color: white;
+  height: 5%;
+  width: 10%;
+  right: 25%;
+  bottom: 11%;
+  position: absolute;
+  z-index:9999;
+  }
+@media only screen and (max-width: 620px) {
+    #p2 {
+      height:10%;
+      width: 73%;
+      left: 20%;
+    }
+    p{
+
+      left: 23%;
+    }
+    #p8{
+      height: 4%;
+      width: 40%;
+      bottom: 5%;
+      left:35%;
+      position: absolute;
+      font-size: 13px;
+    }
+}

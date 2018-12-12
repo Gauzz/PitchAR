@@ -80,8 +80,8 @@ const {unproject} = (function unprojectFunction() {
 
       initialized = initialized || initialize(THREE);
 
-      vector.applyProjection(matrix.getInverse(threeCamera.projectionMatrix));
-
+//      vector.applyProjection(matrix.getInverse(threeCamera.projectionMatrix));
+      vector.applyMatrix4(matrix.getInverse(threeCamera.projectionMatrix));
       return localToWorld(THREE, threeCamera, vector);
 
     },
@@ -406,13 +406,12 @@ function dragItem(THREE, element, offset, camera, depth, mouseInfo) {
   }
 
   document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('touchmove', onTouchMove);
+//  document.addEventListener('touchmove', onTouchMove);
   camera.addEventListener('componentchanged', onCameraChange);
-
   // The "unlisten" function
   return _ => {
     document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('touchmove', onTouchMove);
+//    document.removeEventListener('touchmove', onTouchMove);
     camera.removeEventListener('componentchanged', onCameraChange);
   };
 }
@@ -442,7 +441,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     let cam;
     let oc;
     var dir = ' ';
-
+    let remove;
     const positionLog = [];
 
     function cleanUpPositionLog() {
@@ -462,8 +461,8 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       cleanUpPositionLog();
     
       if(cam.object3D.rotation.x < -1.1 ){
-       var lc= oc = cam.components['orbit-controls'];
-        lc.pause();
+        oc.pause();
+
         if(this.id == 'rx'){
           if(nextPosition.x < this.object3D.position.x){
             selected.object3D.rotation.z +=   0.04;
@@ -577,41 +576,6 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         }
        
       }
-      else if(this.id=='object') {
-        if(this.object3D.position.x > nextPosition.x ){
-            if(dir.indexOf('nx') >= 0 && dir.indexOf('px') == -1);
-
-            else if(dir.indexOf('nx') == -1 && dir.indexOf('px') == -1)
-            dir += ' nx ';
-
-            else if(dir.indexOf('px') != -1)
-            dir = dir.replace('px','nx');
-        }
-        else if(this.object3D.position.x < nextPosition.x ){
-          if(dir.indexOf('px') >= 0 && dir.indexOf('nx') == -1);
-
-          else if(dir.indexOf('px') == -1 && dir.indexOf('nx') == -1)
-          dir += ' px ';
-
-          else if(dir.indexOf('nx') != -1)
-          {
-            dir = dir.replace('nx','px');
-         }
-        }
-        if(this.object3D.position.y > nextPosition.y ){
-              dir += ' ny ';
-        }
-        if(this.object3D.position.y < nextPosition.y ){
-              dir += ' py ';
-        }
-        if(this.object3D.position.z > nextPosition.z ){
-              dir += ' nz ';
-        }
-        if(this.object3D.position.z < nextPosition.z ){
-              dir += ' pz ';
-        }
-        console.log(dir);
-      }
       else{
           
       }
@@ -670,41 +634,6 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
             
           }
          
-        }
-        else if(this.id=='object') {
-          if(this.object3D.position.x > nextPosition.x ){
-              if(dir.indexOf('nx') >= 0 && dir.indexOf('px') == -1);
-  
-              else if(dir.indexOf('nx') == -1 && dir.indexOf('px') == -1)
-              dir += ' nx ';
-  
-              else if(dir.indexOf('px') != -1)
-              dir = dir.replace('px','nx');
-          }
-          else if(this.object3D.position.x < nextPosition.x ){
-            if(dir.indexOf('px') >= 0 && dir.indexOf('nx') == -1);
-  
-            else if(dir.indexOf('px') == -1 && dir.indexOf('nx') == -1)
-            dir += ' px ';
-  
-            else if(dir.indexOf('nx') != -1)
-            {
-              dir = dir.replace('nx','px');
-           }
-          }
-          if(this.object3D.position.y > nextPosition.y ){
-                dir += ' ny ';
-          }
-          if(this.object3D.position.y < nextPosition.y ){
-                dir += ' py ';
-          }
-          if(this.object3D.position.z > nextPosition.z ){
-                dir += ' nz ';
-          }
-          if(this.object3D.position.z < nextPosition.z ){
-                dir += ' pz ';
-          }
-          console.log(dir);
         }
         else{
             
@@ -767,41 +696,6 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
           }
          
         }
-        else if(this.id=='object') {
-          if(this.object3D.position.x > nextPosition.x ){
-              if(dir.indexOf('nx') >= 0 && dir.indexOf('px') == -1);
-  
-              else if(dir.indexOf('nx') == -1 && dir.indexOf('px') == -1)
-              dir += ' nx ';
-  
-              else if(dir.indexOf('px') != -1)
-              dir = dir.replace('px','nx');
-          }
-          else if(this.object3D.position.x < nextPosition.x ){
-            if(dir.indexOf('px') >= 0 && dir.indexOf('nx') == -1);
-  
-            else if(dir.indexOf('px') == -1 && dir.indexOf('nx') == -1)
-            dir += ' px ';
-  
-            else if(dir.indexOf('nx') != -1)
-            {
-              dir = dir.replace('nx','px');
-           }
-          }
-          if(this.object3D.position.y > nextPosition.y ){
-                dir += ' ny ';
-          }
-          if(this.object3D.position.y < nextPosition.y ){
-                dir += ' py ';
-          }
-          if(this.object3D.position.z > nextPosition.z ){
-                dir += ' nz ';
-          }
-          if(this.object3D.position.z < nextPosition.z ){
-                dir += ' pz ';
-          }
-          console.log(dir);
-        }
         else{
             
         }
@@ -863,41 +757,6 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
           }
          
         }
-        else if(this.id=='object') {
-          if(this.object3D.position.x > nextPosition.x ){
-              if(dir.indexOf('nx') >= 0 && dir.indexOf('px') == -1);
-  
-              else if(dir.indexOf('nx') == -1 && dir.indexOf('px') == -1)
-              dir += ' nx ';
-  
-              else if(dir.indexOf('px') != -1)
-              dir = dir.replace('px','nx');
-          }
-          else if(this.object3D.position.x < nextPosition.x ){
-            if(dir.indexOf('px') >= 0 && dir.indexOf('nx') == -1);
-  
-            else if(dir.indexOf('px') == -1 && dir.indexOf('nx') == -1)
-            dir += ' px ';
-  
-            else if(dir.indexOf('nx') != -1)
-            {
-              dir = dir.replace('nx','px');
-           }
-          }
-          if(this.object3D.position.y > nextPosition.y ){
-                dir += ' ny ';
-          }
-          if(this.object3D.position.y < nextPosition.y ){
-                dir += ' py ';
-          }
-          if(this.object3D.position.z > nextPosition.z ){
-                dir += ' nz ';
-          }
-          if(this.object3D.position.z < nextPosition.z ){
-                dir += ' pz ';
-          }
-          console.log(dir);
-        }
         else{
             
         }
@@ -915,11 +774,14 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       const {depth, offset, element} = selectItem(THREE, componentName, camera, clientX, clientY);
 
       if (element) {
-        
+        if(element.id != 'rx' && element.id != 'ry' && element.id != 'rz' && element.id != 'sc' && element.id != 'zaxis'){
+          selected = element;
+        }
         oc.pause();
         var m= document.querySelector('#modifier');
+        repos();
         m.object3D.visible = true;  
-       
+        document.getElementsByClassName('sidebar')[0].style.display='block';
         // Can only drag one item at a time, so no need to check if any
         // listener is already set up
         let removeDragItemListeners = dragItem(
@@ -957,7 +819,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         element.emit(DRAG_START_EVENT, dragInfo);
       }
     }
-
+    
     function calculateVelocity() {
 
       if (positionLog.length < 2) {
@@ -984,6 +846,8 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       }
       else{
         oc.play();
+       
+  
       }
 
       cleanUpPositionLog();
@@ -1000,7 +864,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       
         
       repos(); 
-      
+   
     }
 
     function onTouchStart({changedTouches: [touchInfo]}) {
@@ -1265,10 +1129,12 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     
     }
     }
-
+    document.getElementById('remove').addEventListener('click',function(e){
+      selected.object3D.visible=false;
+      modifier.object3D.visible=false;
+    });
     function run() {
       camera = scene.camera.el;
-      selected = document.querySelector('#object');
       rx = document.querySelector('#rx');
       ry = document.querySelector('#ry');
       rz = document.querySelector('#rz');
@@ -1282,15 +1148,15 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       document.addEventListener('mousedown', onMouseDown);
       document.addEventListener('mouseup', onMouseUp);
 
-      document.addEventListener('touchstart', onTouchStart);
-      document.addEventListener('touchend', onTouchEnd);
+//      document.addEventListener('touchstart', onTouchStart);
+//      document.addEventListener('touchend', onTouchEnd);
 
       removeClickListeners = _ => {
         document.removeEventListener('mousedown', onMouseDown);
         document.removeEventListener('mouseup', onMouseUp);
 
-        document.removeEventListener('touchstart', onTouchStart);
-        document.removeEventListener('touchend', onTouchEnd);
+//        document.removeEventListener('touchstart', onTouchStart);
+//        document.removeEventListener('touchend', onTouchEnd);
                  
       };
 
@@ -1389,6 +1255,7 @@ export default function aframeDraggableComponent(aframe, componentName = COMPONE
     pause() {
       
       didUnmount(this);
+      
     },
 
     /**

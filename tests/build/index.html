@@ -6,15 +6,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="UI.css">
-    <script src="UI.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>EXAR AR Creator</title>
+    <title>PitchAR AR Creator</title>
   </head>
   <body>
-      <div id="myEmbeddedScene" style="z-index:-1;">
          
-    <a-scene  embedded vr-mode-ui="enabled: false">
+    <a-scene id='perswin' vr-mode-ui="enabled: false">
       <a-assets>
         <img src="honeycomb.jpg" crossorigin="anonymous" id="wireframe">
         <img src="logo.png" crossorigin="anonymous" id="logo">
@@ -25,7 +23,6 @@
         <img src="scale.svg" crossorigin="anonymous" id="scale">
       </a-assets>
       <a-sky color=""></a-sky>
-      <a-entity position="0 0 0">
         <a-box  id='object' visible='false' click-drag position="0 0.5 0" rotation="0 0 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-box>
         <a-entity id="modifier" position="0 0 0" >
           <a-image id='zaxis' click-drag look-at='#cam' position="-1.25 0.6 0" rotation="0 0 0" src='#zpos'geometry="primitive: circle;radius:0.2;"></a-image>
@@ -34,8 +31,7 @@
           <a-image id='rz' click-drag look-at='#cam' position="0 2 0" rotation="0 0 0" src='#zrot' geometry="primitive: circle;radius:0.2;"></a-image>
           <a-image id='sc' click-drag look-at='#cam' position="1.25 2 0" rotation="0 0 0" src='#scale' geometry="primitive: circle;radius:0.24;" material="color:#000000"></a-image>
         </a-entity>
-      </a-entity>
-        <a-camera id='cam' look-controls='enabled:false;' position='0 1.5 6' rotation="0 0 0"  orbit-controls="target: #imglogo">
+        <a-camera id='cam' look-controls='enabled:false' wasd-controls='enabled:false;' position='0 1.5 6' rotation="0 0 0"  orbit-controls="target: #imglogo;invertZoom:true;">
           <a-animation attribute="position"
                 dur="3000"
                 easing="linear"
@@ -45,8 +41,7 @@
         <a-image  src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"material="color: #ececec;opacity:0.2;" ></a-image>
         <a-image id='imglogo'  src="#logo" position="0 0.1 0"rotation="-90 0 0" scale="2 2 0"material="color: #ececec;opacity:1;" ></a-image>
       </a-scene>
-    </div>
-  <button id='but' type="button" onclick="add(this)" style='position:absolute;bottom: 10px;left:10px;z-index:9999;'>Add entity</button>
+  <button id='but' type="button" onclick="add(this)" style='color:#4846ae;position:absolute;bottom: 10px;left:10px;z-index:9999;width:100px;height: auto;'>Add entity</button>
   <div id="p5">
     <button id="p7"><i class="fa fa-rotate-left"></i></button>
     <button id="p7"><i class="fa fa-rotate-right"></i></button>
@@ -61,13 +56,13 @@
   
   
   <p>
-    <button  type="button" data-toggle="modal" data-target="#exampleModalLon">
+    <button  type="button" data-toggle="modal" data-target="#hotspot">
    <i  id="p1"class="fa fa-circle">
     </i>
     </i>
     </button>
     &nbsp;
-    <button type="button" data-toggle="modal" data-target="#exampleModalLong">
+    <button id='asset'type="button" data-toggle="modal" data-target="#assets">
   <i id="p1" class="fa fa-cube"></i>
   </button>
   &nbsp;
@@ -85,11 +80,60 @@
     
   </P>
   
-  <div class="modal fade" id="exampleModalLon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="hotspot" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h1>  ...
+            </h1>
+              </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assetsTitle">Assets</h5>
+          
+            
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id='assetbody' class="modal-body">
+          
+          <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+            <input id='auth' name="authtoken" type="hidden" value="">
+            <input type="file" id="image" name="image" >
+            <input type="hidden" name="create" value="1">
+            <input type="hidden" name="type" value="image">
+          </form>
+            
+            <button type="button" onclick="uploadImg()" class="uploadbut">
+                Upload Image</button>  
+            <br><br>    
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalLo" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -104,49 +148,11 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <h1>  ...
-            </h1>tt
-              </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalLo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <h1>  ...
-            </h1>
-              </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -163,11 +169,11 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalL" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalL" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -183,11 +189,11 @@
         </div>
       </div>
     </div>
-  </div><div class="modal fade" id="exampleModalA" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  </div><div class="modal fade" id="exampleModalA" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -203,13 +209,20 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
+  <div class="sidebar">
+    <center>
+    ANIMATIONS
+    </center>
+    <br><br><br><br><br><br><br><br>
+    <center>
+    EFFECTS
+    </center>
+    <br><br><br><br><br><br><br><br>
+    <button width='100px' id='remove'><i class="fa fa-trash"></i> Remove</button>
+  </div>
+<script src="UI.js"></script>
+    
 </body>
-  <script>
-  function add(event){
-    obj = document.querySelector('#object');
-    obj.object3D.visible = true;
-    document.getElementById("but").style.display = "none";
-  }
-  </script>
+
 </html>

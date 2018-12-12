@@ -1,5 +1,5 @@
 {
-  "name": "PitchAR",
+  "name": "pitchar",
   "version": "0.0.1",
   "description": "An online AR creation tool.",
   "main": "lib/index.js",
@@ -58,5 +58,18 @@
     "plugins": [
       "transform-object-rest-spread"
     ]
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gauzz/PitchAR.git"
+  },
+  "author": "Gaurav Rozatkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gauzz/PitchAR/issues"
+  },
+  "homepage": "https://github.com/Gauzz/PitchAR#readme"
 }

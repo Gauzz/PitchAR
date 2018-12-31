@@ -48,7 +48,9 @@
     "aframe-look-at-component": "^0.7.0",
     "aframe-orbit-controls-component": "^1.0.0",
     "aframe-orbit-controls-component-2": "^0.1.14",
-    "deep-equal": "^1.0.1"
+    "deep-equal": "^1.0.1",
+    "pexels-api-wrapper": "^1.1.1",
+    "unsplash-js": "^4.8.0"
   },
   "babel": {
     "presets": [

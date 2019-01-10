@@ -27,6 +27,44 @@ sceneEl.addEventListener('loaded', function () {
 
 }
 auto();
+var cta=document.getElementById('ctabutton');
+function chgfore(e){
+cta.style.color = e.value;
+}
+
+function chgback(e){
+  cta.style.backgroundColor = e.value;
+  }
+
+function chgtxt(e){
+  cta.innerText = e.value;
+  if(e.value=='' || e.value=='null'){
+    cta.innerText= "Text";
+  }
+}
+
+function chglnk(e){
+  cta.setAttribute('href',e.value);
+}
+
+function chground(e){
+  cta.style.borderTopLeftRadius= e.value+'%';
+  cta.style.borderTopRightRadius= e.value+'%';
+  cta.style.borderBottomLeftRadius = e.value+'%';
+  cta.style.borderBottomRightRadius = e.value+'%';
+}
+
+function addbut(e){
+  var x=cta.cloneNode(true);
+  x.style.position="relative";
+  x.style.bottom="50px";
+  x.style.marginLeft="10px";
+  var d2=document.getElementById('d2');
+  d2.appendChild(x);
+ // $('#cta .close').click();
+ // $('.modal-backdrop').remove();    
+}
+
 function add(event) {
     obj = document.querySelector('#object');
     obj.object3D.visible = true;
@@ -42,6 +80,10 @@ var c;
       
   }
 
+  function playaud(e){
+    var x= document.getElementById(e.dataset.source);
+    x.play();
+  }
 
   function pushImg(e){
     console.log(e.src);
@@ -103,6 +145,28 @@ function updatetype(e){
      
    }
 
+}
+
+function pushAud(e){
+  var d2=document.getElementById('d2');
+  var node=document.createElement('audio');
+  var id=e.id +"aud";
+  node.id=id;
+  var src=document.createElement('source');
+  src.src=e.dataset.source;
+  node.appendChild(src);
+  d2.appendChild(node);
+  var play=document.createElement('button');
+  play.innerHTML="<i class='fa fa-file-audio-o' style='color:#4846ae;font-size:28px;'></i>";
+  play.setAttribute('data-source',id);
+  play.style.position="relative";
+  play.style.bottom="50px";
+  play.style.marginLeft="10px";
+  play.setAttribute('onclick','playaud(this)');
+  d2.appendChild(play);
+  $('#music .close').click();
+  $('.modal-backdrop').remove();    
+ 
 }
 
 function uploadImg(event) {
@@ -179,6 +243,19 @@ image.addEventListener('click', () =>  {
   document.getElementById("galleryimgs").innerHTML = "";
   document.getElementsByClassName("searchbar")[0].value="";
   document.getElementsByClassName("searchbar")[1].value="";
+
+  document.getElementById("unsplashImgs").innerHTML = "";
+            for(var i=0;i<10;i++){        
+              var node = document.createElement("img");
+              node.src=unpic[i].urls.small;
+              node.width = 125;
+              node.height =125;
+              node.style='margin:4px;';
+              node.setAttribute("onclick","pushImg(this);");
+              node.setAttribute("crossorigin","anonymous");
+              document.getElementById("unsplashImgs").appendChild(node);
+              }
+
   $.ajax({
   method: 'post',
   url: 'https://pitchar.io/api/_fetch-assets.php',
@@ -221,23 +298,13 @@ image.addEventListener('click', () =>  {
             document.getElementById("galleryimgs").appendChild(div);
             perm=i;  
             }
-            document.getElementById("unsplashImgs").innerHTML = "";
-            for(var i=0;i<10;i++){        
-              var node = document.createElement("img");
-              node.src=unpic[i].urls.small;
-              node.width = 125;
-              node.height =125;
-              node.style='margin:4px;';
-              node.setAttribute("onclick","pushImg(this);");
-              node.setAttribute("crossorigin","anonymous");
-              document.getElementById("unsplashImgs").appendChild(node);
-              }
             },
         });
         k=1;
       
     });
-
+   
+        
 var l=15;
 var m=20;
 function fetchnew(){
@@ -352,5 +419,173 @@ asset.addEventListener('click', () =>  {
    });
  
   }
+ // fetch audio files
+ k=0;
+  let music = document.getElementById('musicbut');
+  music.addEventListener('click', () =>  {
+ //   document.getElementById("galleryauds").innerHTML = "";
+ //   document.getElementsByClassName("searchbar")[5].value="";
+ //   document.getElementsByClassName("searchbar")[6].value="";
+ if(k==0){  
+ $.ajax({
+    method: 'post',
+    url: 'https://pitchar.io/api/_fetch-media.php',
+    data: {
+        submit: 1,
+        authtoken: token,
+      },
+    dataType: 'json',
+    success(result){
+              console.log(token); 
+              console.log(result);   
+              console.log("success2");
+              var medias = result.media;
+              for(var i=0;i<medias.length;i++){
+              media = medias[i];
+              var node = document.createElement("img");
+              node.src=media.thumbnail;
+              node.width = 125;
+              node.height =125;
+              node.id= 'img'+i;
+              node.style='margin:4px;';
+              node.setAttribute("onclick","pushAud(this);");
+              node.setAttribute("class","image");
+              node.setAttribute("data-source",media.audio);
+              var div= document.createElement("div");
+              div.setAttribute("class","hbox");
+              div.appendChild(node);
+              var overlay=document.createElement("div");
+              overlay.setAttribute("class","options")
+              var edit=document.createElement('button');
+              edit.setAttribute("onclick","editaud(this)");
+              edit.innerHTML="<i class='fa fa-edit'></i>";
+              var del=document.createElement('button');
+              del.setAttribute("onclick","delaud(this)");
+              del.innerHTML="<i class='fa fa-trash'></i>";
+              overlay.appendChild(edit);
+              overlay.appendChild(del);
+              div.appendChild(node);
+              div.appendChild(overlay);
+              if(media.type=='audio')
+              document.getElementById("galleryauds").appendChild(div);
+              perm=i;  
+              }
+            
+       
+            }
+      });
+      k=1;
+    }
+    });
+    // to upload audio files
+    function uploadAud(event) {
+      let form = document.querySelector('#form4');
+      let formData = new FormData(form);
+      console.log(formData);
+      console.log(form);
+      $.ajax({
+       method: 'POST',
+       url: 'https://pitchar.io/api/_create-media.php',
+       data: formData,
+       processData: false,
+       contentType: false,
+       success(data){
+       console.log(data);
+       var node = document.createElement("img");
+       node.src=data.data.image;
+       node.width = 125;
+       node.height =125;
+       node.id= 'img'+perm;
+       node.style='margin:4px;';
+       node.setAttribute("onclick","pushImg(this);");
+       document.getElementById("galleryauds").appendChild(node);
+   
+     },
+     });
+   
+    }
+   // upload video
+   function uploadVid(event) {
+    let form = document.querySelector('#form6');
+    let formData = new FormData(form);
+    console.log(formData);
+    console.log(form);
+    $.ajax({
+     method: 'POST',
+     url: 'https://pitchar.io/api/_create-media.php',
+     data: formData,
+     processData: false,
+     contentType: false,
+     success(data){
+     console.log(data.data.image);
+     var node = document.createElement("img");
+     node.src=data.data.image;
+     node.width = 125;
+     node.height =125;
+     node.id= 'img'+perm;
+     node.style='margin:4px;';
+     node.setAttribute("onclick","pushVid(this);");
+     document.getElementById("galleryvids").appendChild(node);
  
-  
+   },
+   });
+ 
+  }
+ // to fetch videos
+ k=0;
+ let video = document.getElementById('videobut');
+ video.addEventListener('click', () =>  {
+//   document.getElementById("galleryauds").innerHTML = "";
+//   document.getElementsByClassName("searchbar")[5].value="";
+//   document.getElementsByClassName("searchbar")[6].value="";
+if(k==0){  
+$.ajax({
+   method: 'post',
+   url: 'https://pitchar.io/api/_fetch-media.php',
+   data: {
+       submit: 1,
+       authtoken: token,
+     },
+   dataType: 'json',
+   success(result){
+             console.log(token); 
+             console.log(result);   
+             console.log("success2");
+             var medias = result.media;
+             for(var i=0;i<medias.length;i++){
+             media = medias[i];
+             var node = document.createElement("img");
+             node.src=media.thumbnail;
+             node.width = 125;
+             node.height =125;
+             node.id= 'img'+i;
+             node.style='margin:4px;';
+             node.setAttribute("onclick","pushVid(this);");
+             node.setAttribute("class","image");
+             node.setAttribute("data-source",media.audio);
+             var div= document.createElement("div");
+             div.setAttribute("class","hbox");
+             div.appendChild(node);
+             var overlay=document.createElement("div");
+             overlay.setAttribute("class","options")
+             var edit=document.createElement('button');
+             edit.setAttribute("onclick","editvid(this)");
+             edit.innerHTML="<i class='fa fa-edit'></i>";
+             var del=document.createElement('button');
+             del.setAttribute("onclick","delvid(this)");
+             del.innerHTML="<i class='fa fa-trash'></i>";
+             overlay.appendChild(edit);
+             overlay.appendChild(del);
+             div.appendChild(node);
+             div.appendChild(overlay);
+             if(media.type=='2D' || media.type=='360')
+             document.getElementById("galleryvids").appendChild(div);
+             perm=i;  
+             }
+           
+      
+           }
+     });
+     k=1;
+   }
+   });

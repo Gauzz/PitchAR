@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <link rel="stylesheet" href="Crop/croppie.css" />
-    <link rel="stylesheet" href="UI.css">
+    <link rel="stylesheet" href="UI.css"/>
     <title>PitchAR AR Creator</title>
     <script>
       var unpic;
@@ -53,7 +53,8 @@
         <a-image  src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"material="color: #ececec;opacity:0.2;" ></a-image>
         <a-image id='imglogo'  src="#logo" position="0 0.1 0"rotation="-90 0 0" scale="2 2 0"material="color: #ececec;opacity:1;" ></a-image>
       </a-scene>
-  <button id='but' type="button" onclick="add(this)" style='color:#4846ae;position:absolute;bottom: 10px;left:10px;z-index:9999;width:100px;height: auto;'>Add entity</button>
+  <!---button id='but' type="button" onclick="add(this)" style='color:#4846ae;position:absolute;bottom: 10px;left:10px;z-index:9999;width:100px;height: auto;'>Add entity</button-->
+  <div id="d2"></div>
   <div id="p5">
     <button id="p7"><i class="fa fa-rotate-left"></i></button>
     <button id="p7"><i class="fa fa-rotate-right"></i></button>
@@ -86,14 +87,18 @@
   <i id="p1" class="fa fa-text-width"></i>
   </button>
   &nbsp;
-  <button type="button" data-toggle="modal" data-target="#exampleModalL">
+  <button id='musicbut' type="button" data-toggle="modal" data-target="#music">
     <i id="p1" class="fa fa-music"></i>
     </button>
     &nbsp;
-    <button type="button" data-toggle="modal" data-target="#exampleModalA">
+    <button id='ctabut' type="button" data-toggle="modal" data-target="#cta">
       <i id="p1" class="fa fa-caret-square-o-right"></i>
       </button>
-    
+      &nbsp;
+      <button id="videobut" type="button" data-toggle="modal" data-target="#videos">
+        <i id="p1" class="fa fa-video-camera"></i>
+        </button>
+      
   </P>
   
   <div class="modal fade" id="hotspot" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
@@ -336,7 +341,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalL" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal fade" id="music" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -346,30 +351,41 @@
           </button>
         </div>
         <div class="modal-body">
-        <h1> 
-  
-          .....
-        </h1>
-              </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div><div class="modal fade" id="exampleModalA" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <h1> 
-  
-          .....
-        </h1>
+      
+          <div class="tab-content">
+            <div id="gallery" class="tab-pane fade in active">
+              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
+     
+              <form id="form4" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+                <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
+                <label>Name :</label><input id="audioname" name="audio" type="file" >
+                <label>Audio :</label><input id="audio" name="audio" type="file" >
+                <label>Thumbnail :</label><input id="audiothumb" name="thumbnail" type="file" >
+                <input type="hidden" name="create" value="1">
+                <input type="hidden" name="type" value="audio">
+
+                <br>
+                <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
+              </form>
+                
+                <button type="button" onclick="uploadAud()" class="uploadbut">
+                    Upload Audio</button>  
+                <br><br>    
+                AUDIO GALLERY
+                <br><br>
+                <div id='galleryauds'></div> 
+                    
+            </div>
+            <div id="unsplash" class="tab-pane fade">
+            <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
+            <div id="unsplashImgs"></div>
+            <br><br> 
+        
+            </div>
+          </div>
+       
+
+        
               </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -377,6 +393,91 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="cta" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href="" style="color:#FFF;background-color:#4846ae;padding: 8px;">Text</a>
+        <br><br><br>  
+        <input id='backcolor' title="Button Color" type="color" value="#4846ae" onchange="chgback(this)">
+        <input id='butcolor' title="Text Color" type="color" value="#FFFfff" onchange="chgfore(this)">
+        <br>
+        <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)">
+        <input id='butlink' type="text" placeholder="http://" onchange="chglnk(this)">
+        <input title="Roundness of Button" type="range" min="1" max="50" value="0" class="slider" id="butround" oninput="chground(this)">
+        <br><br>      
+        <button onclick="addbut(this);" data-dismiss="modal" style="right:10px; background-color: #d3d3d3;padding: 8px; float: right;">OK</button>       
+      </div>     
+      <div style="height:60px;width:100%;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="videos" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+     <br>
+          <!---ul class="nav nav-tabs ">
+            <li class="active col-lg-6"><a data-toggle="tab" href="#gallery"><center>MY Gallery</center></a></li>
+            </ul-->
+          
+        </div>
+        <div id='videobody' onscroll="" class="modal-body">
+          <div class="tab-content">
+            <div id="vidgallery" class="tab-pane fade in active">
+              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
+     
+              <form id="form6" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+                <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
+                <label>Name :</label><br><input id="videoname" name="name"  ><br>
+                <label>Video :</label><input id="video" name="video" type="file" >
+                <label>Thumbnail :</label><input id="videothumb" name="thumbnail" type="file" >
+                <input type="hidden" name="create" value="1">
+                <label>Type :</label>
+                <select name="type" class='type'>
+                  <option value="2D">2D</option>
+                  <option value="360">360</option>
+                </select>
+                 <br>  <br>
+                <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
+              </form>
+                
+                <button type="button" onclick="uploadVid()" class="uploadbut">
+                    Upload Video</button>  
+                <br><br>    
+                
+                <div class="demo"></div>
+
+
+
+                <div id='galleryvids'></div> 
+                
+            </div>
+            <div id="unsplash" class="tab-pane fade">
+            <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
+            <div id="unsplashImgs"></div>
+            <br><br> 
+        
+            </div>
+          </div>
+        
+           </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
   <div class="sidebar">
     <center>
     ANIMATIONS

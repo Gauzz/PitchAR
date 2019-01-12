@@ -54,6 +54,29 @@ function chground(e){
   cta.style.borderBottomRightRadius = e.value+'%';
 }
 
+function pushVid(e){
+  console.log(e.src);
+  if(e.dataset.type=='2D')
+    {var node = document.createElement("a-video");
+    node.setAttribute('src',e.dataset.source);
+    node.id= e.id;
+    node.object3D.position.set(0,0.5,0);
+    node.setAttribute('click-drag','');
+    document.getElementById("perswin").appendChild(node);
+    }
+    else if(e.dataset.type=='360'){
+      var node = document.createElement("a-videosphere");
+      node.setAttribute('src',e.dataset.source);
+      node.id= e.id;
+      node.object3D.position.set(0,0.5,0);
+  //  node.setAttribute('click-drag','');
+      document.getElementById("perswin").appendChild(node);
+        
+    }
+    $('#videos .close').click();
+    $('.modal-backdrop').remove();
+}
+
 function addbut(e){
   var x=cta.cloneNode(true);
   x.style.position="relative";
@@ -535,9 +558,7 @@ asset.addEventListener('click', () =>  {
  k=0;
  let video = document.getElementById('videobut');
  video.addEventListener('click', () =>  {
-//   document.getElementById("galleryauds").innerHTML = "";
-//   document.getElementsByClassName("searchbar")[5].value="";
-//   document.getElementsByClassName("searchbar")[6].value="";
+   console.log("reached");
 if(k==0){  
 $.ajax({
    method: 'post',
@@ -562,7 +583,8 @@ $.ajax({
              node.style='margin:4px;';
              node.setAttribute("onclick","pushVid(this);");
              node.setAttribute("class","image");
-             node.setAttribute("data-source",media.audio);
+             node.setAttribute("data-source",media.video);
+             node.setAttribute("data-type",media.type);
              var div= document.createElement("div");
              div.setAttribute("class","hbox");
              div.appendChild(node);

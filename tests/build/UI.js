@@ -1,7 +1,7 @@
 let token = 'jzXPgvSfhYMx7I3';
 let k=0;
 let perm=0;
-
+let ctaid=0;
 function auto() {
 /*  $.ajax({
   method: 'post',
@@ -23,18 +23,44 @@ var sceneEl = document.querySelector('a-scene');
 sceneEl.addEventListener('loaded', function () { 
   sceneEl.removeAttribute('inspector');
 });
-
-
 }
 auto();
 var cta=document.getElementById('ctabutton');
 function chgfore(e){
+
 cta.style.color = e.value;
 }
 
-function chgback(e){
-  cta.style.backgroundColor = e.value;
+function editback()
+{
+  $('#backcolor').toggle();
+}
+
+function editcol()
+{
+  $('#butcolor').toggle();
+}
+
+$('#backcolor').ColorPicker({
+  color: '#4846ae',
+  flat:true,
+  onChange: function (hsb, hex, rgb) {
+    cta.style.backgroundColor = '#' + hex;
+		$('#backcol').css('backgroundColor','#' + hex); 
   }
+});
+
+$('#butcolor').ColorPicker({
+  color: '#ffffff',
+  flat:true,
+  onChange: function (hsb, hex, rgb) {
+    cta.style.color = '#' + hex;
+		$('#butcol').css('backgroundColor','#' + hex);;
+	}
+});
+
+$('#backcolor').hide();
+$('#butcolor').hide();
 
 function chgtxt(e){
   cta.innerText = e.value;
@@ -68,8 +94,6 @@ function pushVid(e){
       var node = document.createElement("a-videosphere");
       node.setAttribute('src',e.dataset.source);
       node.id= e.id;
-      node.object3D.position.set(0,0.5,0);
-  //  node.setAttribute('click-drag','');
       document.getElementById("perswin").appendChild(node);
         
     }
@@ -79,15 +103,24 @@ function pushVid(e){
 
 function addbut(e){
   var x=cta.cloneNode(true);
-  x.style.position="relative";
+  x.style.position="absolute";
   x.style.bottom="50px";
   x.style.marginLeft="10px";
+  x.style.zIndex="5";
+  x.id="cta" + ctaid;
+  x.style.height='fit-content';
+  x.setAttribute('onmousedown','dragMouseDown(this)');
   var d2=document.getElementById('d2');
   d2.appendChild(x);
- // $('#cta .close').click();
- // $('.modal-backdrop').remove();    
+  ++ctaid;
 }
 
+function dragMouseDown(e) {
+    var elem = e;
+    var draggie = new Draggabilly( elem, {
+    });
+    $('#'+e.id).resizable();
+  }
 function add(event) {
     obj = document.querySelector('#object');
     obj.object3D.visible = true;

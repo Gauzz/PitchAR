@@ -15,7 +15,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <link rel="stylesheet" href="Crop/croppie.css" />
     <link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
-<script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
+    <script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
+    <style>
+      @font-face {
+    font-family: 'orbitron';
+    src: url('css/orbitron-black-webfont.eot');
+    src: url('css/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('css/orbitron-black-webfont.woff') format('woff'),
+         url('css/orbitron-black-webfont.ttf') format('truetype'),
+         url('css/orbitron-black-webfont.svg#orbitron-black-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'leaguescript';
+    src: url('css/LeagueScriptNumberOne-webfont.eot');
+    src: url('css/LeagueScriptNumberOne-webfont.eot?#iefix') format('embedded-opentype'),
+         url('css/LeagueScriptNumberOne-webfont.woff') format('woff'),
+         url('css/LeagueScriptNumberOne-webfont.ttf') format('truetype'),
+         url('css/LeagueScriptNumberOne-webfont.svg#orbitron-black-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'leaguemono';
+    src: url('css/LeagueMono-Regular.eot');
+    src: url('css/LeagueMono-Regular.eot?#iefix') format('embedded-opentype'),
+         url('css/LeagueMono-Regular.woff') format('woff'),
+         url('css/LeagueMono-Regular.ttf') format('truetype'),
+         url('css/LeagueMono-Regular.svg#orbitron-black-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'knewave';
+    src: url('css/knewave-webfont.eot');
+    src: url('css/knewave-webfont.eot?#iefix') format('embedded-opentype'),
+         url('css/knewave-webfont.woff') format('woff'),
+         url('css/knewave-webfont.ttf') format('truetype'),
+         url('css/knewave-webfont.svg#orbitron-black-webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+ 
+
+    </style>
     <link rel="stylesheet" href="UI.css"/>
     <title>PitchAR AR Creator</title>
     <script>
@@ -56,7 +100,6 @@
         <a-image  src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"material="color: #ececec;opacity:0.2;" ></a-image>
         <a-image id='imglogo'  src="#logo" position="0 0.1 0"rotation="-90 0 0" scale="2 2 0"material="color: #ececec;opacity:1;" ></a-image>
       </a-scene>
-  <!---button id='but' type="button" onclick="add(this)" style='color:#4846ae;position:absolute;bottom: 10px;left:10px;z-index:9999;width:100px;height: auto;'>Add entity</button-->
   <div id="d2"></div>
   <div id="p5">
     <button id="p7"><i class="fa fa-rotate-left"></i></button>
@@ -86,7 +129,7 @@
     <i id="p1" class="fa fa-cube"></i>
     </button>
     &nbsp;
-  <button type="button" data-toggle="modal" data-target="#exampleModalLo">
+  <button id='txtbut' type="button" data-toggle="modal" data-target="#txt">
   <i id="p1" class="fa fa-text-width"></i>
   </button>
   &nbsp;
@@ -235,25 +278,6 @@
     </div>
   </div>
 
-  <div class="modal fade" id="exampleModalLo" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <h1>  ...
-            </h1>
-              </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="modal fade" id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -304,40 +328,29 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalLo" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal fade" id="txt" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
+          <h5 class="modal-title" id="txtTitle">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-        <h1>  ...
-            </h1>
-              </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'  style='color:crimson;font-family:orbitron'>TEXT</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:leaguescript'>TEXT</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:leaguemono'>TEXT</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:knewave'>TEXT</span>          
+          <br>
+          <input id='phrase' onkeyup="phrasechanged(this)" type="text" placeholder="TEXT">
+          <br>
+          <div id='phrcol' onclick="editphr()" title="Button Color" style="background-color:crimson;height: 10px;
+        width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
+    border-width: 0.5px;" ></div>
+        <div id='phrcolor'></div>
+        
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="assetsTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <h1> 
-  
-          .....
-        </h1>
-              </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
@@ -361,8 +374,8 @@
      
               <form id="form4" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <label>Name :</label><input id="audioname" name="audio" type="file" >
-                <label>Audio :</label><input id="audio" name="audio" type="file" >
+                <label>Name :</label><input id="audioname" name="audio" type="text" >
+                <br><label>Audio :</label><input id="audio" name="audio" type="file" >
                 <label>Thumbnail :</label><input id="audiothumb" name="thumbnail" type="file" >
                 <input type="hidden" name="create" value="1">
                 <input type="hidden" name="type" value="audio">
@@ -409,10 +422,12 @@
         <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href="" style="color:#FFF;background-color:#4846ae;padding: 8px;">Text</a>
         <br><br><br>  
         <div id='backcol' onclick="editback()" title="Button Color" style="background-color:#4846ae;height: 10px;
-        width: 30px;display: -webkit-inline-box;" ></div>
+        width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
+    border-width: 0.5px;" ></div>
         <div id='backcolor'></div>
-        <div id='butcol' onclick="editcol()" title="Button Color" style="background-color:#4846ae;height: 10px;
-        width: 30px;display: -webkit-inline-box;" ></div>
+        <div id='butcol' onclick="editcol()" title="Text Color" style="background-color:#ffffff;height: 10px;
+        width: 30px;display: -webkit-inline-box; border:#d3d3d3;border-style: solid;
+    border-width: 0.5px;" ></div>
         <div id='butcolor'></div>       
         <br>
         <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)">

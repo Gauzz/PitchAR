@@ -25,6 +25,8 @@ sceneEl.addEventListener('loaded', function () {
 });
 }
 auto();
+
+//CTA Functionalities
 var cta=document.getElementById('ctabutton');
 function chgfore(e){
 
@@ -80,6 +82,74 @@ function chground(e){
   cta.style.borderBottomRightRadius = e.value+'%';
 }
 
+//Text functionalities
+function fontchanged(e){
+  var phrasetxt=document.getElementById('phrasetxt');
+  phrasetxt.style.fontFamily = e.value;
+}
+
+function phrasechanged(e){
+  var phrasetxt=document.getElementsByClassName('phrasetxt');
+  if(e.value=='' || e.value== null)
+  {
+    phrasetxt[0].innerText='TEXT';
+    phrasetxt[1].innerText='TEXT';
+    phrasetxt[2].innerText='TEXT';
+    phrasetxt[3].innerText='TEXT';
+  }
+  phrasetxt[0].innerText = e.value;
+  phrasetxt[1].innerText = e.value;
+  phrasetxt[2].innerText = e.value;
+  phrasetxt[3].innerText = e.value;  
+}
+var col;
+function editphr(e)
+{
+  $('#phrcolor').toggle();
+  col=e.style.backgroundColor;
+}
+
+$('#phrcolor').ColorPicker({
+  color: col,
+  flat:true,
+  onChange: function (hsb, hex, rgb) {
+    var phrasetxt=document.getElementsByClassName('phrasetxt');    
+    phrasetxt[0].style.color = '#' + hex;
+    phrasetxt[1].style.color = '#' + hex;
+    phrasetxt[2].style.color = '#' + hex;
+    phrasetxt[3].style.color = '#' + hex;
+    $('#phrcol').css('backgroundColor','#' + hex); 
+  }
+});
+$('#phrcolor').hide();
+var n=0;
+function pushTxt(e){
+  n++;
+  var txt= document.createElement('a-text');
+  txt.setAttribute('click-drag','');
+  txt.setAttribute('value',e.innerText);
+  txt.setAttribute("font",'./css/' + e.style.fontFamily +".fnt");
+  txt.setAttribute("fontImage","./css/" + e.style.fontFamily +".png");
+  if(e.style.fontFamily =='leaguescript'){
+  txt.setAttribute("font","./css/LeagueScriptNumberOne-webfont-msdf.json");
+  txt.setAttribute("fontImage","./css/LeagueScriptNumberOne-webfont.png");
+  txt.setAttribute("negate","false");
+  txt.setAttribute("shader","msdf");
+
+  }
+  txt.setAttribute("color",e.style.color);
+  txt.setAttribute("width","12");
+  txt.setAttribute("side","double");
+  txt.id='txt'+n; 
+  txt.object3D.position.set(0,0.6,0);
+  var sc=document.querySelector('a-scene');
+  sc.appendChild(txt); 
+  $('#txt .close').click();
+  $('.modal-backdrop').remove();    
+  
+}
+
+// Video functionalities
 function pushVid(e){
   console.log(e.src);
   if(e.dataset.type=='2D')

@@ -17,6 +17,7 @@
     <link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
     <script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
     <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
       @font-face {
     font-family: 'orbitron';
     src: url('css/orbitron-black-webfont.eot');
@@ -338,19 +339,21 @@
           </button>
         </div>
         <div class="modal-body">
-          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'  style='color:crimson;font-family:orbitron;cursor:pointer;'>TEXT</span>
-          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:leaguescript;cursor:pointer;'>TEXT</span>
-          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:leaguemono;cursor:pointer;'>TEXT</span>
-          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:knewave;cursor:pointer;'>TEXT</span>          
-          <br>
-          <input id='phrase' onkeyup="phrasechanged(this)" type="text" placeholder="TEXT">
-          <br>
-          <div id='phrcol' onclick="editphr()" title="Button Color" style="background-color:crimson;height: 10px;
-        width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
-    border-width: 0.5px;" ></div>
-        <div id='phrcolor'></div>
-        
-        </div>
+          
+            <input id='phrase' onkeyup="phrasechanged(this)" type="text" placeholder="TEXT">
+            <br>
+            <div id='phrcol' onclick="editphr()" title="Button Color" style="background-color:crimson;height: 10px;
+            width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
+            border-width: 0.5px;" ></div>
+            <div id='phrcolor'></div>
+            <br>
+            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'  style='color:crimson;font-family:orbitron;cursor:pointer;'>TEXT</span>
+            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:roboto;cursor:pointer;'>TEXT</span>
+            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:leaguemono;cursor:pointer;'>TEXT</span>
+            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:knewave;cursor:pointer;'>TEXT</span>          
+            <br>
+            <br>
+          </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>

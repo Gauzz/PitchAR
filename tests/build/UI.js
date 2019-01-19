@@ -128,14 +128,10 @@ function pushTxt(e){
   var txt= document.createElement('a-text');
   txt.setAttribute('click-drag','');
   txt.setAttribute('value',e.innerText);
+  if(e.style.fontFamily =='roboto');
+  else{
   txt.setAttribute("font",'./css/' + e.style.fontFamily +".fnt");
   txt.setAttribute("fontImage","./css/" + e.style.fontFamily +".png");
-  if(e.style.fontFamily =='leaguescript'){
-  txt.setAttribute("font","./css/LeagueScriptNumberOne-webfont-msdf.json");
-  txt.setAttribute("fontImage","./css/LeagueScriptNumberOne-webfont.png");
-  txt.setAttribute("negate","false");
-  txt.setAttribute("shader","msdf");
-
   }
   txt.setAttribute("color",e.style.color);
   txt.setAttribute("width","12");
@@ -144,6 +140,7 @@ function pushTxt(e){
   txt.object3D.position.set(0,0.6,0);
   var sc=document.querySelector('a-scene');
   sc.appendChild(txt); 
+  
   $('#txt .close').click();
   $('.modal-backdrop').remove();    
   
@@ -630,6 +627,14 @@ asset.addEventListener('click', () =>  {
      });
    
     }
+   //change video type
+   function chgcheck(e){
+    if(e.checked){
+      var typ= document.getElementById('check360');
+      typ.value="360";
+    }
+   
+   
    // upload video
    function uploadVid(event) {
     let form = document.querySelector('#form6');

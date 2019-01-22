@@ -140,7 +140,6 @@ function pushTxt(e){
   txt.object3D.position.set(0,0.6,0);
   var sc=document.querySelector('a-scene');
   sc.appendChild(txt); 
-  
   $('#txt .close').click();
   $('.modal-backdrop').remove();    
   
@@ -186,7 +185,6 @@ function dragMouseDown(e) {
     var elem = e;
     var draggie = new Draggabilly( elem, {
     });
-    $('#'+e.id).resizable();
   }
 function add(event) {
     obj = document.querySelector('#object');
@@ -464,7 +462,7 @@ searchImg[0].addEventListener("keyup", function(event) {
                 perm=i;  
                 }
                
-        },
+        }
     
     });
   }
@@ -538,7 +536,7 @@ asset.addEventListener('click', () =>  {
      node.setAttribute("onclick","pushObj(this);");
     document.getElementById("galleryobjs").appendChild(node);
  
-   },
+   }
    });
  
   }
@@ -623,7 +621,7 @@ asset.addEventListener('click', () =>  {
        node.setAttribute("onclick","pushImg(this);");
        document.getElementById("galleryauds").appendChild(node);
    
-     },
+     }
      });
    
     }
@@ -713,9 +711,11 @@ $.ajax({
              perm=i;  
              }
            
-      
+      k=1;
            }
      });
-     k=1;
-   }
+    
+     }
+    
    });
+  }

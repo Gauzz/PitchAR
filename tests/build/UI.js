@@ -631,7 +631,7 @@ asset.addEventListener('click', () =>  {
       var typ= document.getElementById('check360');
       typ.value="360";
     }
-   
+  }
    
    // upload video
    function uploadVid(event) {
@@ -709,13 +709,10 @@ $.ajax({
              if(media.type=='2D' || media.type=='360')
              document.getElementById("galleryvids").appendChild(div);
              perm=i;  
-             }
-           
-      k=1;
+             }  
            }
      });
-    
      }
-    
+     k=1;  
    });
-  }
+  

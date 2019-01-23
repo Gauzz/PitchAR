@@ -468,12 +468,12 @@
                 <label>Thumbnail :</label><input id="videothumb" name="thumbnail" type="file" >
                 <input type="hidden" name="create" value="1">
                 <label>Is this a 360 video? :</label>
-                <input type='checkbox' name='' id=''>
+                <input type='checkbox' name='type' id='vidtype'>
                 <br>  <br>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
               </form>
                 
-                <button type="button" onclick="uploadVid()" class="uploadbut">
+                <button type="button" onclick="uploadVid(this)" class="uploadbut">
                     Upload Video</button>  
                 <br><br>    
                 

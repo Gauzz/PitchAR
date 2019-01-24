@@ -83,6 +83,7 @@ function chground(e){
 }
 
 //Text functionalities
+
 function fontchanged(e){
   var phrasetxt=document.getElementById('phrasetxt');
   phrasetxt.style.fontFamily = e.value;
@@ -141,8 +142,7 @@ function pushTxt(e){
   var sc=document.querySelector('a-scene');
   sc.appendChild(txt); 
   $('#txt .close').click();
-  $('.modal-backdrop').remove();    
-  
+  $('.modal-backdrop').remove();
 }
 
 // Video functionalities
@@ -192,7 +192,21 @@ function add(event) {
     document.getElementById('but').style.display = 'none';
   }
 var c;
-  function editimg(e){
+ 
+function delimg(e){
+  $.ajax({
+    method: 'POST',
+    url: 'https://pitchar.io/api/_delete-assets.php',
+    data: {authtoken:token,product_id:e.dataset.pid},
+    success(data){
+    console.log(data);
+    e.parentNode.parentNode.style.display= 'none';
+    },
+  });
+
+}
+
+function editimg(e){
     console.log(e.parentNode.parentNode.childNodes[0].id);
     
       c = new Croppie(e.parentNode.parentNode.childNodes[0],{
@@ -201,10 +215,6 @@ var c;
       
   }
 
-  function playaud(e){
-    var x= document.getElementById(e.dataset.source);
-    x.play();
-  }
 
   function pushImg(e){
     console.log(e.src);
@@ -267,6 +277,12 @@ function updatetype(e){
    }
 
 }
+
+function playaud(e){
+  var x= document.getElementById(e.dataset.source);
+  x.play();
+}
+
 
 function pushAud(e){
   var d2=document.getElementById('d2');
@@ -347,6 +363,7 @@ function uploadImg(event) {
    edit.setAttribute("onclick","editimg()");
    var del=document.createElement('button');
    del.setAttribute("onclick","delimg()");
+   del.setAttribute('data-pid',data.data.id);
    overlay.appendChild(edit);
    overlay.appendChild(del);
    div.appendChild(node);
@@ -410,6 +427,7 @@ image.addEventListener('click', () =>  {
             edit.innerHTML="<i class='fa fa-edit'></i>";
             var del=document.createElement('button');
             del.setAttribute("onclick","delimg(this)");
+            del.setAttribute('data-pid',asset.id);
             del.innerHTML="<i class='fa fa-trash'></i>";
             overlay.appendChild(edit);
             overlay.appendChild(del);

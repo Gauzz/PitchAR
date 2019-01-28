@@ -390,7 +390,7 @@
                 <button type="button" onclick="uploadAud()" class="uploadbut">
                     Upload Audio</button>  
                 <br><br>    
-                AUDIO GALLERY
+                
                 <br><br>
                 <div id='galleryauds'></div> 
                     
@@ -422,7 +422,7 @@
           </button>
         </div>
         <div class="modal-body">
-        <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href="" style="color:#FFF;background-color:#4846ae;padding: 8px;">Text</a>
+        <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href="" style="color:#FFF;background-color:#4846ae;padding: 8px;font-family:'FontAwesome', Arial;">Text</a>
         <br><br><br>  
         <div id='backcol' onclick="editback()" title="Button Color" style="background-color:#4846ae;height: 10px;
         width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
@@ -433,6 +433,30 @@
     border-width: 0.5px;" ></div>
         <div id='butcolor'></div>       
         <br>
+        <select id='buticn' onchange="chgtxt(this)" style="font-family:'FontAwesome', Arial; padding: 8px;">
+            <option> </option>  
+            <option>&#xf060</option>
+            <option>&#xf061</option>
+            <option>&#xf062</option>
+            <option>&#xf063</option>
+            <option>&#xf000</option>
+            <option>&#xf001</option>  
+            <option>&#xf002</option>  
+            <option>&#xf003</option>  
+            <option>&#xf004</option>  
+            <option>&#xf005</option>  
+            <option>&#xf006</option>  
+            <option>&#xf007</option>  
+            <option>&#xf008</option>
+            <option>&#xf009</option>
+            <option>&#xf00a</option>
+            <option>&#xf00b</option>
+            <option>&#xf00c</option>
+            <option>&#xf00d</option>
+            <option>&#xf00e</option>
+            <option>&#xf00f</option>  
+          </select>
+        
         <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)">
         <input id='butlink' type="text" placeholder="http://" onchange="chglnk(this)">
         <input title="Roundness of Button" type="range" min="1" max="50" value="0" class="slider" id="butround" oninput="chground(this)">
@@ -468,7 +492,8 @@
                 <label>Thumbnail :</label><input id="videothumb" name="thumbnail" type="file" >
                 <input type="hidden" name="create" value="1">
                 <label>Is this a 360 video? :</label>
-                <input type='checkbox' name='type' id='vidtype'>
+                <input type='hidden'  id='vidtype' name='type' value="2D">
+                <input type='checkbox'onchange="chgvidtype();">
                 <br>  <br>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
               </form>

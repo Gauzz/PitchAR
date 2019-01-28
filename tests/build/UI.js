@@ -65,9 +65,20 @@ $('#backcolor').hide();
 $('#butcolor').hide();
 
 function chgtxt(e){
-  cta.innerText = e.value;
+  if(e.id == 'buttext'){
+  var str=document.getElementById('buticn').value;  
+  cta.innerText = str +' '+ e.value;
+
+  }else if(e.id=='buticn'){
+    var str=document.getElementById('buttext').value;  
+    cta.innerText =  e.value +' '+str;
+      
+  }
+  console.log(str + e.value);
+
   if(e.value=='' || e.value=='null'){
-    cta.innerText= "Text";
+    var str=document.getElementById('buticn').value;  
+    cta.innerText= str;
   }
 }
 
@@ -387,7 +398,6 @@ image.addEventListener('click', () =>  {
               var node = document.createElement("img");
               node.src=unpic[i].urls.small;
               node.width = 125;
-              node.height =125;
               node.style='margin:4px;';
               node.setAttribute("onclick","pushImg(this);");
               node.setAttribute("crossorigin","anonymous");
@@ -562,10 +572,10 @@ asset.addEventListener('click', () =>  {
  k=0;
   let music = document.getElementById('musicbut');
   music.addEventListener('click', () =>  {
- //   document.getElementById("galleryauds").innerHTML = "";
+    document.getElementById("galleryauds").innerHTML = "";
  //   document.getElementsByClassName("searchbar")[5].value="";
  //   document.getElementsByClassName("searchbar")[6].value="";
- if(k==0){  
+   console.log('reached audio');
  $.ajax({
     method: 'post',
     url: 'https://pitchar.io/api/_fetch-media.php',
@@ -613,8 +623,6 @@ asset.addEventListener('click', () =>  {
        
             }
       });
-      k=1;
-    }
     });
     // to upload audio files
     function uploadAud(event) {
@@ -679,11 +687,10 @@ asset.addEventListener('click', () =>  {
  
   }
  // to fetch videos
- k=0;
  let video = document.getElementById('videobut');
  video.addEventListener('click', () =>  {
-   console.log("reached");
-if(k==0){  
+   console.log("reached video");
+   document.getElementById("galleryvids").innerHTML='';
 $.ajax({
    method: 'post',
    url: 'https://pitchar.io/api/_fetch-media.php',
@@ -730,7 +737,13 @@ $.ajax({
              }  
            }
      });
-     }
-     k=1;  
    });
   
+//video functionalities
+   function chgvidtype(){
+    if(this.checked) {
+      document.getElementById('vidtype').value = "360";
+    } else {
+      document.getElementById('vidtype').value = "2D";
+    }
+   }

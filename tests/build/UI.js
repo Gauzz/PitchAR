@@ -334,7 +334,7 @@ function uploadImg(event) {
               var percentComplete = evt.loaded / evt.total;
               //Do something with upload progress
               uploadbar.style.width=percentComplete*100 + '%';
-              console.log(percentComplete*100 + ' %');
+             if(percentComplete==1)uploadbar.style.width=0;
           }
      }, false);
 
@@ -344,8 +344,8 @@ function uploadImg(event) {
              var percentComplete= evt.loaded / evt.total;
              // Do something with download progress
              uploadbar.style.width=percentComplete*100 + '%';
-             console.log(percentComplete*100 + ' %');
-         }
+             if(percentComplete==1)uploadbar.style.width=0;
+            }
      }, false);
 
      return xhr;
@@ -364,7 +364,7 @@ function uploadImg(event) {
     node.style='margin:4px;';
     node.setAttribute("onclick","pushImg(this);");
     document.getElementById("galleryimgs").appendChild(node);
-    uploadbar.style.width= '0%';
+    uploadbar.style.width= 0;
   },
   });
 
@@ -391,8 +391,8 @@ function uploadImg(event) {
             var percentComplete = evt.loaded / evt.total;
             //Do something with upload progress
             uploadbar.style.width=percentComplete*100 + '%';
-            console.log(percentComplete*100 + ' %');
-        }
+            if(percentComplete==1)uploadbar.style.width=0;
+          }
    }, false);
 
    // Download progress
@@ -401,8 +401,8 @@ function uploadImg(event) {
            var percentComplete = evt.loaded / evt.total;
            // Do something with download progress
            uploadbar.style.width=percentComplete*100 + '%';
-           console.log(percentComplete*100 + ' %');
-       }
+           if(percentComplete==1)uploadbar.style.width=0;
+          }
    }, false);
 
    return xhr;
@@ -430,7 +430,7 @@ function uploadImg(event) {
    overlay.appendChild(del);
    div.appendChild(node);
    document.getElementById("galleryimgs").appendChild(div);
-   uploadbar.style.width= '0%';
+   uploadbar.style.width= 0;
             
  },
  });
@@ -611,8 +611,8 @@ asset.addEventListener('click', () =>  {
               var percentComplete = evt.loaded / evt.total;
               //Do something with upload progress
               uploadbar.style.width=percentComplete*100 + '%';
-              console.log(percentComplete*100 + ' %');
-          }
+              if(percentComplete==1)uploadbar.style.width=0;
+            }
      }, false);
 
      // Download progress
@@ -621,7 +621,7 @@ asset.addEventListener('click', () =>  {
              var percentComplete= evt.loaded / evt.total;
              // Do something with download progress
              uploadbar.style.width=percentComplete*100 + '%';
-             console.log(percentComplete*100 + ' %');
+             if(percentComplete==1)uploadbar.style.width=0;
          }
      }, false);
 
@@ -640,7 +640,7 @@ asset.addEventListener('click', () =>  {
      node.style='margin:4px;';
      node.setAttribute("onclick","pushObj(this);");
      document.getElementById("galleryobjs").appendChild(node);
-     uploadbar.style.width= '0%';
+     uploadbar.style.width=0;
    }
    });
  
@@ -722,8 +722,8 @@ asset.addEventListener('click', () =>  {
                 var percentComplete = evt.loaded / evt.total;
                 //Do something with upload progress
                 uploadbar.style.width=percentComplete*100 + '%';
-                console.log(percentComplete*100 + ' %');
-            }
+                if(percentComplete==1)uploadbar.style.width=0;
+              }
        }, false);
 
        // Download progress
@@ -732,14 +732,15 @@ asset.addEventListener('click', () =>  {
                var percentComplete = evt.loaded / evt.total;
                // Do something with download progress
                uploadbar.style.width=percentComplete*100 + '%';
-               console.log(percentComplete*100 + ' %');
-           }
+               if(percentComplete==1)uploadbar.style.width=0;
+              }
        }, false);
 
        return xhr;
     },
        success(data){
        console.log(data);
+       uploadbar.style.width=0;
        var node = document.createElement("img");
        node.src=data.data.image;
        node.width = 125;
@@ -748,7 +749,6 @@ asset.addEventListener('click', () =>  {
        node.style='margin:4px;';
        node.setAttribute("onclick","pushImg(this);");
        document.getElementById("galleryauds").appendChild(node);
-       uploadbar.style.width= '0%';
       }
      });
    
@@ -785,8 +785,8 @@ asset.addEventListener('click', () =>  {
               var percentComplete = evt.loaded / evt.total;
               //Do something with upload progress
               uploadbar.style.width=percentComplete*100 + '%';
-              console.log(percentComplete*100 + ' %');
-          }
+              if(percentComplete==1)uploadbar.style.width=0;
+            }
      }, false);
 
      // Download progress
@@ -795,13 +795,14 @@ asset.addEventListener('click', () =>  {
              var percentComplete = evt.loaded / evt.total;
              // Do something with download progress
              uploadbar.style.width=percentComplete*100 + '%';
-             console.log(percentComplete*100 + ' %');
+             if(percentComplete==1)uploadbar.style.width=0;
          }
      }, false);
 
      return xhr;
   }, 
      success(data){
+     uploadbar.style.width=0;  
      console.log(data.data.image);
      var node = document.createElement("img");
      node.src=data.data.image;
@@ -811,7 +812,6 @@ asset.addEventListener('click', () =>  {
      node.style='margin:4px;';
      node.setAttribute("onclick","pushVid(this);");
      document.getElementById("galleryvids").appendChild(node);
-     uploadbar.style.width= '0%';
    },
    });
  

@@ -583,6 +583,7 @@ asset.addEventListener('click', () =>  {
             node.setAttribute("data-mtlfile",asset.mtl);
             node.style='margin:4px;';
             node.setAttribute("onclick","pushObj(this);");
+            if(media.thumbnail!=undefined)
             document.getElementById("galleryobjs").appendChild(node);
            }
             perm=i;  
@@ -693,6 +694,7 @@ asset.addEventListener('click', () =>  {
               div.appendChild(node);
               div.appendChild(overlay);
               if(media.type=='audio')
+              if(media.thumbnail!= "")
               document.getElementById("galleryauds").appendChild(div);
               perm=i;  
               }
@@ -742,7 +744,7 @@ asset.addEventListener('click', () =>  {
        console.log(data);
        uploadbar.style.width=0;
        var node = document.createElement("img");
-       node.src=data.data.image;
+       node.src=data.data.thumbnail;
        node.width = 125;
        node.height =125;
        node.id= 'img'+perm;
@@ -803,15 +805,32 @@ asset.addEventListener('click', () =>  {
   }, 
      success(data){
      uploadbar.style.width=0;  
-     console.log(data.data.image);
+     console.log(data.data.thumbnail);
      var node = document.createElement("img");
-     node.src=data.data.image;
+     node.src=data.data.thumbnail;
      node.width = 125;
      node.height =125;
      node.id= 'img'+perm;
      node.style='margin:4px;';
      node.setAttribute("onclick","pushVid(this);");
-     document.getElementById("galleryvids").appendChild(node);
+     node.setAttribute("data-source",data.data.video);
+     node.setAttribute("data-type",data.data.type);
+     var div= document.createElement("div");
+     div.setAttribute("class","hbox");
+     div.appendChild(node);
+     var overlay=document.createElement("div");
+     overlay.setAttribute("class","options")
+     var edit=document.createElement('button');
+     edit.setAttribute("onclick","editvid(this)");
+     edit.innerHTML="<i class='fa fa-edit'></i>";
+     var del=document.createElement('button');
+     del.innerHTML="<i class='fa fa-trash'></i>";
+     overlay.appendChild(edit);
+     overlay.appendChild(del);
+     div.appendChild(node);
+     div.appendChild(overlay);
+    
+     document.getElementById("galleryvids").appendChild(div);
    },
    });
  
@@ -861,6 +880,7 @@ $.ajax({
              div.appendChild(node);
              div.appendChild(overlay);
              if(media.type=='2D' || media.type=='360')
+             if(media.thumbnail!=undefined)
              document.getElementById("galleryvids").appendChild(div);
              perm=i;  
              }
@@ -870,8 +890,8 @@ $.ajax({
    });
   
 //video functionalities
-   function chgvidtype(){
-    if(this.checked) {
+   function chgvidtype(e){
+    if(e.checked) {
       document.getElementById('vidtype').value = "360";
     } else {
       document.getElementById('vidtype').value = "2D";

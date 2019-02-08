@@ -855,7 +855,6 @@ $.ajax({
              edit.setAttribute("onclick","editvid(this)");
              edit.innerHTML="<i class='fa fa-edit'></i>";
              var del=document.createElement('button');
-             del.setAttribute("onclick","delvid(this)");
              del.innerHTML="<i class='fa fa-trash'></i>";
              overlay.appendChild(edit);
              overlay.appendChild(del);

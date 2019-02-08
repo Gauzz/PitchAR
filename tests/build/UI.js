@@ -583,7 +583,6 @@ asset.addEventListener('click', () =>  {
             node.setAttribute("data-mtlfile",asset.mtl);
             node.style='margin:4px;';
             node.setAttribute("onclick","pushObj(this);");
-            if(media.thumbnail!=undefined)
             document.getElementById("galleryobjs").appendChild(node);
            }
             perm=i;  
@@ -694,7 +693,6 @@ asset.addEventListener('click', () =>  {
               div.appendChild(node);
               div.appendChild(overlay);
               if(media.type=='audio')
-              if(media.thumbnail!= "")
               document.getElementById("galleryauds").appendChild(div);
               perm=i;  
               }
@@ -880,7 +878,6 @@ $.ajax({
              div.appendChild(node);
              div.appendChild(overlay);
              if(media.type=='2D' || media.type=='360')
-             if(media.thumbnail!=undefined)
              document.getElementById("galleryvids").appendChild(div);
              perm=i;  
              }

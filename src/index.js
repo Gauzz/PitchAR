@@ -1129,10 +1129,14 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     
     }
     }
+
     document.getElementById('remove').addEventListener('click',function(e){
       selected.object3D.visible=false;
       modifier.object3D.visible=false;
     });
+
+    //Animation and effects logic here.
+
     function run() {
       camera = scene.camera.el;
       rx = document.querySelector('#rx');

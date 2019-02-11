@@ -149,6 +149,7 @@ function pushTxt(e){
   txt.setAttribute("color",e.style.color);
   txt.setAttribute("width","12");
   txt.setAttribute("side","double");
+  txt.classList.add('exp');
   txt.id='txt'+n; 
   txt.object3D.position.set(0,0.6,0);
   var sc=document.querySelector('a-scene');
@@ -166,6 +167,7 @@ function pushVid(e){
     node.id= e.id;
     node.object3D.position.set(0,0.5,0);
     node.setAttribute('click-drag','');
+    node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
     }
     else if(e.dataset.type=='360'){
@@ -235,6 +237,7 @@ function editimg(e){
     node.id= e.id;
     node.object3D.position.set(0,0.5,0);
     node.setAttribute('click-drag','');
+    node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
     $('#images .close').click();
     $('.modal-backdrop').remove();    
@@ -256,6 +259,7 @@ function editimg(e){
     node.object3D.rotation.set(0,1.57,0);
     node.object3D.scale.set(0.7,0.7,0.7);
     node.setAttribute('click-drag','');
+    node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
     $('#assets .close').click();
     $('.modal-backdrop').remove();    
@@ -313,65 +317,14 @@ function pushAud(e){
   play.style.marginLeft="10px";
   play.setAttribute('onclick','playaud(this)');
   d2.appendChild(play);
+  d2.classList.add('exp2');
   $('#music .close').click();
   $('.modal-backdrop').remove();    
  
 }
 
-function uploadImg(event) {
-   let form = document.querySelector('#form');
-   let formData = new FormData(form);
-   console.log(formData);
-   console.log(form);
-   $.ajax({
-    method: 'POST',
-    xhr: function() {
-      var xhr = new window.XMLHttpRequest();
 
-      // Upload progress
-      xhr.upload.addEventListener("progress", function(evt){
-          if (evt.lengthComputable) {
-              var percentComplete = evt.loaded / evt.total;
-              //Do something with upload progress
-              uploadbar.style.width=percentComplete*100 + '%';
-             if(percentComplete==1)uploadbar.style.width=0;
-          }
-     }, false);
-
-     // Download progress
-     xhr.addEventListener("progress", function(evt){
-         if (evt.lengthComputable) {
-             var percentComplete= evt.loaded / evt.total;
-             // Do something with download progress
-             uploadbar.style.width=percentComplete*100 + '%';
-             if(percentComplete==1)uploadbar.style.width=0;
-            }
-     }, false);
-
-     return xhr;
-  },
-    url: 'https://pitchar.io/api/_create-assets.php',
-    data: formData,
-    processData: false,
-    contentType: false,
-    success(data){
-    console.log(data.data.image);
-    var node = document.createElement("img");
-    node.src=data.data.image;
-    node.width = 125;
-    node.height =125;
-    node.id= 'img'+perm;
-    node.style='margin:4px;';
-    node.setAttribute("onclick","pushImg(this);");
-    document.getElementById("galleryimgs").appendChild(node);
-    uploadbar.style.width= 0;
-  },
-  });
-
- }
-
-
- function uploadObj(event) {
+ function uploadImg(event) {
   let form = document.querySelector('#form');
   let formData = new FormData(form);
   console.log(formData);

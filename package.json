@@ -49,6 +49,7 @@
     "aframe-orbit-controls-component": "^1.0.0",
     "aframe-orbit-controls-component-2": "^0.1.14",
     "deep-equal": "^1.0.1",
+    "https-server": "^0.1.2",
     "pexels-api-wrapper": "^1.1.1",
     "unsplash-js": "^4.8.0"
   },

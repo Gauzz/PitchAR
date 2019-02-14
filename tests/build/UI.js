@@ -139,6 +139,8 @@ var n=0;
 function pushTxt(e){
   n++;
   var txt= document.createElement('a-text');
+  txt.setAttribute('rotation',{x:0,y:0,z:0});
+  txt.setAttribute('scale',{x:1,y:1,z:1});
   txt.setAttribute('click-drag','');
   txt.setAttribute('value',e.innerText);
   if(e.style.fontFamily =='roboto');
@@ -166,14 +168,20 @@ function pushVid(e){
     node.setAttribute('src',e.dataset.source);
     node.id= e.id;
     node.object3D.position.set(0,0.5,0);
+    node.setAttribute('rotation',{x:0,y:0,z:0});
+    node.setAttribute('scale',{x:1,y:1,z:1});
     node.setAttribute('click-drag','');
     node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
     }
     else if(e.dataset.type=='360'){
       var node = document.createElement("a-videosphere");
+     // node.setAttribute('rotation',{x:0,y:0,z:0});
+     // node.setAttribute('scale',{x:1,y:1,z:1});
       node.setAttribute('src',e.dataset.source);
+      node.classList.add('exp');
       node.id= e.id;
+    //  node.setAttribute('position',{x:0,y:0,z:0});
       document.getElementById("perswin").appendChild(node);
         
     }
@@ -236,6 +244,8 @@ function editimg(e){
     node.setAttribute('src',e.src);
     node.id= e.id;
     node.object3D.position.set(0,0.5,0);
+    node.setAttribute('rotation',{x:0,y:0,z:0});
+    node.setAttribute('scale',{x:1,y:1,z:1});
     node.setAttribute('click-drag','');
     node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
@@ -245,6 +255,8 @@ function editimg(e){
    function pushObj(e){
     console.log(e.dataset.objfile);
     var node = document.createElement("a-entity");
+    node.setAttribute('rotation',{x:0,y:0,z:0});
+    node.setAttribute('scale',{x:1,y:1,z:1});
     if(e.dataset.type == 'obj'){
        node.setAttribute('obj-model', {
        obj: e.dataset.objfile,
@@ -305,6 +317,8 @@ function pushAud(e){
   var node=document.createElement('audio');
   var id=e.id +"aud";
   node.id=id;
+  node.setAttribute('rotation',{x:0,y:0,z:0});
+  node.setAttribute('scale',{x:1,y:1,z:1});
   var src=document.createElement('source');
   src.src=e.dataset.source;
   node.appendChild(src);

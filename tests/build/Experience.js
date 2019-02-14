@@ -13,7 +13,19 @@ function showEntities(){
 var sceneEl = document.querySelector('#perswin');    
 var els = sceneEl.querySelectorAll('.exp');
 for (var i = 0; i < els.length; i++) {
-  console.log(els[i]);
-  mid+=els[i].outerHTML;
+  var rx,ry,rz,sx,sy,sz;
+  rx=els[i].object3D.rotation.x;
+  ry=els[i].object3D.rotation.y;
+  rz=els[i].object3D.rotation.z;
+  els[i].setAttribute('rotation' , rx+' '+ry+' '+rz);
+  sx=els[i].object3D.scale.x;
+  sy=els[i].object3D.scale.y;
+  sz=els[i].object3D.scale.z;
+  els[i].setAttribute('scale' , sx+' '+sy+' '+sz);
+ 
+els[i].flushToDOM(true);
+els[i].components.rotation.flushToDOM();
+ mid+=els[i].outerHTML;
 }
+return mid;
 }

@@ -1136,6 +1136,47 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     });
 
     //Animation and effects logic here.
+    document.getElementById('anim1').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'rotation', to: '0 360 0', dur: '2000', loop: true});
+    });
+
+    document.getElementById('anim2').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'scale', from: '0 0 0', to: '1 1 1', dur: '2000', loop: true});      
+    });
+
+    document.getElementById('anim3').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'scale', from: '1 1 1', to: '0 0 0', dur: '2000', loop: true});      
+    });
+
+    document.getElementById('anim4').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'components.material.material.color', type: 'color', from: 'red', to: 'blue', dur:'2000', loop: true});      
+    });
+
+    document.getElementById('anim5').addEventListener('click',function(e){      
+      //selected.setAttribute('animation', {property: 'position', to: '0 1.5 0', dur: '1500', easing: 'linear', dir:'alternate', loop: true});           
+      selected.setAttribute('animation', {property: 'object3D.position.y', to: '1', dur: '1500', easing: 'linear', dir:'alternate', loop: true});      
+    });
+
+
+    document.getElementById('fx1').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'components.material.material.opacity', from: '1', to: '0', dur: '1000'});      
+    });
+
+    document.getElementById('fx2').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'components.material.material.opacity', from: '0', to: '1', dur: '1000'});      
+    });
+
+    document.getElementById('fx3').addEventListener('click',function(e){      
+      selected.setAttribute('animation', {property: 'components.material.material.opacity', from: '0', to: '1', dur: '500', dir: 'alternate', loop: true});      
+    });
+
+    document.getElementById('fx4').addEventListener('click',function(e){            
+      selected.setAttribute('animation', {property: 'object3D.scale.y', from:'0', to: '1', dur: '300', easing: 'linear', dir:'alternate', loop: true});      
+    });
+
+    document.getElementById('fx5').addEventListener('click',function(e){            
+      selected.setAttribute('particle-system', {color: 'red', blending: '1'});      
+    });    
 
     function run() {
       camera = scene.camera.el;

@@ -176,12 +176,9 @@ function pushVid(e){
     }
     else if(e.dataset.type=='360'){
       var node = document.createElement("a-videosphere");
-     // node.setAttribute('rotation',{x:0,y:0,z:0});
-     // node.setAttribute('scale',{x:1,y:1,z:1});
       node.setAttribute('src',e.dataset.source);
       node.classList.add('exp');
       node.id= e.id;
-    //  node.setAttribute('position',{x:0,y:0,z:0});
       document.getElementById("perswin").appendChild(node);
         
     }
@@ -200,6 +197,7 @@ function addbut(e){
   x.setAttribute('onmousedown','dragMouseDown(this)');
   var d2=document.getElementById('d2');
   d2.appendChild(x);
+  d2.classList.add('exp2');
   ++ctaid;
 }
 
@@ -314,11 +312,9 @@ function playaud(e){
 
 function pushAud(e){
   var d2=document.getElementById('d2');
-  var node=document.createElement('audio');
+  var node=document.createElement('audio');    
   var id=e.id +"aud";
   node.id=id;
-  node.setAttribute('rotation',{x:0,y:0,z:0});
-  node.setAttribute('scale',{x:1,y:1,z:1});
   var src=document.createElement('source');
   src.src=e.dataset.source;
   node.appendChild(src);
@@ -388,12 +384,9 @@ function pushAud(e){
    div.appendChild(node);
    var overlay=document.createElement("div");
    overlay.setAttribute("class","options")
-   var edit=document.createElement('button');
-   edit.setAttribute("onclick","editimg()");
    var del=document.createElement('button');
    del.setAttribute("onclick","delimg()");
    del.setAttribute('data-pid',data.data.id);
-   overlay.appendChild(edit);
    overlay.appendChild(del);
    div.appendChild(node);
    document.getElementById("galleryimgs").appendChild(div);
@@ -451,14 +444,10 @@ image.addEventListener('click', () =>  {
             div.appendChild(node);
             var overlay=document.createElement("div");
             overlay.setAttribute("class","options")
-            var edit=document.createElement('button');
-            edit.setAttribute("onclick","editimg(this)");
-            edit.innerHTML="<i class='fa fa-edit'></i>";
             var del=document.createElement('button');
             del.setAttribute("onclick","delimg(this)");
             del.setAttribute('data-pid',asset.id);
             del.innerHTML="<i class='fa fa-trash'></i>";
-            overlay.appendChild(edit);
             overlay.appendChild(del);
             div.appendChild(node);
             div.appendChild(overlay);
@@ -540,6 +529,7 @@ asset.addEventListener('click', () =>  {
             if(asset.Assetstype=='zip' || asset.Assetstype=='fbx' ||asset.Assetstype=='gltf' || asset.Assetstype=='obj')
            {
             var node = document.createElement("img");
+            var div= document.createElement("div");
             node.src=asset.objthumbnail;
             node.width = 125;
             node.height =125;
@@ -550,7 +540,18 @@ asset.addEventListener('click', () =>  {
             node.setAttribute("data-mtlfile",asset.mtl);
             node.style='margin:4px;';
             node.setAttribute("onclick","pushObj(this);");
-            document.getElementById("galleryobjs").appendChild(node);
+            div.setAttribute("class","hbox");
+            div.appendChild(node);
+            var overlay=document.createElement("div");
+            overlay.setAttribute("class","options")
+            var del=document.createElement('button');
+            del.setAttribute("onclick","delimg(this)");
+            del.setAttribute('data-pid',asset.id);
+            del.innerHTML="<i class='fa fa-trash'></i>";
+            overlay.appendChild(del);
+            div.appendChild(node);
+            div.appendChild(overlay);
+            document.getElementById("galleryobjs").appendChild(div);
            }
             perm=i;  
             }
@@ -606,7 +607,19 @@ asset.addEventListener('click', () =>  {
      node.setAttribute("data-mtlfile",asset.mtl);
      node.style='margin:4px;';
      node.setAttribute("onclick","pushObj(this);");
-     document.getElementById("galleryobjs").appendChild(node);
+     var div= document.createElement("div");
+     div.setAttribute("class","hbox");
+     div.appendChild(node);
+     var overlay=document.createElement("div");
+     overlay.setAttribute("class","options")
+     var del=document.createElement('button');
+     del.setAttribute("onclick","delimg(this)");
+     del.setAttribute('data-pid',asset.id);
+     del.innerHTML="<i class='fa fa-trash'></i>";
+     overlay.appendChild(del);
+     div.appendChild(node);
+     div.appendChild(overlay);
+     document.getElementById("galleryobjs").appendChild(div);
      uploadbar.style.width=0;
    }
    });
@@ -649,13 +662,9 @@ asset.addEventListener('click', () =>  {
               div.appendChild(node);
               var overlay=document.createElement("div");
               overlay.setAttribute("class","options")
-              var edit=document.createElement('button');
-              edit.setAttribute("onclick","editaud(this)");
-              edit.innerHTML="<i class='fa fa-edit'></i>";
               var del=document.createElement('button');
               del.setAttribute("onclick","delaud(this)");
               del.innerHTML="<i class='fa fa-trash'></i>";
-              overlay.appendChild(edit);
               overlay.appendChild(del);
               div.appendChild(node);
               div.appendChild(overlay);
@@ -785,12 +794,8 @@ asset.addEventListener('click', () =>  {
      div.appendChild(node);
      var overlay=document.createElement("div");
      overlay.setAttribute("class","options")
-     var edit=document.createElement('button');
-     edit.setAttribute("onclick","editvid(this)");
-     edit.innerHTML="<i class='fa fa-edit'></i>";
      var del=document.createElement('button');
      del.innerHTML="<i class='fa fa-trash'></i>";
-     overlay.appendChild(edit);
      overlay.appendChild(del);
      div.appendChild(node);
      div.appendChild(overlay);
@@ -835,12 +840,8 @@ $.ajax({
              div.appendChild(node);
              var overlay=document.createElement("div");
              overlay.setAttribute("class","options")
-             var edit=document.createElement('button');
-             edit.setAttribute("onclick","editvid(this)");
-             edit.innerHTML="<i class='fa fa-edit'></i>";
              var del=document.createElement('button');
              del.innerHTML="<i class='fa fa-trash'></i>";
-             overlay.appendChild(edit);
              overlay.appendChild(del);
              div.appendChild(node);
              div.appendChild(overlay);

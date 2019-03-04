@@ -2,6 +2,7 @@ let token = 'jzXPgvSfhYMx7I3';
 let k=0;
 let perm=0;
 let ctaid=0;
+var n=0;
 var uploadbar=document.getElementById('uploadbar');
 function auto() {
 /*  $.ajax({
@@ -187,25 +188,20 @@ function pushVid(e){
 }
 
 function addbut(e){
+  n++;
   var x=cta.cloneNode(true);
-  x.style.position="absolute";
+  x.style.position="fixed";
   x.style.bottom="50px";
-  x.style.marginLeft="10px";
+  x.style.marginLeft=10+n*60+'px';
   x.style.zIndex="5";
   x.id="cta" + ctaid;
   x.style.height='fit-content';
-  x.setAttribute('onmousedown','dragMouseDown(this)');
+  x.classList.add('exp2');
   var d2=document.getElementById('d2');
   d2.appendChild(x);
-  d2.classList.add('exp2');
   ++ctaid;
 }
 
-function dragMouseDown(e) {
-    var elem = e;
-    var draggie = new Draggabilly( elem, {
-    });
-  }
 function add(event) {
     obj = document.querySelector('#object');
     obj.object3D.visible = true;
@@ -311,6 +307,7 @@ function playaud(e){
 
 
 function pushAud(e){
+  n++;
   var d2=document.getElementById('d2');
   var node=document.createElement('audio');    
   var id=e.id +"aud";
@@ -322,15 +319,15 @@ function pushAud(e){
   var play=document.createElement('button');
   play.innerHTML="<i class='fa fa-file-audio-o' style='color:#4846ae;font-size:28px;'></i>";
   play.setAttribute('data-source',id);
-  play.style.position="relative";
+  play.style.position="fixed";
   play.style.bottom="50px";
-  play.style.marginLeft="10px";
+  play.style.marginLeft=10+n*60+'px';
   play.setAttribute('onclick','playaud(this)');
+  play.classList.add('exp2');
+  node.classList.add('exp2');
   d2.appendChild(play);
-  d2.classList.add('exp2');
   $('#music .close').click();
   $('.modal-backdrop').remove();    
- 
 }
 
 
@@ -545,7 +542,7 @@ asset.addEventListener('click', () =>  {
             var overlay=document.createElement("div");
             overlay.setAttribute("class","options")
             var del=document.createElement('button');
-            del.setAttribute("onclick","delimg(this)");
+            del.setAttribute("onclick","delobj(this)");
             del.setAttribute('data-pid',asset.id);
             del.innerHTML="<i class='fa fa-trash'></i>";
             overlay.appendChild(del);
@@ -558,6 +555,20 @@ asset.addEventListener('click', () =>  {
           }
     });
    });
+
+   function delobj(e){
+    $.ajax({
+      method: 'POST',
+      url: 'https://pitchar.io/api/_delete-assets.php',
+      data: {authtoken:token,product_id:e.dataset.pid},
+      success(data){
+      console.log(data);
+      e.parentNode.parentNode.style.display= 'none';
+      },
+    });
+  
+  }
+  
 
    function uploadObj(event) {
     let form = document.querySelector('#form2');
@@ -677,6 +688,21 @@ asset.addEventListener('click', () =>  {
             }
       });
     });
+
+    function delaud(e){
+      $.ajax({
+        method: 'POST',
+        url: 'https://pitchar.io/api/_delete-media.php',
+        data: {authtoken:token,product_id:e.dataset.pid},
+        success(data){
+        console.log(data);
+        e.parentNode.parentNode.style.display= 'none';
+        },
+      });
+    
+    }
+    
+
     // to upload audio files
     function uploadAud(event) {
       let form = document.querySelector('#form4');
@@ -723,7 +749,7 @@ asset.addEventListener('click', () =>  {
        node.height =125;
        node.id= 'img'+perm;
        node.style='margin:4px;';
-       node.setAttribute("onclick","pushImg(this);");
+       node.setAttribute("onclick","pushAud(this);");
        document.getElementById("galleryauds").appendChild(node);
       }
      });
@@ -805,6 +831,20 @@ asset.addEventListener('click', () =>  {
    });
  
   }
+  
+  function delvid(e){
+    $.ajax({
+      method: 'POST',
+      url: 'https://pitchar.io/api/_delete-media.php',
+      data: {authtoken:token,product_id:e.dataset.pid},
+      success(data){
+      console.log(data);
+      e.parentNode.parentNode.style.display= 'none';
+      },
+    });
+  }
+  
+
  // to fetch videos
  let video = document.getElementById('videobut');
  video.addEventListener('click', () =>  {

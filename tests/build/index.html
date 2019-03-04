@@ -27,8 +27,8 @@
          url('css/orbitron-black-webfont.svg#orbitron-black-webfont') format('svg');
     font-weight: normal;
     font-style: normal;
-  }
-  @font-face {
+    }
+      @font-face {
     font-family: 'leaguescript';
     src: url('css/LeagueScriptNumberOne-webfont.eot');
     src: url('css/LeagueScriptNumberOne-webfont.eot?#iefix') format('embedded-opentype'),
@@ -111,11 +111,13 @@
   <button type="button" data-toggle="modal" data-target="#choosemarker">
   <div id="p4">
     Change Marker
-  </div>
+  </div> 
   </button>
     <p id="p2"></p>
-  
-  
+    <button type="button" data-toggle="modal" onclick='shareexp(this);' data-target="#share">
+      <div id="p4" style='left: calc(100vw - 100px);'>Share
+      </div> 
+    </button>
   <p>
     <button  type="button" data-toggle="modal" data-target="#hotspot">
    <i  id="p1"class="fa fa-circle">
@@ -145,11 +147,9 @@
       &nbsp;
       <button id="videobut" type="button" data-toggle="modal" data-target="#videos">
         <i id="p1" class="fa fa-video-camera"></i>
-        </button>
-      
+        </button>   
   </P>
-  
-  <div class="modal fade" id="hotspot" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="hotspot" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -168,7 +168,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="choosemarker" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="choosemarker" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -186,8 +186,40 @@
       </div>
     </div>
   </div>
+ 
+  <div class="modal " id="share" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="form0" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+            <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
+            <label>Name : </label><input id="" name="name" type="text" >
+            <br>
+            <label>Description : </label><input id="" name="description" type="textarea">
+            <input type="hidden" name="submit" value="1">
+            <br>
+            <label>Tags : </label>&nbsp;<input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
+            <input type="hidden" name='experience' id='exptxt'>
+          </form>
+            <br>
+            <input type='text' id='shrlnk' placeholder='Sharing Link' >
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
   
-  <div class="modal fade" id="images" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="images" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -203,7 +235,7 @@
         </div>
         <div id='assetbody' onscroll="fetchnew()" class="modal-body">
           <div class="tab-content">
-            <div id="gallery" class="tab-pane fade in active">
+            <div id="gallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -218,23 +250,17 @@
                 
                 <button type="button" onclick="uploadImg()" class="uploadbut">
                     Upload Image</button>  
-                <br><br>    
-                
+                <br><br>                    
                 <div class="demo"></div>
-
-
-
                 <div id='galleryimgs'></div> 
                 
             </div>
-            <div id="unsplash" class="tab-pane fade">
+            <div id="unsplash" class="tab-pane ">
             <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
             <div id="unsplashImgs"></div>
             <br><br> 
-        
-            </div>
           </div>
-        
+        </div>
            </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
@@ -242,7 +268,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -258,7 +284,7 @@
         </div>
         <div id='assetbody' onscroll="fetchnew()" class="modal-body">
           <div class="tab-content">
-            <div id="gallery" class="tab-pane fade in active">
+            <div id="gallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form2" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -283,7 +309,7 @@
                 <div id='galleryobjs'></div> 
            
             </div>
-            <div id="unsplash" class="tab-pane fade">
+            <div id="unsplash" class="tab-pane ">
             <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
             <div id="unsplashImgs"></div>
             <br><br> 
@@ -299,7 +325,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -315,7 +341,7 @@
         </div>
         <div id='assetbody' onscroll="fetchnew()" class="modal-body">
           <div class="tab-content">
-            <div id="gallery" class="tab-pane fade in active">
+            <div id="gallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -334,7 +360,7 @@
                 <div id='galleryimgs'></div> 
            
             </div>
-            <div id="unsplash" class="tab-pane fade">
+            <div id="unsplash" class="tab-pane ">
             <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
             <div id="unsplashImgs"></div>
             <br><br> 
@@ -380,7 +406,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="music" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="music" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -392,7 +418,7 @@
         <div class="modal-body">
       
           <div class="tab-content">
-            <div id="gallery" class="tab-pane fade in active">
+            <div id="gallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form4" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -415,7 +441,7 @@
                 <div id='galleryauds'></div> 
                     
             </div>
-            <div id="unsplash" class="tab-pane fade">
+            <div id="unsplash" class="tab-pane ">
             <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
             <div id="unsplashImgs"></div>
             <br><br> 
@@ -432,7 +458,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="cta" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="cta" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -487,7 +513,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="videos" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <div class="modal " id="videos" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -502,7 +528,7 @@
         </div>
         <div id='videobody' onscroll="" class="modal-body">
           <div class="tab-content">
-            <div id="vidgallery" class="tab-pane fade in active">
+            <div id="vidgallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form6" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -520,16 +546,12 @@
                 
                 <button type="button" onclick="uploadVid(this)" class="uploadbut">
                     Upload Video</button>  
-                <br><br>    
-                
+                <br><br>                    
                 <div class="demo"></div>
-
-
-
                 <div id='galleryvids'></div> 
                 
             </div>
-            <div id="unsplash" class="tab-pane fade">
+            <div id="unsplash" class="tab-pane ">
             <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
             <div id="unsplashImgs"></div>
             <br><br> 
@@ -583,6 +605,30 @@
   </div>
   <script src="Crop/croppie.js"></script>
   <script src="UI.js"></script>
-  <script src="Experience.js"></script>  
+  <script src="Experience.js"></script>
+<script>
+function start() {
+  // 2. Initialize the JavaScript client library.
+  gapi.client.init({
+    'apiKey': 'AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs',
+      });
+// 1. Load the JavaScript client library.
+gapi.load('client', start);
+    }
+function search() {
+  var q = 'dogs';
+  var request = gapi.client.youtube.search.list({
+    q: q,
+    part: 'snippet'
+  });
+
+  request.execute(function(response) {
+    var str = JSON.stringify(response.result);
+    console.log(str);
+  });
+}
+start();
+search();
+</script>
 </body>
 </html>

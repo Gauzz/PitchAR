@@ -330,6 +330,38 @@ function pushAud(e){
   $('.modal-backdrop').remove();    
 }
 
+function previewAudio(e){
+  //n++;
+  var existAudio = document.getElementsByTagName('audio');  
+
+  if(existAudio.length == 0) {
+    var node=document.createElement('audio');    
+    var id=e.id +"aud";
+    node.id=id;
+    var src=document.createElement('source');
+    //src.src=e.dataset.source;
+    src.src="https://www.elongsound.com/images/mp3/pajaros_en_el_canalon_de_una_casa_de_campo_1.mp3";
+    node.appendChild(src);
+    document.body.appendChild(node); 
+  } else {
+    var node=existAudio[0]; 
+    node.pause();        
+    //src.src=e.dataset.source;    
+    node.src="https://www.elongsound.com/images/mp3/pajaros_en_el_canalon_de_una_casa_de_campo_1.mp3";        
+  }
+
+  //var sounds = document.getElementsByTagName('audio');
+  //for(i=0; i<sounds.length; i++) {sounds[i].pause();}
+  node.play();
+}
+
+function toogleLoop(checkboxElem) {
+  if (checkboxElem.checked) {    
+    checkboxElem.dataset.loop = true;    
+  } else {    
+    checkboxElem.dataset.loop = false;    
+  }
+}
 
  function uploadImg(event) {
   let form = document.querySelector('#form');
@@ -681,11 +713,27 @@ asset.addEventListener('click', () =>  {
               div.appendChild(overlay);
               if(media.type=='audio')
               document.getElementById("galleryauds").appendChild(div);
-              perm=i;  
-              }
+              perm=i; 
+              
+              var audioPrev = document.createElement('button');
+              audioPrev.setAttribute("onclick","previewAudio(this);");
+              audioPrev.innerHTML="<i class='fa fa-play'></i>";
+              overlay.appendChild(audioPrev);
+              div.appendChild(node);
+              div.appendChild(overlay);
+
+              var audioLoop = document.createElement('input');
+              audioLoop.setAttribute("type","checkbox");
+              audioLoop.setAttribute("data-loop", false);
+              audioLoop.setAttribute("onclick","toogleLoop(this)");                            
+              //audioLoop.innerHTML="<i class='fa fa-undo'></i>";
+              overlay.appendChild(audioLoop);
+              div.appendChild(node);
+              div.appendChild(overlay);              
+            }
             
        
-            }
+          }
       });
     });
 

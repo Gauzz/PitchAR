@@ -312,6 +312,13 @@ function pushAud(e){
   var node=document.createElement('audio');    
   var id=e.id +"aud";
   node.id=id;
+
+  var idAudioLoop = e.id.substr(3);
+  var audioValue = document.getElementById("audioLoop"+idAudioLoop).dataset.loop;  
+  if (audioValue === "true") {    
+    node.setAttribute("loop", true);
+  }
+
   var src=document.createElement('source');
   src.src=e.dataset.source;
   node.appendChild(src);
@@ -723,6 +730,7 @@ asset.addEventListener('click', () =>  {
               div.appendChild(overlay);
 
               var audioLoop = document.createElement('input');
+              audioLoop.id= 'audioLoop'+i;
               audioLoop.setAttribute("type","checkbox");
               audioLoop.setAttribute("data-loop", false);
               audioLoop.setAttribute("onclick","toogleLoop(this)");                            

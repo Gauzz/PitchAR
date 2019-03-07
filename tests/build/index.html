@@ -114,7 +114,7 @@
   </div> 
   </button>
     <p id="p2"></p>
-    <button type="button" data-toggle="modal" onclick='shareexp(this);' data-target="#share">
+    <button type="button" data-toggle="modal" data-target="#share">
       <div id="p4" style='left: calc(100vw - 100px);'>Share
       </div> 
     </button>
@@ -201,13 +201,15 @@
             <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
             <label>Name : </label><input id="" name="name" type="text" >
             <br>
-            <label>Description : </label><input id="" name="description" type="textarea">
+            <label style='position: relative;
+            top: -15px;'>Description : </label>&Tab;<textarea id="" name="description" type="textarea"></textarea>
             <input type="hidden" name="submit" value="1">
             <br>
             <label>Tags : </label>&nbsp;<input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
             <input type="hidden" name='experience' id='exptxt'>
           </form>
-            <br>
+          <button type="button" onclick="sharelnk(this)" style='width:200px;' class="uploadbut">
+            Get sharable link</button>  
             <input type='text' id='shrlnk' placeholder='Sharing Link' >
         
         </div>
@@ -569,9 +571,8 @@
  
   <div class="sidebar">
     <center>
-    ANIMATIONS & EFFECTS
+    EFFECTS
     </center>
-    <!--Animation options here-->
     <button width='100px' id='anim1'>Rotate</button>
     <br>
     <button width='100px' id='anim2'>ScaleUp</button>
@@ -581,11 +582,6 @@
     <button width='100px' id='anim4'>ChangeColor</button>
     <br>
     <button width='100px' id='anim5'>MoveUp</button>
-    <br>   
-    <!-- <center>
-    EFFECTS
-    </center> -->
-    <!--Effects options here-->
     <br>
     <button width='100px' id='fx1'>FadeOut</button>
     <br>
@@ -607,19 +603,22 @@
   <script src="UI.js"></script>
   <script src="Experience.js"></script>
 <script>
-function start() {
-  // 2. Initialize the JavaScript client library.
-  gapi.client.init({
-    'apiKey': 'AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs',
-      });
-// 1. Load the JavaScript client library.
-gapi.load('client', start);
-    }
+
+    function init() {
+    gapi.client.setApiKey("AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs");
+    gapi.client.load("youtube", "v3", function() {
+        // yt api is ready
+        search();
+    });
+    
+}
+
 function search() {
   var q = 'dogs';
   var request = gapi.client.youtube.search.list({
     q: q,
-    part: 'snippet'
+    type: "video",
+    part: 'snippet',
   });
 
   request.execute(function(response) {
@@ -627,8 +626,8 @@ function search() {
     console.log(str);
   });
 }
-start();
-search();
+
 </script>
+<script src="https://apis.google.com/js/client.js?onload=init"></script>  
 </body>
 </html>

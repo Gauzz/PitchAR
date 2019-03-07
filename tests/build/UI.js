@@ -676,6 +676,11 @@ asset.addEventListener('click', () =>  {
               var del=document.createElement('button');
               del.setAttribute("onclick","delaud(this)");
               del.innerHTML="<i class='fa fa-trash'></i>";
+             // for preview functionality of audio(play the audio)
+
+            // loop button
+             
+             
               overlay.appendChild(del);
               div.appendChild(node);
               div.appendChild(overlay);

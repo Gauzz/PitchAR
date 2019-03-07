@@ -41,9 +41,6 @@ mid2d += temp;
 return mid3d+mid2d;
 }
 
-function shareexp(e){
-  var exp = readFile();
-  var exptxt= document.getElementById('exptxt');
-  exptxt.value = exp;
-  console.log(exp);
-  }
+function sharelnk(e){
+  console.log();
+}  

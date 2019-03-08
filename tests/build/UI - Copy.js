@@ -3,7 +3,6 @@ let k=0;
 let perm=0;
 let ctaid=0;
 var n=0;
-var cnt=0;
 var uploadbar=document.getElementById('uploadbar');
 function auto() {
 /*  $.ajax({
@@ -313,13 +312,6 @@ function pushAud(e){
   var node=document.createElement('audio');    
   var id=e.id +"aud";
   node.id=id;
-
-  var idAudioLoop = e.id.substr(3);
-  var audioValue = document.getElementById("audioLoop"+idAudioLoop).dataset.loop;  
-  if (audioValue === "true") {    
-    node.setAttribute("loop", true);
-  }
-
   var src=document.createElement('source');
   src.src=e.dataset.source;
   node.appendChild(src);
@@ -338,67 +330,6 @@ function pushAud(e){
   $('.modal-backdrop').remove();    
 }
 
-function previewAudio(e){
-  //n++;
-  var existAudio = document.getElementsByTagName('audio');  
-
-  if(existAudio.length == 0) {
-    var node=document.createElement('audio');    
-    var id=e.id +"aud";
-    node.id=id;
-    var src=document.createElement('source');
-    //src.src=e.dataset.source;
-    src.src="https://www.elongsound.com/images/mp3/pajaros_en_el_canalon_de_una_casa_de_campo_1.mp3";
-    node.appendChild(src);
-    document.body.appendChild(node); 
-  } else {
-    var node=existAudio[0]; 
-    node.pause();        
-    //src.src=e.dataset.source;    
-    node.src="https://www.elongsound.com/images/mp3/pajaros_en_el_canalon_de_una_casa_de_campo_1.mp3";        
-  }
-
-  //var sounds = document.getElementsByTagName('audio');
-  //for(i=0; i<sounds.length; i++) {sounds[i].pause();}
-  node.play();
-}
-
-function toogleLoop(checkboxElem) {
-  if (checkboxElem.checked) {    
-    checkboxElem.dataset.loop = true;    
-  } else {    
-    checkboxElem.dataset.loop = false;    
-  }
-}
-
-function pushYT(e){
-  cnt++;
-  ytembed= document.getElementById('ytembed');
-  ytembed.src= "https://www.youtube.com/embed/"+e.dataset.source;
-  var d2=document.getElementById('d2');
-  var node=document.createElement('img');    
-  var id=e.id +"play";
-  node.id=id;
-  node.src=e.src;
-  node.style.position="fixed";
-  node.style.top= 100*cnt + "px";
-  node.style.marginLeft = '160px';
-  node.style.width="150px";
-  node.setAttribute('onclick','ytset(this);');
-  node.setAttribute('data-source',e.dataset.source);
-  node.setAttribute('data-toggle','modal');
-  node.setAttribute('data-target','#ytmodal')
-  d2.appendChild(node);
-}
-
-function ytremove(e){
-    document.getElementById('ytembed').src = "";
-}
-
-function ytset(e){
-  ytembed= document.getElementById('ytembed');
-  ytembed.src= "https://www.youtube.com/embed/"+e.dataset.source;
-}
 
  function uploadImg(event) {
   let form = document.querySelector('#form');
@@ -570,50 +501,6 @@ searchImg[0].addEventListener("keyup", function(event) {
   }
 });
 
-var searchYT = document.getElementsByClassName("searchYT");
-searchYT[0].addEventListener("keyup", function(event) {
-  event.preventDefault();
-  if (event.keyCode === 13) {
-
-    var q = searchYT[0].value;
-    console.log(q);
-    var request = gapi.client.youtube.search.list({
-      q: q,
-      maxResults: 12,
-      type: "video",
-      part: 'snippet',
-      videoEmbeddable: 'true',
-      videoSyndicated: 'true',
-    });
-  
-    request.execute(function(response) {
-      
-      document.getElementById("ytImgs").innerHTML = "";
-      var assets = response.result.items;
-      console.log(assets);
-
-      for(var i=0;i<assets.length;i++){
-      asset = assets[i];
-      var node = document.createElement("img");
-      node.src=asset.snippet.thumbnails.high.url;
-      node.width = 125;
-      node.id= 'ytimg'+i;
-      node.style='margin:4px;';
-      node.setAttribute("onclick","pushYT(this);");
-      node.setAttribute("data-source",asset.id.videoId)
-      document.getElementById("ytImgs").appendChild(node);
-      perm=i;  
-      }
-   
-
-    });  
-  }
-});
-
-$("#ytmodal").on("hidden.bs.modal", function () {
-    document.getElementById('ytembed').src = "";
-});
-
 //for 3d model fetch
 
 let asset = document.getElementById('asset');
@@ -768,10 +655,10 @@ asset.addEventListener('click', () =>  {
     success(result){
               console.log(token); 
               console.log(result);   
+              console.log("success2");
               var medias = result.media;
               for(var i=0;i<medias.length;i++){
               media = medias[i];
-              console.log(media.audio);
               var node = document.createElement("img");
               node.src=media.thumbnail;
               node.width = 125;
@@ -799,28 +686,11 @@ asset.addEventListener('click', () =>  {
               div.appendChild(overlay);
               if(media.type=='audio')
               document.getElementById("galleryauds").appendChild(div);
-              perm=i; 
-              
-              var audioPrev = document.createElement('button');
-              audioPrev.setAttribute("onclick","previewAudio(this);");
-              audioPrev.innerHTML="<i class='fa fa-play'></i>";
-              overlay.appendChild(audioPrev);
-              div.appendChild(node);
-              div.appendChild(overlay);
-
-              var audioLoop = document.createElement('input');
-              audioLoop.id= 'audioLoop'+i;
-              audioLoop.setAttribute("type","checkbox");
-              audioLoop.setAttribute("data-loop", false);
-              audioLoop.setAttribute("onclick","toogleLoop(this)");                            
-              //audioLoop.innerHTML="<i class='fa fa-undo'></i>";
-              overlay.appendChild(audioLoop);
-              div.appendChild(node);
-              div.appendChild(overlay);              
-            }
+              perm=i;  
+              }
             
        
-          }
+            }
       });
     });
 

@@ -523,10 +523,11 @@
             <span aria-hidden="true">&times;</span>
           </button>
      <br>
-          <!---ul class="nav nav-tabs ">
-            <li class="active col-lg-6"><a data-toggle="tab" href="#gallery"><center>MY Gallery</center></a></li>
-            </ul-->
-          
+            <ul class="nav nav-tabs ">
+              <li class="active col-lg-6"><a data-toggle="tab" href="#vidgallery"><center>MY Gallery</center></a></li>
+              <li class="col-lg-6"><a data-toggle="tab" href="#ytdiv"><center>YouTube</center></a></li>
+            </ul>
+        
         </div>
         <div id='videobody' onscroll="" class="modal-body">
           <div class="tab-content">
@@ -553,9 +554,9 @@
                 <div id='galleryvids'></div> 
                 
             </div>
-            <div id="unsplash" class="tab-pane ">
-            <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-            <div id="unsplashImgs"></div>
+            <div id="ytdiv" class="tab-pane ">
+            <input type="search" class="searchYT searchbar" autocomplete="on" onsubmit="searchYT(this)">  
+            <div id="ytImgs"></div>
             <br><br> 
         
             </div>
@@ -569,6 +570,23 @@
     </div>
   </div>
  
+  <div id='ytmodal' class='modal' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" onclick='ytremove(this);' class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <br>
+        </div>  
+        <div class="modal-body">
+          <iframe id='ytembed' src='' width="100%" height="60%" frameborder=0px allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>      
+
+
   <div class="sidebar">
     <center>
     EFFECTS
@@ -614,18 +632,7 @@
 }
 
 function search() {
-  var q = 'dogs';
-  var request = gapi.client.youtube.search.list({
-    q: q,
-    type: "video",
-    part: 'snippet',
-  });
-
-  request.execute(function(response) {
-    var str = JSON.stringify(response.result);
-    console.log(str);
-  });
-}
+ }
 
 </script>
 <script src="https://apis.google.com/js/client.js?onload=init"></script>  

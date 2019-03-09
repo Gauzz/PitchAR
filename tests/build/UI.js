@@ -339,28 +339,14 @@ function pushAud(e){
 }
 
 function previewAudio(e){
-  //n++;
-  var existAudio = document.getElementsByTagName('audio');  
-
-  if(existAudio.length == 0) {
     var node=document.createElement('audio');    
     var id=e.id +"aud";
     node.id=id;
     var src=document.createElement('source');
-    //src.src=e.dataset.source;
-    src.src="https://www.elongsound.com/images/mp3/pajaros_en_el_canalon_de_una_casa_de_campo_1.mp3";
+    src.src=e.dataset.source;
     node.appendChild(src);
     document.body.appendChild(node); 
-  } else {
-    var node=existAudio[0]; 
-    node.pause();        
-    //src.src=e.dataset.source;    
-    node.src="https://www.elongsound.com/images/mp3/pajaros_en_el_canalon_de_una_casa_de_campo_1.mp3";        
-  }
-
-  //var sounds = document.getElementsByTagName('audio');
-  //for(i=0; i<sounds.length; i++) {sounds[i].pause();}
-  node.play();
+    node.play();
 }
 
 function toogleLoop(checkboxElem) {
@@ -802,6 +788,7 @@ asset.addEventListener('click', () =>  {
               perm=i; 
               
               var audioPrev = document.createElement('button');
+              audioPrev.setAttribute("data-source",media.audio);
               audioPrev.setAttribute("onclick","previewAudio(this);");
               audioPrev.innerHTML="<i class='fa fa-play'></i>";
               overlay.appendChild(audioPrev);

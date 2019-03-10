@@ -41,9 +41,48 @@ mid2d += temp;
 return mid3d+mid2d;
 }
 
-function shareexp(e){
-  var exp = readFile();
-  var exptxt= document.getElementById('exptxt');
-  exptxt.value = exp;
-  console.log(exp);
+function sharelnk(e){
+  console.log('reached share');
+  var exptxt=document.getElementById('exptxt');
+  exptxt.value=readFile();
+  let form = document.querySelector('#form0');
+  let formData = new FormData(form);
+  $.ajax({
+   method: 'POST',
+   url: 'https://pitchar.io/pitchar_api/_post_experience.php',
+   data: formData,
+   processData: false,
+   contentType: false,
+   xhr: function() {
+    var xhr = new window.XMLHttpRequest();
+
+    // Upload progress
+    xhr.upload.addEventListener("progress", function(evt){
+        if (evt.lengthComputable) {
+            var percentComplete = evt.loaded / evt.total;
+            //Do something with upload progress
+            uploadbar.style.width=percentComplete*100 + '%';
+            if(percentComplete==1)uploadbar.style.width=0;
+          }
+   }, false);
+
+   // Download progress
+   xhr.addEventListener("progress", function(evt){
+       if (evt.lengthComputable) {
+           var percentComplete = evt.loaded / evt.total;
+           // Do something with download progress
+           uploadbar.style.width=percentComplete*100 + '%';
+           if(percentComplete==1)uploadbar.style.width=0;
+          }
+   }, false);
+
+   return xhr;
+},
+   success(data){
+   console.log(data);
+   uploadbar.style.width=0;
   }
+ });
+
+
+}  

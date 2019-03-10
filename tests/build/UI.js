@@ -346,7 +346,25 @@ function previewAudio(e){
     src.src=e.dataset.source;
     node.appendChild(src);
     document.body.appendChild(node); 
-    node.play();
+
+    playAudio(e);
+    //node.play();    
+}
+
+function pauseAudio(e) {
+  e.innerHTML="<i class='fa fa-play'></i>";
+  e.removeAttribute("onclick");
+  e.setAttribute("onclick","playAudio(this);");
+  var player = document.getElementById(e.id+'aud');
+  player.pause();
+}
+
+function playAudio(e) {
+  e.innerHTML="<i class='fa fa-pause'></i>";
+  e.removeAttribute("onclick");
+  e.setAttribute("onclick","pauseAudio(this);");
+  var player = document.getElementById(e.id+'aud');
+  player.play();
 }
 
 function toogleLoop(checkboxElem) {
@@ -774,12 +792,7 @@ asset.addEventListener('click', () =>  {
               overlay.setAttribute("class","options")
               var del=document.createElement('button');
               del.setAttribute("onclick","delaud(this)");
-              del.innerHTML="<i class='fa fa-trash'></i>";
-             // for preview functionality of audio(play the audio)
-
-            // loop button
-             
-             
+              del.innerHTML="<i class='fa fa-trash'></i>";                                
               overlay.appendChild(del);
               div.appendChild(node);
               div.appendChild(overlay);
@@ -788,7 +801,7 @@ asset.addEventListener('click', () =>  {
               perm=i; 
               
               var audioPrev = document.createElement('button');
-              audioPrev.setAttribute("data-source",media.audio);
+              audioPrev.setAttribute("data-source",media.audio);              
               audioPrev.setAttribute("onclick","previewAudio(this);");
               audioPrev.innerHTML="<i class='fa fa-play'></i>";
               overlay.appendChild(audioPrev);

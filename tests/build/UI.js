@@ -467,6 +467,64 @@ function ytset(e){
 
 }
 
+//for edit name
+function editNameAsset (e) {
+  let form = document.querySelector('#form');
+  let formData = new FormData(form);
+
+  var txt;
+  var newName = prompt("Please enter new name:");
+  if (newName == null || newName == "") {
+    //"User cancelled the prompt.";
+    return;
+  }
+
+  formData.append("update-assets", "true");
+  formData.append("authtoken", "jzXPgvSfhYMx7I3");
+  formData.append("type", "image");
+  formData.append("image", "");
+  formData.append("name", newName);
+  formData.append("project_id", e.dataset.pid);
+
+  console.log(formData);
+  console.log(form);
+  $.ajax({
+   method: 'POST',
+   url: 'https://pitchar.io/api/_update-assets.php',
+   data: formData,
+   processData: false,
+   contentType: false,
+   xhr: function() {
+    var xhr = new window.XMLHttpRequest();
+
+    // Upload progress
+    xhr.upload.addEventListener("progress", function(evt){
+        if (evt.lengthComputable) {
+            var percentComplete = evt.loaded / evt.total;
+            //Do something with upload progress
+            uploadbar.style.width=percentComplete*100 + '%';
+            if(percentComplete==1)uploadbar.style.width=0;
+          }
+   }, false);
+
+   // Download progress
+   xhr.addEventListener("progress", function(evt){
+       if (evt.lengthComputable) {
+           var percentComplete = evt.loaded / evt.total;
+           // Do something with download progress
+           uploadbar.style.width=percentComplete*100 + '%';
+           if(percentComplete==1)uploadbar.style.width=0;
+          }
+   }, false);
+
+   return xhr;
+},
+   success(data){
+    alert("Name Changed");            
+ },
+ });
+}
+
 //for image fetch
 
 let image = document.getElementById('imagebut');
@@ -514,6 +572,7 @@ image.addEventListener('click', () =>  {
             div.appendChild(node);
             var overlay=document.createElement("div");
             overlay.setAttribute("class","options")
+            
             var del=document.createElement('button');
             del.setAttribute("onclick","delimg(this)");
             del.setAttribute('data-pid',asset.id);
@@ -521,6 +580,15 @@ image.addEventListener('click', () =>  {
             overlay.appendChild(del);
             div.appendChild(node);
             div.appendChild(overlay);
+
+            var del=document.createElement('button');
+            del.setAttribute("onclick","editNameAsset(this)");
+            del.setAttribute('data-pid',asset.id);
+            del.innerHTML="<i class='fa fa-edit'></i>";
+            overlay.appendChild(del);
+            div.appendChild(node);
+            div.appendChild(overlay);
+
             if(asset.Assetstype=='image')
             document.getElementById("galleryimgs").appendChild(div);
             perm=i;  

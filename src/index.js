@@ -459,6 +459,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
    
       // Continuously clean up so we don't get huge logs built up
       cleanUpPositionLog();
+     
     
       if(cam.object3D.rotation.x < -1.1 ){
         oc.pause();
@@ -780,7 +781,13 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         oc.pause();
         var m= document.querySelector('#modifier');
         repos();
-        m.object3D.visible = true;  
+        m.object3D.visible = true; 
+        
+      var object = selected.getObject3D('mesh');
+
+      // compute bounding box
+      var bbox = new THREE.Box3().setFromObject(object);
+      console.log(bbox.min,bbox.max); 
         document.getElementsByClassName('sidebar')[0].style.display='block';
         // Can only drag one item at a time, so no need to check if any
         // listener is already set up
@@ -1205,7 +1212,6 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       e.object3D.rotation.set(0, 0, 0);
       e.object3D.scale.set(1, 1, 1);
       e.components.material.material.opacity = 1;
-      //e.setAttribute('material', 'color', 'black');      
       e.components.material.material.color.setStyle("#ffffff");
     }
 

@@ -1,11 +1,8 @@
 var start1="<html><head><script src='https://aframe.io/releases/0.8.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>"+"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>"+"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head>"+"<body style='margin : 0px; overflow: hidden;'>"+"<a-scene arjs='sourceType: webcam;debugUIEnabled: false;'>"+"<a-marker-camera preset='hiro'>";
 var mid3d=" ";
 var mid2d="</a-marker-camera></a-scene>";
-var end="<script>function playaud(e){var x= document.getElementById(e.dataset.source);x.play();}</script></body></html>";
+var end="<div id='ytmodal' class='modal' tabindex='-1' role='dialog'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><button type='button' onclick='ytremove(this);' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><br></div><div class='modal-body'><iframe id='ytembed' src='' width='100%' height='60%' frameborder=0px allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen ></iframe></div></div></div></div>" + "<script>function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; }function playaud(e){var x= document.getElementById(e.dataset.source);x.play();}</script></body></html>";
 var file;
-
-
-
 function readFile(){
     showEntities();
     console.log(start1+mid3d+mid2d+end);
@@ -81,6 +78,7 @@ function sharelnk(e){
    success(data){
    console.log(data);
    uploadbar.style.width=0;
+   document.getElementById('shrlnk').value = data.Data.share_experience;
   }
  });
 

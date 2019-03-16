@@ -238,6 +238,8 @@ function editimg(e){
     var node = document.createElement("a-image");
     node.setAttribute('src',e.src);
     node.id= e.id;
+    node.setAttribute('height',e.height/100);
+    node.setAttribute('width',e.width/100);
     node.object3D.position.set(0,0.5,0);
     node.setAttribute('rotation',{x:0,y:0,z:0});
     node.setAttribute('scale',{x:1,y:1,z:1});
@@ -388,6 +390,7 @@ function pushYT(e){
   node.style.top= 100*cnt + "px";
   node.style.marginLeft = '160px';
   node.style.width="150px";
+  node.classList.add('exp2');
   node.setAttribute('onclick','ytset(this);');
   node.setAttribute('data-source',e.dataset.source);
   node.setAttribute('data-toggle','modal');
@@ -537,8 +540,9 @@ image.addEventListener('click', () =>  {
             for(var i=0;i<10;i++){        
               var node = document.createElement("img");
               node.src=unpic[i].urls.small;
-              node.width = 125;
               node.style='margin:4px;';
+              node.style.width = 125;
+              node.style.height = 'auto';
               node.setAttribute("onclick","pushImg(this);");
               node.setAttribute("crossorigin","anonymous");
               document.getElementById("unsplashImgs").appendChild(node);
@@ -561,10 +565,8 @@ image.addEventListener('click', () =>  {
             asset = assets[i];
             var node = document.createElement("img");
             node.src=asset.Projectimage;
-            node.width = 125;
-            node.height =125;
             node.id= 'img'+i;
-            node.style='margin:4px;';
+            node.style='margin:4px;width:125px;height:125;';
             node.setAttribute("onclick","pushImg(this);");
             node.setAttribute("class","image");
             var div= document.createElement("div");

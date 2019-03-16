@@ -132,7 +132,7 @@ a :focus{
 
   .hbox {
     position: relative;
-    width: 125px;
+    max-width: 125px;
     margin:0px;
     padding: 0px;
     display: -webkit-inline-box;

@@ -892,6 +892,74 @@ asset.addEventListener('click', () =>  {
       });
     });
 
+    var searchFS = document.getElementsByClassName("searchFS");
+    searchFS[0].addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        //alert("searchFS");
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://freesound.org/apiv2/search/text/?query="+searchFS[0].value+"&fields=name,previews&token=EGxQRoYUVQsqYXQ5gbbk9oSp5zU9MICs4KEa9404",
+          "method": "GET"
+        }
+        
+        $.ajax(settings).done(function (response) {
+          //console.log(response);
+          document.getElementById("fsImgs").innerHTML = "";
+
+          var audResults = response.results;
+          //console.log(audResults);
+          for (var i=0; i < audResults.length; i++) {
+            var node = document.createElement("img");
+              //node.src=media.thumbnail;
+              node.width = 125;
+              node.height =125;
+              node.id= 'img'+i;
+              node.style='margin:4px;';
+              node.setAttribute("onclick","pushAud(this);");
+              node.setAttribute("class","image");
+              node.setAttribute("data-source", audResults[i].previews['preview-lq-mp3']);
+              var div= document.createElement("div");
+              div.setAttribute("class","hbox");
+              div.appendChild(node);
+              var overlay=document.createElement("div");
+              overlay.setAttribute("class","options")
+              var del=document.createElement('button');
+              del.setAttribute("onclick","delaud(this)");
+              del.innerHTML="<i class='fa fa-trash'></i>";                                
+              overlay.appendChild(del);
+              div.appendChild(node);
+              div.appendChild(overlay);
+              document.getElementById("fsImgs").appendChild(div);
+              //if(media.type=='audio')
+              //document.getElementById("galleryauds").appendChild(div);
+              //perm=i; 
+              
+              var audioPrev = document.createElement('button');
+              audioPrev.setAttribute("data-source", audResults[i].previews['preview-lq-mp3']);
+              audioPrev.id = audResults[i].name;          
+              audioPrev.setAttribute("onclick","previewAudio(this);");
+              audioPrev.innerHTML="<i class='fa fa-play'></i>";
+              overlay.appendChild(audioPrev);
+              div.appendChild(node);
+              div.appendChild(overlay);
+
+              var audioLoop = document.createElement('input');
+              audioLoop.id= 'audioLoop'+i;
+              audioLoop.setAttribute("type","checkbox");
+              audioLoop.setAttribute("data-loop", false);
+              audioLoop.setAttribute("onclick","toogleLoop(this)");                            
+              //audioLoop.innerHTML="<i class='fa fa-undo'></i>";
+              overlay.appendChild(audioLoop);
+              div.appendChild(node);
+              div.appendChild(overlay);  
+          }
+        });
+      }
+    });
+    
     function delaud(e){
       $.ajax({
         method: 'POST',

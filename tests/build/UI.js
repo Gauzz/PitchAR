@@ -238,8 +238,10 @@ function editimg(e){
     var node = document.createElement("a-image");
     node.setAttribute('src',e.src);
     node.id= e.id;
-    node.setAttribute('height',e.height/100);
-    node.setAttribute('width',e.width/100);
+    var img = new Image();
+    img.src = e.src;
+    node.setAttribute('height',img.height/500);
+    node.setAttribute('width',img.width/500);
     node.object3D.position.set(0,0.5,0);
     node.setAttribute('rotation',{x:0,y:0,z:0});
     node.setAttribute('scale',{x:1,y:1,z:1});
@@ -483,7 +485,7 @@ function editNameAsset (e) {
   }
 
   formData.append("update-assets", "true");
-  formData.append("authtoken", "jzXPgvSfhYMx7I3");
+  formData.append("authtoken", token);
   formData.append("type", "image");
   formData.append("image", "");
   formData.append("name", newName);

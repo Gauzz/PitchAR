@@ -416,10 +416,17 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+
+          <br>
+
+          <ul class="nav nav-tabs ">
+            <li class="active col-lg-6"><a data-toggle="tab" href="#audgallery"><center>MY Gallery</center></a></li>
+            <li class="col-lg-6"><a data-toggle="tab" href="#audApidiv"><center>Free Sound</center></a></li>
+          </ul>
         </div>
         <div class="modal-body">
           <div class="tab-content">
-            <div id="gallery" class="tab-pane  in active">
+            <div id="audgallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form4" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -442,17 +449,12 @@
                 <div id='galleryauds'></div> 
                     
             </div>
-            <div id="unsplash" class="tab-pane ">
-            <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-            <div id="unsplashImgs"></div>
-            <br><br> 
-        
+            <div id="audApidiv" class="tab-pane ">
+              <input type="search" class="searchFS searchbar" autocomplete="on" onsubmit="searchFS(this)">  
+              <div id="fsImgs"></div>      
             </div>
           </div>
-       
-
-        
-              </div>
+       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>

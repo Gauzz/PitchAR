@@ -17,19 +17,8 @@ var els2 = document.querySelectorAll('.exp2');
 mid3d="";
 var temp="";
 for (var i = 0; i < els.length; i++) {
-  
-  var rx,ry,rz,sx,sy,sz;
-  rx=els[i].object3D.rotation.x;
-  ry=els[i].object3D.rotation.y;
-  rz=els[i].object3D.rotation.z;
-// els[i].setAttribute('rotation' , rx+' '+ry+' '+rz);
-  sx=els[i].object3D.scale.x;
-  sy=els[i].object3D.scale.y;
-  sz=els[i].object3D.scale.z;
-//  els[i].setAttribute('scale' , sx+' '+sy+' '+sz);
-//  els[i].setAttribute('visible',els[i].object3D.visible);
 els[i].flushToDOM(true);
-console.log(els[i]);
+if(els[i].object3D.visible)
 mid3d+=els[i].outerHTML;
 }
 for (var j = 0; j < els2.length; j++) {

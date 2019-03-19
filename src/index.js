@@ -1149,7 +1149,15 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       }
     
     } //originalRot = selected.object3D.rotation;
-    }
+    var r=selected.object3D.rotation;
+    var s=selected.object3D.scale;
+    console.log(r,Number((r.x).toFixed(3)));
+    selected.setAttribute('rotation',{x: THREE.Math.radToDeg(Number((r.x).toFixed(2))), y: THREE.Math.radToDeg(Number((r.y).toFixed(2))), z: THREE.Math.radToDeg(Number((r.z).toFixed(2)))});  
+    selected.setAttribute('scale',{x: s.x, y: s.y, z: s.z});
+    console.log(selected.object3D.visible);
+    selected.setAttribute('visible',selected.object3D.visible);
+    selected.flushToDOM(true);
+  }
 
     document.getElementById('remove').addEventListener('click',function(e){
       selected.object3D.visible=false;
@@ -1159,7 +1167,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     //Animation and effects logic here.  
     document.getElementById('anim1').addEventListener('click',function(e){  
       resetImage(selected);
-      selected.setAttribute('animation', {property: 'rotation', to: '0 360 0', dur: '2000', loop: true});
+      selected.setAttribute('animation', {property: 'rotation',from:'0 0 0' , to: '0 360 0', dur: '2000', loop: true});
     });
 
     document.getElementById('anim2').addEventListener('click',function(e){    
@@ -1226,6 +1234,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
       //e.object3D.rotation.set(0, 0, 0); 
       e.object3D.position.set(originalPos.x, originalPos.y, originalPos.z);           
       e.object3D.rotation.set(originalRot.x, originalRot.y, originalRot.z);           
+      console.log(originalRot);
       e.object3D.scale.set(1, 1, 1);
       e.components.material.material.opacity = 1;
       e.components.material.material.color.setStyle("#ffffff");      

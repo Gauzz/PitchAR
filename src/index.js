@@ -797,7 +797,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
 
       // compute bounding box
       var bbox = new THREE.Box3().setFromObject(object);
-      console.log(bbox.min,bbox.max); 
+      console.log(bbox); 
         document.getElementsByClassName('sidebar')[0].style.display='block';
         // Can only drag one item at a time, so no need to check if any
         // listener is already set up

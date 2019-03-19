@@ -425,7 +425,6 @@
           </ul>
         </div>
         <div class="modal-body">
-      
           <div class="tab-content">
             <div id="audgallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
@@ -627,14 +626,10 @@
     function init() {
     gapi.client.setApiKey("AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs");
     gapi.client.load("youtube", "v3", function() {
-        // yt api is ready
-        search();
     });
     
 }
 
-function search() {
- }
 
 </script>
 <script src="https://apis.google.com/js/client.js?onload=init"></script>  

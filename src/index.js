@@ -6,6 +6,9 @@ const DRAG_MOVE_EVENT = 'dragmove';
 const DRAG_END_EVENT = 'dragend';
 const TIME_TO_KEEP_LOG = 100;
 
+let originalPos = new THREE.Vector3(0, 0.5, 0);
+let originalRot = new THREE.Vector3(0, 0, 0);
+
 function forceWorldUpdate(threeElement) {
 
   let element = threeElement;
@@ -386,10 +389,14 @@ function dragItem(THREE, element, offset, camera, depth, mouseInfo) {
       //nextPosition.z = offsetVector.z;
     }
 
+    //originalPos = nextPosition;    
+
     element.emit(DRAG_MOVE_EVENT, {nextPosition, nextRotation, clientX, clientY});
 
     //element.setAttribute('rotation', nextRotation);
     element.setAttribute('position', nextPosition);
+
+    //originalRot = nextRotation;
   }
 
   function onTouchMove({changedTouches: [touchInfo]}) {
@@ -767,6 +774,9 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         time: performance.now(),
       });
       
+      originalPos = selected.object3D.position;
+      originalRot = selected.object3D.rotation;
+
       repos();
     }
 
@@ -1138,7 +1148,7 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         document.querySelector('#rx').object3D.position.z +=  0.15*selected.object3D.position.z;
       }
     
-    }
+    } //originalRot = selected.object3D.rotation;
     }
 
     document.getElementById('remove').addEventListener('click',function(e){
@@ -1212,11 +1222,13 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     function resetImage(e) {
       e.removeAttribute('animation');
       e.removeAttribute('particle-system');      
-      e.object3D.position.set(0, 0.5, 0);
-      e.object3D.rotation.set(0, 0, 0);
+      //e.object3D.position.set(0, 0.5, 0);
+      //e.object3D.rotation.set(0, 0, 0); 
+      e.object3D.position.set(originalPos.x, originalPos.y, originalPos.z);           
+      e.object3D.rotation.set(originalRot.x, originalRot.y, originalRot.z);           
       e.object3D.scale.set(1, 1, 1);
       e.components.material.material.opacity = 1;
-      e.components.material.material.color.setStyle("#ffffff");
+      e.components.material.material.color.setStyle("#ffffff");      
     }
 
     function run() {

@@ -144,6 +144,7 @@ function pushTxt(e){
   txt.setAttribute('rotation',{x:0,y:0,z:0});
   txt.setAttribute('scale',{x:1,y:1,z:1});
   txt.setAttribute('click-drag','');
+  txt.setAttribute('visible','true');
   txt.setAttribute('value',e.innerText);
   if(e.style.fontFamily =='roboto');
   else{
@@ -172,12 +173,14 @@ function pushVid(e){
     node.object3D.position.set(0,0.5,0);
     node.setAttribute('rotation',{x:0,y:0,z:0});
     node.setAttribute('scale',{x:1,y:1,z:1});
+    node.setAttribute('visible','true');
     node.setAttribute('click-drag','');
     node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
     }
     else if(e.dataset.type=='360'){
       var node = document.createElement("a-videosphere");
+      node.setAttribute('visible','true');
       node.setAttribute('src',e.dataset.source);
       node.classList.add('exp');
       node.id= e.id;
@@ -245,6 +248,7 @@ function editimg(e){
     node.object3D.position.set(0,0.5,0);
     node.setAttribute('rotation',{x:0,y:0,z:0});
     node.setAttribute('scale',{x:1,y:1,z:1});
+    node.setAttribute('visible','true');
     node.setAttribute('click-drag','');
     node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
@@ -255,6 +259,7 @@ function editimg(e){
     console.log(e.dataset.objfile);
     var node = document.createElement("a-entity");
     node.setAttribute('rotation',{x:0,y:0,z:0});
+    node.setAttribute('visible','true');
     node.setAttribute('scale',{x:1,y:1,z:1});
     if(e.dataset.type == 'obj'){
        node.setAttribute('obj-model', {
@@ -273,7 +278,11 @@ function editimg(e){
     node.classList.add('exp');
     document.getElementById("perswin").appendChild(node);
     $('#assets .close').click();
-    $('.modal-backdrop').remove();    
+    $('.modal-backdrop').remove();
+    var object = document.getElementById(e.id).getObject3D('mesh');
+    var bbox = new THREE.Box3().setFromObject(object);
+    console.log(bbox.getSize());
+      
    }  
 
 function updatetype(e){

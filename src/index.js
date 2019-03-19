@@ -783,12 +783,16 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         repos();
         m.object3D.visible = true; 
         
-      var object = selected.getObject3D('mesh');
-
-      // compute bounding box
-      var bbox = new THREE.Box3().setFromObject(object);
-      console.log(bbox); 
-        document.getElementsByClassName('sidebar')[0].style.display='block';
+  //    var object = selected.getObject3D('mesh');
+    //  var sphere = new THREE.Sphere();
+    //  var bbox = new THREE.Box3().setFromObject(object);
+    //  console.log(bbox.getSize());
+      
+      /*
+      bbox.getBoundingSphere ( sphere );
+      console.log(sphere);
+    */
+      document.getElementsByClassName('sidebar')[0].style.display='block';
         // Can only drag one item at a time, so no need to check if any
         // listener is already set up
         let removeDragItemListeners = dragItem(

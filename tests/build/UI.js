@@ -1177,3 +1177,29 @@ $.ajax({
       document.getElementById('vidtype').value = "2D";
     }
    }
+
+  // croppie
+
+   var croppiePanel = $('#croppie-panel').croppie({
+     viewport : {
+       width: 150,
+       height: 200
+     }
+   });
+
+  function cropImg () {    
+    var prevImg = document.getElementsByClassName("file-preview-image");
+    //console.log(prevImg[0].src);
+
+    croppiePanel.croppie('bind', {
+      url: prevImg[0].src      
+    });            
+  }  
+
+  function cropImg2 () {    
+    croppiePanel.croppie('result', 'base64').then(function(base64) {
+      //console.log(base64);
+      var prevImg = document.getElementsByClassName("file-preview-image");
+      prevImg[0].src = base64;
+    })
+  }  

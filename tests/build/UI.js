@@ -1189,26 +1189,52 @@ $.ajax({
 
   // croppie
 
-   var croppiePanel = $('#croppie-panel').croppie({
+  // Setup croppie panel
+   $('#croppie-panel').croppie({
      viewport : {
        width: 150,
        height: 200
      }
    });
+   $('#croppie-panel').css("display", "none");
+   
 
-  function cropImg () {    
-    var prevImg = document.getElementsByClassName("file-preview-image");
-    //console.log(prevImg[0].src);
+  $('#uploadImgBtn').on('change', function () {  
+    loadImageToCroppiePanel(this); 
+    console.log("uploadimgbtn");
+  });  
+  
+	function loadImageToCroppiePanel(input) {
+    console.log("init readFile");
+ 		if (input.files && input.files[0]) {
+	    var reader = new FileReader();        
+	    reader.onload = function (e) {
+        // $('.upload-demo').addClass('ready');
+        console.log("aaaaaaa");
+        $('#croppie-panel').croppie('bind', {
+          viewport : {
+            width: 150,
+            height: 200
+          },
+          url: e.target.result,          
+        }); 	            	
+      }
 
-    croppiePanel.croppie('bind', {
-      url: prevImg[0].src      
-    });            
-  }  
+      $('.img-preview').css("display", "none");
+      $('#croppie-panel').css("display", "block");
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	  else {
+		  console.log("Sorry - you're browser doesn't support the FileReader API");
+		}
+	}
 
   function cropImg2 () {    
-    croppiePanel.croppie('result', 'base64').then(function(base64) {
+    $('#croppie-panel').croppie('result', 'base64').then(function(base64) {
       //console.log(base64);
-      var prevImg = document.getElementsByClassName("file-preview-image");
-      prevImg[0].src = base64;
+      $('#croppie-panel').css("display", "none");
+      var prev = document.getElementsByClassName("img-preview");
+      prev[0].src = base64;
+      $('.img-preview').css("display", "block");
     })
   }  

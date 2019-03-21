@@ -240,18 +240,22 @@
      
               <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <input id="image" name="image" type="file" class="file" style="max-height:150px;" 
-                data-show-upload="false"  data-showPreview="false" data-msg-placeholder="Select {files} for upload...">
+                <!-- <input id="image" name="image" type="file" class="file" style="max-height:150px;" 
+                data-show-upload="false"  data-showPreview="false" data-msg-placeholder="Select {files} for upload..."> -->
                 <input type="hidden" name="create" value="1">
                 <input type="hidden" name="type" value="image">
                 <br>
-                <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
-              </form>
-                
+                <div id="croppie-panel" style="width: 200px; height: 250px; margin-bottom: 50px;"> </div>
+                <input id="image" name="image" type="image" class="img-preview" style="width: 200px; height: 250px; margin-bottom: 50px; display:none" disabled/>                
 
-                <div id="croppie-panel" style="width: 200px; height: 250px; margin-bottom: 100px;"> </div>
-                <button type="button" onclick="cropImg()" class="uploadbut">Crop Show</button>
+                <a class="btn file-btn">                  
+                  <input id="uploadImgBtn" type="file" value="Choose a file" accept="image/*">
+                </a>
+
                 <button type="button" onclick="cropImg2()" class="uploadbut">Crop Image</button>
+                <br><br>
+                <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
+              </form>                                              
 
                 <button type="button" onclick="uploadImg()" class="uploadbut">
                     Upload Image</button>  

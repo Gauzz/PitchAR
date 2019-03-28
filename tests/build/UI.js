@@ -5,6 +5,9 @@ let ctaid=0;
 var n=0;
 var cnt=0;
 var uploadbar=document.getElementById('uploadbar');
+var imgfil='';
+var filename='';
+var bool=0;
 function auto() {
 /*  $.ajax({
   method: 'post',
@@ -418,11 +421,48 @@ function ytset(e){
   ytembed.src= "https://www.youtube.com/embed/"+e.dataset.source;
 }
 
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#my-image').attr('src', e.target.result);
+      filename = input.files[0].name;
+      var resize =  new Croppie($('#my-image')[0], {
+        viewport: { width: 100, height: 100 },
+        boundary: { width: 300, height: 300 },
+        showZoomer: true,
+        enableResize: true,
+        enableOrientation: true
+      });
+      $('#use').on('click', function() {
+        resize.result('blob').then(function(dataImg) {
+          // use ajax to send data to php
+        imgfil=dataImg;   
+        console.log(e);
+        console.log(imgfil + ' '+ filename);
+        });
+        uploadImg();
+      });
+    }
+      reader.readAsDataURL(input.files[0]);
+    }
+    }
+    $("#image").change(function() {
+      readURL(this);
+      console.log('changed');
+      var index= bool-1;
+      if(bool){
+        $('.cr-boundary').eq(index).css("display", "none");
+        $('.cr-slider-wrap').eq(index).css("display", "none");
+      }   
+      bool++;
+    });
  function uploadImg(event) {
   let form = document.querySelector('#form');
   let formData = new FormData(form);
+  console.log(imgfil + ' ' + filename);
+  formData.append('image', imgfil, filename);
   console.log(formData);
-  console.log(form);
   $.ajax({
    method: 'POST',
    url: 'https://pitchar.io/api/_create-assets.php',
@@ -475,7 +515,12 @@ function ytset(e){
    div.appendChild(node);
    document.getElementById("galleryimgs").appendChild(div);
    uploadbar.style.width= 0;
-            
+   var index= bool-1;
+   if(bool){
+     $('.cr-boundary').eq(index).css("display", "none");
+     $('.cr-slider-wrap').eq(index).css("display", "none");
+   }   
+   bool++;         
  },
  });
 
@@ -1187,54 +1232,53 @@ $.ajax({
     }
    }
 
-  // croppie
+  // // croppie
 
-  // Setup croppie panel
-   $('#croppie-panel').croppie({
-     viewport : {
-       width: 150,
-       height: 200
-     }
-   });
-   $('#croppie-panel').css("display", "none");
+  // // Setup croppie panel
+  //  $('#croppie-panel').croppie({
+  //    viewport : {
+  //      width: 150,
+  //      height: 200
+  //    }
+  //  });
+  //  $('#croppie-panel').css("display", "none");
    
 
-  $('#uploadImgBtn').on('change', function () {  
-    loadImageToCroppiePanel(this); 
-    console.log("uploadimgbtn");
-  });  
+  // $('#uploadImgBtn').on('change', function () {  
+  //   loadImageToCroppiePanel(this); 
+  //   console.log("uploadimgbtn");
+  // });  
   
-	function loadImageToCroppiePanel(input) {
-    console.log("init readFile");
- 		if (input.files && input.files[0]) {
-	    var reader = new FileReader();        
-	    reader.onload = function (e) {
-        // $('.upload-demo').addClass('ready');
-        console.log("aaaaaaa");
-        $('#croppie-panel').croppie('bind', {
-          viewport : {
-            width: 150,
-            height: 200
-          },
-          url: e.target.result,          
-        }); 	            	
-      }
+	// function loadImageToCroppiePanel(input) {
+  //   console.log("init readFile");
+ 	// 	if (input.files && input.files[0]) {
+	//     var reader = new FileReader();        
+	//     reader.onload = function (e) {
+  //       // $('.upload-demo').addClass('ready');
+  //       console.log("aaaaaaa");
+  //       $('#croppie-panel').croppie('bind', {
+  //         viewport : {
+  //           width: 150,
+  //           height: 200
+  //         },
+  //         url: e.target.result,          
+  //       }); 	            	
+  //     }
 
-      $('.img-preview').css("display", "none");
-      $('#croppie-panel').css("display", "block");
-	    reader.readAsDataURL(input.files[0]);
-	  }
-	  else {
-		  console.log("Sorry - you're browser doesn't support the FileReader API");
-		}
-	}
+  //     $('.img-preview').css("display", "none");
+  //     $('#croppie-panel').css("display", "block");
+	//     reader.readAsDataURL(input.files[0]);
+	//   }
+	//   else {
+	// 	  console.log("Sorry - you're browser doesn't support the FileReader API");
+	// 	}
+	// }
 
-  function cropImg2 () {    
-    $('#croppie-panel').croppie('result', 'base64').then(function(base64) {
-      //console.log(base64);
-      $('#croppie-panel').css("display", "none");
-      var prev = document.getElementsByClassName("img-preview");
-      prev[0].src = base64;
-      $('.img-preview').css("display", "block");
-    })
-  }  
+  // function cropImg2 () {    
+  //   $('#croppie-panel').croppie('result', 'base64').then(function(base64) {
+  //     //console.log(base64);
+  //     $('#croppie-panel').css("display", "none");
+  //     var prev = document.getElementsByClassName("img-preview");
+  //     prev[0].value = base64;
+  //   })
+  // }  

@@ -244,28 +244,19 @@
      
               <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <!-- <input id="image" name="image" type="file" class="file" style="max-height:150px;" 
-                data-show-upload="false"  data-showPreview="false" data-msg-placeholder="Select {files} for upload..."> -->
+                <input id="image" type="file" accept='image/*' > 
                 <input type="hidden" name="create" value="1">
                 <input type="hidden" name="type" value="image">
+                <img id="my-image" src="#" />
                 <br>
-                <div id="croppie-panel" style="width: 200px; height: 250px; margin-bottom: 50px;"> </div>
-                <input id="image" name="image" type="image" class="img-preview" style="width: 200px; height: 250px; margin-bottom: 50px; display:none" disabled/>                
-
-                <a class="btn file-btn">                  
-                  <input id="uploadImgBtn" type="file" value="Choose a file" accept="image/*">
-                </a>
-
-                <button type="button" onclick="cropImg2()" class="uploadbut">Crop Image</button>
                 <br><br>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
               </form>                                              
-
-                <button type="button" onclick="uploadImg()" class="uploadbut">
+                <button id="use" type="button" class="uploadbut">
                     Upload Image</button>  
                 <br><br>                    
                 <div class="demo"></div>
-                <div id='galleryimgs'></div> 
+                <div id='galleryimgs'></div>
                 
             </div>
             <div id="unsplash" class="tab-pane ">
@@ -338,7 +329,7 @@
     </div>
   </div>
 
-  <div class="modal " id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
+  <!-- <div class="modal " id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -359,8 +350,7 @@
      
               <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <input id="image" name="image" type="file" class="file" style="max-height:150px;" 
-                data-show-upload="false"  data-showPreview="false" data-msg-placeholder="Select {files} for upload...">
+                <input  name="image" type="file" >
                 <input type="hidden" name="create" value="1">
                 <input type="hidden" name="type" value="image">
                 <br>
@@ -387,7 +377,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="modal" id="txt" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

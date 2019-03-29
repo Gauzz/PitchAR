@@ -45,11 +45,6 @@
 
 
 
-<!----div id='topRightButtons'>
-	<button id="show-info" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-		<i class="material-icons">info_outline</i>
-	</button>
-</div--->
 <dialog style='width:400px' id='dialog-info' class="mdl-dialog">
 	<h4 class="mdl-dialog__title">Welcome!</h4>
 	<div class="mdl-dialog__content">
@@ -68,10 +63,6 @@
 		dialogElement.close()
 	})
 
-	var showDialogButton = document.querySelector('#show-info')
-	showDialogButton.addEventListener('click', function() {
-		dialogElement.showModal()
-	})
 </script>
 
 <div class='mdl-grid'>
@@ -99,10 +90,10 @@
 	</div>
 	<div class='mdl-cell mdl-cell--4-col'>
 		<button id='buttonDownloadEncoded' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
-			Download Marker
+			Save Marker
 		</button>
 		<div class='mdl-tooltip' for='buttonDownloadEncoded'>
-			Download marker encoded from the uploaded image
+			Save marker encoded from the uploaded image
 		</div>
 		<br/>
 		<br/>
@@ -233,83 +224,6 @@
 		})
 	}
 
-	//		Handle PDF
-	document.querySelector('#buttonDownloadPDFOnePerPage').addEventListener('click', generatePdfOnePerPage)
-	document.querySelector('#buttonDownloadPDFTwoPerPage').addEventListener('click', generatePdfTwoPerPage)
-	document.querySelector('#buttonDownloadPDFSixPerPage').addEventListener('click', generatePdfSixPerPage)
-
-	function generatePdfOnePerPage(){
-	        var docDefinition = {
-			content: [
-				{
-					image: fullMarkerURL,
-					width: 600,
-					alignment: 'center',
-				},
-			]
-	        }
-	        pdfMake.createPdf(docDefinition).open();
-	}
-	function generatePdfTwoPerPage(){
-	        var docDefinition = {
-			content: [
-				{
-					image: fullMarkerURL,
-					width: 300,
-					alignment: 'center',
-				},
-				{
-					image: fullMarkerURL,
-					width: 300,
-					alignment: 'center',
-				},
-			]
-	        }
-	        pdfMake.createPdf(docDefinition).open();
-	}
-	function generatePdfSixPerPage(){
-	        var docDefinition = {
-	                content: [
-				{
-					columns: [
-			                        {
-			                                image: fullMarkerURL,
-			                                width: 250,
-			                        },
-			                        {
-			                                image: fullMarkerURL,
-			                                width: 250,
-			                        },
-					]
-				},
-				{
-					columns: [
-			                        {
-			                                image: fullMarkerURL,
-			                                width: 250,
-			                        },
-			                        {
-			                                image: fullMarkerURL,
-			                                width: 250,
-			                        },
-					]
-				},
-				{
-					columns: [
-			                        {
-			                                image: fullMarkerURL,
-			                                width: 250,
-			                        },
-			                        {
-			                                image: fullMarkerURL,
-			                                width: 250,
-			                        },
-					]
-				},
-	                ],
-	        }
-	        pdfMake.createPdf(docDefinition).open();
-	}
 </script>
 
 </body>

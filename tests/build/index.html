@@ -272,23 +272,28 @@
       </div>
     </div>
   </div>
+
   <div class="modal " id="assets" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-     <br>
+
+          <br>
+
           <ul class="nav nav-tabs ">
-            <li class="active col-lg-6"><a data-toggle="tab" href="#gallery"><center>MY Gallery</center></a></li>
-            <li class="col-lg-6"><a data-toggle="tab" href="#unsplash"><center>Sketchfab</center></a></li>
-            </ul>
+            <li class="active col-lg-6"><a data-toggle="tab" href="#modelsGallery"><center>MY Gallery</center></a></li>
+            <li class="col-lg-6"><a data-toggle="tab" href="#sketchfab"><center>Sketchfab</center></a></li>
+          </ul>
           
         </div>
+
         <div id='assetbody' onscroll="fetchnew()" class="modal-body">
           <div class="tab-content">
-            <div id="gallery" class="tab-pane  in active">
+            <div id="modelsGallery" class="tab-pane  in active">
               <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
      
               <form id="form2" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
@@ -313,15 +318,16 @@
                 <div id='galleryobjs'></div> 
            
             </div>
-            <div id="unsplash" class="tab-pane ">
-            <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-            <div id="unsplashImgs"></div>
-            <br><br> 
-        
+
+            <div id="sketchfab" class="tab-pane">
+              <input type="search" class="searchSketchFab searchbar" autocomplete="on" onsubmit="searchImg(this)">  
+              <div id="sketchFabImgs"></div>
+              <br><br>         
             </div>
+
           </div>
+        </div>
         
-           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
         </div>

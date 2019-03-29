@@ -1232,6 +1232,57 @@ $.ajax({
     }
    }
 
+// Sketchfab Integration
+   var searchSketchFab = document.getElementsByClassName("searchSketchFab");
+   searchSketchFab[0].addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+        //alert("searchSketchFab");
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.sketchfab.com/v3/search?type=models&q="+searchSketchFab[0].value+"&downloadable=true",
+          "method": "GET"
+        }
+        
+        $.ajax(settings).done(function (response) {
+          //console.log(response);
+          document.getElementById("sketchFabImgs").innerHTML = "";
+
+          var modResults = response.results;
+          //console.log(modResults);
+          for (var i=0; i < modResults.length; i++) {
+            var node = document.createElement("img");
+              node.src = modResults[i].thumbnails.images[1].url;
+              node.width = 125;
+              node.height =125;
+              node.id= 'img'+i;
+              node.style='margin:4px;';
+              node.setAttribute("onclick","pushAud(this);");
+              node.setAttribute("class","image");
+              node.setAttribute("data-source", modResults[i].uid);
+              var div= document.createElement("div");
+              div.setAttribute("class","hbox");
+              div.appendChild(node);
+              var overlay=document.createElement("div");
+              overlay.setAttribute("class","options")
+              var del=document.createElement('button');
+              del.setAttribute("onclick","delaud(this)");
+              del.innerHTML="<i class='fa fa-trash'></i>";                                
+              overlay.appendChild(del);
+              div.appendChild(node);
+              div.appendChild(overlay);
+              document.getElementById("sketchFabImgs").appendChild(div);              
+                                                                                               
+              div.appendChild(node);
+              div.appendChild(overlay);  
+          }
+        });
+      }
+    });
+
+
   // // croppie
 
   // // Setup croppie panel

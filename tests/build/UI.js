@@ -1,3 +1,5 @@
+//import { Z_PARTIAL_FLUSH } from "zlib";
+
 let token = 'jzXPgvSfhYMx7I3';
 let k=0;
 let perm=0;
@@ -1278,5 +1280,104 @@ $.ajax({
       }
     });
 
+  function getFileJson(yourURL){
+    var Httpreq = new XMLHttpRequest();
+    Httpreq.open("GET", yourURL, false);
+    Httpreq.send(null);
+    console.log(Httpreq.responseText);
+    return Httpreq.responseText;
+  }
+  
+  zip.workerScriptsPath = 'lib/';
+
+  function downloadSketchFabModel () {
+    var url="https://sketchfab-prod-media.s3.amazonaws.com/archives/be3cf507c06943809ad779a1a72a044d/gltf/47ce5fa11b4f4b1ca8d5ee04e6da43b3/the_force_awakens_lowpoly.zip?Expires=1553864741&AWSAccessKeyId=ASIAZ4EAQ242DO7LX2FD&x-amz-security-token=AgoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJIMEYCIQCsFfA86lXDNUBCDObtxAlJuVH%2BhUxMBCMbonf8vHq20QIhAO4nn6M%2FK9qB5IGL9fwDe339jVHmo1e1JTn%2FbBkh4ADuKtoDCEUQABoMNjc4ODc0MzcxODkyIgw3%2FZzHzOUQANMAadIqtwPP2L4UL6Xb8O9xpPiYkmL%2BsCR0ea8245norLiNdHhXi1vT1tcjnbC82%2FHrmzYWSJaUUtERksRUY10m2IhkbPh8GV5RofWeERMjnUWK1CzmOmri61025%2FBoCBpPiAZZand3h1KcynxTzbv%2BqTDh7Ha2FM%2F1SCabwlEWEHGKHJDKdFG0r6PHQmZFUoNcG%2B1fMGUOyiCRaAzSla%2B3EmUfPIbSfjvfT9RDiVAp%2FZAREQ5zif6r7%2FuAyKN6ig3G10ka2Fo1rjQkDB8Sh%2BpMw1SAwMo%2FIYblQQvOzKE%2FVqOy4z8bdbRmkxCVgXXxigBNLdAPIOsBQq7j%2BwCGO6C8y%2F%2BvzkvrRjn3qwCGFhVIDwGtudX%2BgwLqg0G%2Bf4Cj11xfmd4Jrx0wnLND%2FltxFpXHpNKWLILSGel9tLS1vAGN3AF12Skh5cK1E6LqDg8N%2B8wgpbid57fEFaZzJ4B1YZcUn7VZVy%2FVBiKH71BYp8y0hN9GKJZghdVZZPXPCNMmkEiGKahPdbCg6xull5wNrmtdz1PifFDf2kBTsJhxMKzR%2FpYkHSmtU9ESr1TddNnY19jN3mDBtZUpDCYluQ%2FZMPiW%2BOQFOrMB0Q%2Faw2WTUu8xBImXrcP8i6lZ%2Fr6vhyxIalo6Bqg6tBcVmhcomZXRhSU82RRdWn65MTxA2BlmkG0IyH2WwyIJHyD0Fo9B3iciPcqDyp4QJ16W0hd4ABRmOdmah4MNqyN7Uh8iwMxy3DpeGckF2LnKHqNHEQBR07l%2B4xRVPJX5CdzQuRyFdgA7Z0qNn24W0UADDoVtZ%2Byg%2BDpRSEwtdJKl4DW4djLHlRus7QYDWPydXlwdRHg%3D&Signature=PLqd7fc%2B8tCn7bnuBekRNF%2BSJYU%3D";  
+    var reader = new zip.HttpReader(url);
+  
+    zip.createReader (
+      reader,
+      function(zipReader) {      
+        zipReader.getEntries(function(entries) {        
+          console.log(entries);                            
+                    
+          let fileUrls = []; 
+          for (let i=0; i<entries.length; i++) {
+            entries[i].getData(new zip.BlobWriter('text/plain'), function onEnd(data) {
+              var url = window.URL.createObjectURL(data);
+              fileUrls.push(url);       
+              
+              if (i == entries.length-1) {
+                console.log(fileUrls[1]);
+                var json = JSON.parse(getFileJson(fileUrls[1]));                
+                console.log(json);
+                // //Replace original buffers and images by blob URLs
+                // if (json.hasOwnProperty('buffers')) {
+                //   for (var i = 0; i < json.buffers.length; i++) {
+                //       json.buffers[i].uri = fileUrls[json.buffers[i].uri];
+                //   }
+                // }
+
+                // if (json.hasOwnProperty('images')) {
+                //   for (var i = 0; i < json.images.length; i++) {
+                //       json.images[i].uri = fileUrls[json.images[i].uri];
+                //   }
+                // }
+        
+                // var updatedSceneFileContent = JSON.stringify(json, null, 2);
+                // var updatedBlob = new Blob([updatedSceneFileContent], { type: 'text/plain' });
+                // var updatedUrl = window.URL.createObjectURL(updatedBlob);                
+                // console.log("updatedUrl " + updatedUrl);
+
+                var loader = new THREE.GLTFLoader();        
+                loader.load(fileUrls[1], function(gltf){
+                  //scene.add( gltf.scene );
+                  console.log(gltf);
+                }, undefined, function(error){
+                  console.error( error );
+                });
+              }
+            });
+          }                                   
+          
+          // var json = JSON.parse(getFileJson(fileUrls[1]));
+          // // Replace original buffers and images by blob URLs
+          // if (json.hasOwnProperty('buffers')) {
+          //   for (var i = 0; i < json.buffers.length; i++) {
+          //       json.buffers[i].uri = fileUrls[json.buffers[i].uri];
+          //   }
+          // }
+  
+          // if (json.hasOwnProperty('images')) {
+          //   for (var i = 0; i < json.images.length; i++) {
+          //       json.images[i].uri = fileUrls[json.images[i].uri];
+          //   }
+          // }
+  
+          // var updatedSceneFileContent = JSON.stringify(json, null, 2);
+          // var updatedBlob = new Blob([updatedSceneFileContent], { type: 'text/plain' });
+          // var updatedUrl = window.URL.createObjectURL(updatedBlob);
+  
+          // URL corresponding to scene.gltf
+          //var urlDemo = 'blob:http://example.com/a9b5c659-b032-4b7e-df19-5c42798fc049';
+          
+          // var loader = new THREE.GLTFLoader();        
+          // loader.load(fileUrls[1], function(gltf){
+          //   //scene.add( gltf.scene );
+          //   console.log(gltf);
+          // }, undefined, function(error){
+          //   console.error( error );
+          // });
+  
+        });
+
+
+      },
+      function (error) {      
+        console.error(error);
+      }
+    ); 
+  }
+
+  downloadSketchFabModel();
 
  

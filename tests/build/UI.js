@@ -513,6 +513,7 @@ function readURL(input) {
    del.setAttribute('data-pid',data.data.id);
    overlay.appendChild(del);
    div.appendChild(node);
+   if(data.data.image != "")
    document.getElementById("galleryimgs").appendChild(div);
    uploadbar.style.width= 0;         
  },

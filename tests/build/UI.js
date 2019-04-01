@@ -1,4 +1,3 @@
-//import { Z_PARTIAL_FLUSH } from "zlib";
 
 let token = 'jzXPgvSfhYMx7I3';
 let k=0;
@@ -1230,36 +1229,56 @@ $.ajax({
     }
    }
 
-// Sketchfab Integration
-   var searchSketchFab = document.getElementsByClassName("searchSketchFab");
-   searchSketchFab[0].addEventListener("keyup", function(event) {
+// googlePoly Integration
+  var scene = new THREE.Scene();
+  var container = new THREE.Group();
+	scene.add( container );
+
+  const API_KEY = 'AIzaSyANZMpdihFsQgcJkFIEjasfiLgX6Nyb8SE';
+   var searchGooglePoly = document.getElementsByClassName("searchGooglePoly");
+   searchGooglePoly[0].addEventListener("keyup", function(event) {
       event.preventDefault();
       if (event.keyCode === 13) {
-        //alert("searchSketchFab");
+        //alert("searchGooglePoly");
 
         var settings = {
           "async": true,
           "crossDomain": true,
-          "url": "https://api.sketchfab.com/v3/search?type=models&q="+searchSketchFab[0].value+"&downloadable=true",
+          "url": `https://poly.googleapis.com/v1/assets?keywords=${searchGooglePoly[0].value}&format=OBJ&key=${API_KEY}`,
           "method": "GET"
         }
         
         $.ajax(settings).done(function (response) {
           //console.log(response);
-          document.getElementById("sketchFabImgs").innerHTML = "";
+          document.getElementById("googlePolyImgs").innerHTML = "";
 
-          var modResults = response.results;
+          var modResults = response.assets;  
           //console.log(modResults);
           for (var i=0; i < modResults.length; i++) {
             var node = document.createElement("img");
-              node.src = modResults[i].thumbnails.images[1].url;
+              node.src = modResults[i].thumbnail.url;
               node.width = 125;
               node.height =125;
               node.id= 'img'+i;
               node.style='margin:4px;';
-              node.setAttribute("onclick","pushAud(this);");
+              
+              var format = modResults[i].formats.find( format => { return format.formatType === 'OBJ'; } );
+              var obj = format.root;
+              var mtl = format.resources.find( resource => { return resource.url.endsWith( 'mtl' ) } );
+              var path = obj.url.slice( 0, obj.url.indexOf( obj.relativePath ) );
+
+              node.setAttribute("data-obj", obj.url);
+              node.setAttribute("data-mtl", mtl.url);
+
+              //node.setAttribute("onclick","pushAud(this);");          
+              if ( format !== undefined ) {
+
+                node.setAttribute("onclick","pushPolyModel(this);");          
+
+              }
+
               node.setAttribute("class","image");
-              node.setAttribute("data-source", modResults[i].uid);
+              node.setAttribute("data-source", modResults[i].name);
               var div= document.createElement("div");
               div.setAttribute("class","hbox");
               div.appendChild(node);
@@ -1271,7 +1290,7 @@ $.ajax({
               overlay.appendChild(del);
               div.appendChild(node);
               div.appendChild(overlay);
-              document.getElementById("sketchFabImgs").appendChild(div);              
+              document.getElementById("googlePolyImgs").appendChild(div);              
                                                                                                
               div.appendChild(node);
               div.appendChild(overlay);  
@@ -1280,104 +1299,51 @@ $.ajax({
       }
     });
 
-  function getFileJson(yourURL){
-    var Httpreq = new XMLHttpRequest();
-    Httpreq.open("GET", yourURL, false);
-    Httpreq.send(null);
-    console.log(Httpreq.responseText);
-    return Httpreq.responseText;
-  }
-  
-  zip.workerScriptsPath = 'lib/';
+    function pushPolyModel (e) {                              
+      // var loader = new THREE.MTLLoader();
+      // loader.setCrossOrigin( true );
+      // loader.setMaterialOptions( { ignoreZeroRGBs: true } );
+      // loader.setTexturePath( path );
+      // loader.load( mtl.url, function ( materials ) {
 
-  function downloadSketchFabModel () {
-    var url="https://sketchfab-prod-media.s3.amazonaws.com/archives/be3cf507c06943809ad779a1a72a044d/gltf/47ce5fa11b4f4b1ca8d5ee04e6da43b3/the_force_awakens_lowpoly.zip?Expires=1553864741&AWSAccessKeyId=ASIAZ4EAQ242DO7LX2FD&x-amz-security-token=AgoJb3JpZ2luX2VjEI3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCWV1LXdlc3QtMSJIMEYCIQCsFfA86lXDNUBCDObtxAlJuVH%2BhUxMBCMbonf8vHq20QIhAO4nn6M%2FK9qB5IGL9fwDe339jVHmo1e1JTn%2FbBkh4ADuKtoDCEUQABoMNjc4ODc0MzcxODkyIgw3%2FZzHzOUQANMAadIqtwPP2L4UL6Xb8O9xpPiYkmL%2BsCR0ea8245norLiNdHhXi1vT1tcjnbC82%2FHrmzYWSJaUUtERksRUY10m2IhkbPh8GV5RofWeERMjnUWK1CzmOmri61025%2FBoCBpPiAZZand3h1KcynxTzbv%2BqTDh7Ha2FM%2F1SCabwlEWEHGKHJDKdFG0r6PHQmZFUoNcG%2B1fMGUOyiCRaAzSla%2B3EmUfPIbSfjvfT9RDiVAp%2FZAREQ5zif6r7%2FuAyKN6ig3G10ka2Fo1rjQkDB8Sh%2BpMw1SAwMo%2FIYblQQvOzKE%2FVqOy4z8bdbRmkxCVgXXxigBNLdAPIOsBQq7j%2BwCGO6C8y%2F%2BvzkvrRjn3qwCGFhVIDwGtudX%2BgwLqg0G%2Bf4Cj11xfmd4Jrx0wnLND%2FltxFpXHpNKWLILSGel9tLS1vAGN3AF12Skh5cK1E6LqDg8N%2B8wgpbid57fEFaZzJ4B1YZcUn7VZVy%2FVBiKH71BYp8y0hN9GKJZghdVZZPXPCNMmkEiGKahPdbCg6xull5wNrmtdz1PifFDf2kBTsJhxMKzR%2FpYkHSmtU9ESr1TddNnY19jN3mDBtZUpDCYluQ%2FZMPiW%2BOQFOrMB0Q%2Faw2WTUu8xBImXrcP8i6lZ%2Fr6vhyxIalo6Bqg6tBcVmhcomZXRhSU82RRdWn65MTxA2BlmkG0IyH2WwyIJHyD0Fo9B3iciPcqDyp4QJ16W0hd4ABRmOdmah4MNqyN7Uh8iwMxy3DpeGckF2LnKHqNHEQBR07l%2B4xRVPJX5CdzQuRyFdgA7Z0qNn24W0UADDoVtZ%2Byg%2BDpRSEwtdJKl4DW4djLHlRus7QYDWPydXlwdRHg%3D&Signature=PLqd7fc%2B8tCn7bnuBekRNF%2BSJYU%3D";  
-    var reader = new zip.HttpReader(url);
-  
-    zip.createReader (
-      reader,
-      function(zipReader) {      
-        zipReader.getEntries(function(entries) {        
-          console.log(entries);                            
-                    
-          let fileUrls = []; 
-          for (let i=0; i<entries.length; i++) {
-            entries[i].getData(new zip.BlobWriter('text/plain'), function onEnd(data) {
-              var url = window.URL.createObjectURL(data);
-              fileUrls.push(url);       
-              
-              if (i == entries.length-1) {
-                console.log(fileUrls[1]);
-                var json = JSON.parse(getFileJson(fileUrls[1]));                
-                console.log(json);
-                // //Replace original buffers and images by blob URLs
-                // if (json.hasOwnProperty('buffers')) {
-                //   for (var i = 0; i < json.buffers.length; i++) {
-                //       json.buffers[i].uri = fileUrls[json.buffers[i].uri];
-                //   }
-                // }
+      //   var loader = new THREE.OBJLoader();
+      //   loader.setMaterials( materials );
+      //   loader.load( obj.url, function ( object ) {
 
-                // if (json.hasOwnProperty('images')) {
-                //   for (var i = 0; i < json.images.length; i++) {
-                //       json.images[i].uri = fileUrls[json.images[i].uri];
-                //   }
-                // }
-        
-                // var updatedSceneFileContent = JSON.stringify(json, null, 2);
-                // var updatedBlob = new Blob([updatedSceneFileContent], { type: 'text/plain' });
-                // var updatedUrl = window.URL.createObjectURL(updatedBlob);                
-                // console.log("updatedUrl " + updatedUrl);
+          var node = document.createElement("a-entity");
+          node.setAttribute('rotation',{x:0,y:0,z:0});
+          node.setAttribute('visible','true');
+          node.setAttribute('scale',{x:1,y:1,z:1});                    
 
-                var loader = new THREE.GLTFLoader();        
-                loader.load(fileUrls[1], function(gltf){
-                  //scene.add( gltf.scene );
-                  console.log(gltf);
-                }, undefined, function(error){
-                  console.error( error );
-                });
-              }
-            });
-          }                                   
+          node.setAttribute('obj-model', {
+            obj: e.dataset.obj,
+            mtl: e.dataset.mtl                       
+          });
           
-          // var json = JSON.parse(getFileJson(fileUrls[1]));
-          // // Replace original buffers and images by blob URLs
-          // if (json.hasOwnProperty('buffers')) {
-          //   for (var i = 0; i < json.buffers.length; i++) {
-          //       json.buffers[i].uri = fileUrls[json.buffers[i].uri];
-          //   }
-          // }
-  
-          // if (json.hasOwnProperty('images')) {
-          //   for (var i = 0; i < json.images.length; i++) {
-          //       json.images[i].uri = fileUrls[json.images[i].uri];
-          //   }
-          // }
-  
-          // var updatedSceneFileContent = JSON.stringify(json, null, 2);
-          // var updatedBlob = new Blob([updatedSceneFileContent], { type: 'text/plain' });
-          // var updatedUrl = window.URL.createObjectURL(updatedBlob);
-  
-          // URL corresponding to scene.gltf
-          //var urlDemo = 'blob:http://example.com/a9b5c659-b032-4b7e-df19-5c42798fc049';
-          
-          // var loader = new THREE.GLTFLoader();        
-          // loader.load(fileUrls[1], function(gltf){
-          //   //scene.add( gltf.scene );
-          //   console.log(gltf);
-          // }, undefined, function(error){
-          //   console.error( error );
-          // });
-  
-        });
+          // node.id= e.id;
+          node.object3D.position.set(0,0.1,0);
+          node.object3D.rotation.set(0,1.57,0);
+          node.object3D.scale.set(0.7,0.7,0.7);
+          node.setAttribute('click-drag','');
+          node.classList.add('exp');
+          document.getElementById("perswin").appendChild(node);
+          $('#assets .close').click();
+          $('.modal-backdrop').remove();                      
+          var box = new THREE.Box3();
+          box.setFromObject( object );                                            
 
+          // // re-center
+          // var center = box.getCenter();
+          // center.y = box.min.y;
+          // object.position.sub( center );
 
-      },
-      function (error) {      
-        console.error(error);
-      }
-    ); 
-  }
+          // // scale
+          // var scaler = new THREE.Group();
+          // scaler.add( object );
+          // scaler.scale.setScalar( 6 / box.getSize().length() );
+          // container.add( scaler );
+        // } );
 
-  downloadSketchFabModel();
+      // } );
 
- 
+    }

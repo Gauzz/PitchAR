@@ -120,6 +120,10 @@ THREEx.ArPatternFile.buildFullMarker =  function(innerImageURL, pattRatio, onCom
 
 		var imageUrl = canvas.toDataURL()
 		onComplete(imageUrl)
+		
+		canvas.toBlob(function(blob){
+		console.log(blob);
+		}, 'image/jpeg', 1.0);
 	})
 	innerImage.src = innerImageURL
 }

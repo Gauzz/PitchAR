@@ -623,6 +623,10 @@ var innerImageURL = null
                       console.assert(innerImageURL)
                       THREEx.ArPatternFile.encodeImageURL(innerImageURL, function onComplete(patternFileString){
                         THREEx.ArPatternFile.triggerDownload(patternFileString)
+                     
+                        fetch(fullMarkerURL)
+                        .then(res => res.blob())
+                        .then(blob => console.log(blob))
                       })
                     })
                   
@@ -682,6 +686,7 @@ var innerImageURL = null
                         var container = document.querySelector('#imageContainer')
                         while (container.firstChild) container.removeChild(container.firstChild);
                         container.appendChild(fullMarkerImage)
+
                       })
                     }
 

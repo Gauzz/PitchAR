@@ -793,15 +793,6 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         repos();
         m.object3D.visible = true; 
         
-  //    var object = selected.getObject3D('mesh');
-    //  var sphere = new THREE.Sphere();
-    //  var bbox = new THREE.Box3().setFromObject(object);
-    //  console.log(bbox.getSize());
-      
-      /*
-      bbox.getBoundingSphere ( sphere );
-      console.log(sphere);
-    */
       document.getElementsByClassName('sidebar')[0].style.display='block';
         // Can only drag one item at a time, so no need to check if any
         // listener is already set up
@@ -897,6 +888,13 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     }
 
     function repos(){
+      console.log(cam.object3D.rotation.y);
+      var object = selected.getObject3D('mesh');
+     var sphere = new THREE.Sphere();
+     var bbox = new THREE.Box3().setFromObject(object);
+     console.log(bbox.getSize());  
+      bbox.getBoundingSphere ( sphere );
+      console.log(sphere);
      
       if(cam.object3D.rotation.x < -1.1 ){
         console.log(cam.object3D.rotation.x);
@@ -945,9 +943,11 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
 
 
       else if(cam.object3D.rotation.y > -0.785398 && cam.object3D.rotation.y < 0.785398){
-      document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x - 1.25*selected.object3D.scale.x;
-      document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z;
+      
+      document.querySelector('#zaxis').object3D.position.x = sphere.center.x - sphere.radius-0.25;
+      document.querySelector('#zaxis').object3D.position.y = sphere.center.y ;
+      document.querySelector('#zaxis').object3D.position.z = sphere.center.z;
+      
       if(selected.object3D.position.x < 0)
       {
         document.querySelector('#zaxis').object3D.position.x +=  0.15*selected.object3D.position.x;

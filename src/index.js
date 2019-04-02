@@ -898,39 +898,39 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
      
       if(cam.object3D.rotation.x < -1.1 ){
         console.log(cam.object3D.rotation.x);
-      document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x - 1.25*selected.object3D.scale.x;
-      document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z ;
+      document.querySelector('#zaxis').object3D.position.x = sphere.center.x - 0.25 - sphere.radius;
+      document.querySelector('#zaxis').object3D.position.y = sphere.center.y;
+      document.querySelector('#zaxis').object3D.position.z = sphere.center.z ;
       
       if(selected.object3D.position.x < 0)
       {
         document.querySelector('#zaxis').object3D.position.x +=  0.15*selected.object3D.position.x;
       }
       
-      document.querySelector('#sc').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x;
-      document.querySelector('#sc').object3D.position.y = selected.object3D.position.y ;
-      document.querySelector('#sc').object3D.position.z = selected.object3D.position.z - 1.25*selected.object3D.scale.z;
+      document.querySelector('#sc').object3D.position.x = sphere.center.x + 0.25 + sphere.radius;
+      document.querySelector('#sc').object3D.position.y = sphere.center.y ;
+      document.querySelector('#sc').object3D.position.z = sphere.center.z - 0.25 - sphere.radius;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#sc').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
 
-      document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#rz').object3D.position.y = selected.object3D.position.y ;
-      document.querySelector('#rz').object3D.position.z = selected.object3D.position.z - 1.25*selected.object3D.scale.z;
+      document.querySelector('#rz').object3D.position.x = sphere.center.x;
+      document.querySelector('#rz').object3D.position.y = sphere.center.y ;
+      document.querySelector('#rz').object3D.position.z = sphere.center.z  - 0.25 - sphere.radius;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#rz').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
       
 
-      document.querySelector('#ry').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x;
-      document.querySelector('#ry').object3D.position.y = selected.object3D.position.y ;
-      document.querySelector('#ry').object3D.position.z = selected.object3D.position.z + 2*selected.object3D.scale.z;
+      document.querySelector('#ry').object3D.position.x = sphere.center.x + 0.25 + sphere.radius;
+      document.querySelector('#ry').object3D.position.y = sphere.center.y ;
+      document.querySelector('#ry').object3D.position.z = sphere.center.z + 0.25 + sphere.radius;
 
-      document.querySelector('#rx').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x + 0.05*selected.object3D.scale.x*selected.object3D.position.x;
-      document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#rx').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#rx').object3D.position.x = sphere.center.x + 0.25 + sphere.radius;
+      document.querySelector('#rx').object3D.position.y = sphere.center.y;
+      document.querySelector('#rx').object3D.position.z = sphere.center.z;
       document.querySelector('#rx').object3D.rotation.y = 70;
       
       if(selected.object3D.position.x > 0)
@@ -953,30 +953,30 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
         document.querySelector('#zaxis').object3D.position.x +=  0.15*selected.object3D.position.x;
       }
       
-      document.querySelector('#sc').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x;
-      document.querySelector('#sc').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#sc').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#sc').object3D.position.x = sphere.center.x + sphere.radius + 0.25;
+      document.querySelector('#sc').object3D.position.y = sphere.center.y + sphere.radius + 0.25;
+      document.querySelector('#sc').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#sc').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
 
-      document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#rz').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#rz').object3D.position.z = selected.object3D.position.z ;
+      document.querySelector('#rz').object3D.position.x = sphere.center.x;
+      document.querySelector('#rz').object3D.position.y = sphere.center.y + sphere.radius + 0.25;
+      document.querySelector('#rz').object3D.position.z = sphere.center.z ;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#rz').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
       
 
-      document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#ry').object3D.position.y = selected.object3D.position.y - 2*selected.object3D.scale.y;
-      document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#ry').object3D.position.x = sphere.center.x;
+      document.querySelector('#ry').object3D.position.y = sphere.center.y - sphere.radius - 0.25;
+      document.querySelector('#ry').object3D.position.z = sphere.center.z;
 
-      document.querySelector('#rx').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x + 0.05*selected.object3D.scale.x*selected.object3D.position.x;
-      document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#rx').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#rx').object3D.position.x = sphere.center.x + 0.25+ sphere.radius;
+      document.querySelector('#rx').object3D.position.y = sphere.center.y;
+      document.querySelector('#rx').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.x > 0)
       {
         
@@ -986,38 +986,38 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
 
     else if(cam.object3D.rotation.y < -0.785398 && cam.object3D.rotation.y > -2.35619){
       console.log('next phase');
-      document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z - 1.25*selected.object3D.scale.z;
-      document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#zaxis').object3D.position.z = sphere.center.z - 0.25 - sphere.radius;
+      document.querySelector('#zaxis').object3D.position.y = sphere.center.y;
+      document.querySelector('#zaxis').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.x < 0)
       {
         document.querySelector('#zaxis').object3D.position.x +=  0.15*selected.object3D.position.x;
       }
       
-      document.querySelector('#sc').object3D.position.z = selected.object3D.position.z + 1.25*selected.object3D.scale.z;
-      document.querySelector('#sc').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#sc').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#sc').object3D.position.z = sphere.center.z + 0.25 + sphere.radius;
+      document.querySelector('#sc').object3D.position.y = sphere.center.y + 0.25 + sphere.radius;
+      document.querySelector('#sc').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#sc').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
 
-      document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
-      document.querySelector('#rz').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#rz').object3D.position.z = sphere.center.z;
+      document.querySelector('#rz').object3D.position.y = sphere.center.y + 0.25+ sphere.radius;
+      document.querySelector('#rz').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#rz').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
       
 
-      document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
-      document.querySelector('#ry').object3D.position.y = selected.object3D.position.y - 2*selected.object3D.scale.y;
-      document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#ry').object3D.position.z = sphere.center.z;
+      document.querySelector('#ry').object3D.position.y = sphere.center.y - 0.25 - sphere.radius;
+      document.querySelector('#ry').object3D.position.x = sphere.center.x;
 
-      document.querySelector('#rx').object3D.position.z = selected.object3D.position.z + 1.25*selected.object3D.scale.z + 0.05*selected.object3D.scale.z*selected.object3D.position.z;
-      document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#rx').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#rx').object3D.position.z = sphere.center.z + 0.25 + sphere.radius;
+      document.querySelector('#rx').object3D.position.y = sphere.center.y;
+      document.querySelector('#rx').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.z > 0)
       {
         
@@ -1027,38 +1027,38 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
 
     else if(cam.object3D.rotation.y < -2.35619){
     
-      document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x;
-      document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#zaxis').object3D.position.x = sphere.center.x + 0.25 + sphere.radius;
+      document.querySelector('#zaxis').object3D.position.y = sphere.center.y;
+      document.querySelector('#zaxis').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.x < 0)
       {
         document.querySelector('#zaxis').object3D.position.x -=  0.15*selected.object3D.position.x;
       }
       
-      document.querySelector('#sc').object3D.position.x = selected.object3D.position.x - 1.25*selected.object3D.scale.x;
-      document.querySelector('#sc').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#sc').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#sc').object3D.position.x = sphere.center.x - 0.25  - sphere.radius;
+      document.querySelector('#sc').object3D.position.y = sphere.center.y + 0.25 + sphere.radius;
+      document.querySelector('#sc').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#sc').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
 
-      document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#rz').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#rz').object3D.position.x = sphere.center.x;
+      document.querySelector('#rz').object3D.position.y = sphere.center.y + 0.25 + sphere.radius;
+      document.querySelector('#rz').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#rz').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
       
 
-      document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#ry').object3D.position.y = selected.object3D.position.y - 2*selected.object3D.scale.y;
-      document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#ry').object3D.position.x = sphere.center.x;
+      document.querySelector('#ry').object3D.position.y = sphere.center.y - 0.25 - sphere.radius;
+      document.querySelector('#ry').object3D.position.z = sphere.center.z;
 
-      document.querySelector('#rx').object3D.position.x = selected.object3D.position.x - 1.25*selected.object3D.scale.x - 0.05*selected.object3D.scale.x*selected.object3D.position.x;
-      document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#rx').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#rx').object3D.position.x = sphere.center.x - 0.25 - sphere.radius;
+      document.querySelector('#rx').object3D.position.y = sphere.center.y;
+      document.querySelector('#rx').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.x > 0)
       {
         
@@ -1069,38 +1069,38 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
 
     else if(cam.object3D.rotation.y < 3.14 && cam.object3D.rotation.y  > 2.07){
       console.log('reached');
-      document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x + 1.25*selected.object3D.scale.x;
-      document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z + 0.5;
+      document.querySelector('#zaxis').object3D.position.x = sphere.center.x + 0.25+ sphere.radius;
+      document.querySelector('#zaxis').object3D.position.y = sphere.center.y;
+      document.querySelector('#zaxis').object3D.position.z = sphere.center.z + sphere.radius;
       if(selected.object3D.position.x < 0)
       {
         document.querySelector('#zaxis').object3D.position.x -=  0.15*selected.object3D.position.x;
       }
       
-      document.querySelector('#sc').object3D.position.x = selected.object3D.position.x - 1.25*selected.object3D.scale.x;
-      document.querySelector('#sc').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#sc').object3D.position.z = selected.object3D.position.z - 0.5;
+      document.querySelector('#sc').object3D.position.x = sphere.center.x - 0.25 - sphere.radius;
+      document.querySelector('#sc').object3D.position.y = sphere.center.y + 0.25 + sphere.radius;
+      document.querySelector('#sc').object3D.position.z = sphere.center.z - sphere.radius;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#sc').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
 
-      document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#rz').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#rz').object3D.position.x = sphere.center.x;
+      document.querySelector('#rz').object3D.position.y = sphere.center.y + 0.25 + sphere.radius;
+      document.querySelector('#rz').object3D.position.z = sphere.center.z;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#rz').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
       
 
-      document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
-      document.querySelector('#ry').object3D.position.y = selected.object3D.position.y - 2*selected.object3D.scale.y;
-      document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
+      document.querySelector('#ry').object3D.position.x = sphere.center.x;
+      document.querySelector('#ry').object3D.position.y = sphere.center.y - 0.25 - sphere.radius;
+      document.querySelector('#ry').object3D.position.z = sphere.center.z;
 
-      document.querySelector('#rx').object3D.position.x = selected.object3D.position.x - 1.25*selected.object3D.scale.x - 0.05*selected.object3D.scale.x*selected.object3D.position.x;
-      document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#rx').object3D.position.z = selected.object3D.position.z - 0.5;
+      document.querySelector('#rx').object3D.position.x = sphere.center.x - 0.25 - sphere.radius;
+      document.querySelector('#rx').object3D.position.y = sphere.center.y;
+      document.querySelector('#rx').object3D.position.z = sphere.center.z - sphere.radius;
       if(selected.object3D.position.x > 0)
       {
         
@@ -1110,38 +1110,38 @@ const {didMount, didUnmount} = (function getDidMountAndUnmount() {
     }
 
     else if(cam.object3D.rotation.y > 0.785398 && cam.object3D.rotation.y  < 2.07){
-      document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z + 1.25*selected.object3D.scale.z;
-      document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#zaxis').object3D.position.z = sphere.center.z + 0.25 + sphere.radius;
+      document.querySelector('#zaxis').object3D.position.y = sphere.center.y;
+      document.querySelector('#zaxis').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.x < 0)
       {
         document.querySelector('#zaxis').object3D.position.x +=  0.15*selected.object3D.position.x;
       }
       
-      document.querySelector('#sc').object3D.position.z = selected.object3D.position.z - 1.25*selected.object3D.scale.z;
-      document.querySelector('#sc').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#sc').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#sc').object3D.position.z = sphere.center.z - 0.25 - sphere.radius;
+      document.querySelector('#sc').object3D.position.y = sphere.center.y + 0.25 + sphere.radius;
+      document.querySelector('#sc').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#sc').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
 
-      document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
-      document.querySelector('#rz').object3D.position.y = selected.object3D.position.y + 1.25*selected.object3D.scale.y;
-      document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#rz').object3D.position.z = sphere.center.z;
+      document.querySelector('#rz').object3D.position.y = sphere.center.y + 0.25 +sphere.radius;
+      document.querySelector('#rz').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.y > 0)
       {
         document.querySelector('#rz').object3D.position.y +=  0.25*selected.object3D.position.y;
       }
       
 
-      document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
-      document.querySelector('#ry').object3D.position.y = selected.object3D.position.y - 2*selected.object3D.scale.y;
-      document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#ry').object3D.position.z = sphere.center.z;
+      document.querySelector('#ry').object3D.position.y = sphere.center.y - 0.25 - sphere.radius;
+      document.querySelector('#ry').object3D.position.x = sphere.center.x;
 
-      document.querySelector('#rx').object3D.position.z = selected.object3D.position.z - 1.25*selected.object3D.scale.z - 0.05*selected.object3D.scale.z*selected.object3D.position.z;
-      document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
-      document.querySelector('#rx').object3D.position.x = selected.object3D.position.x;
+      document.querySelector('#rx').object3D.position.z = sphere.center.z - 0.25 - sphere.radius;
+      document.querySelector('#rx').object3D.position.y = sphere.center.y;
+      document.querySelector('#rx').object3D.position.x = sphere.center.x;
       if(selected.object3D.position.z > 0)
       {
         

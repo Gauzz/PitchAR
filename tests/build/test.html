@@ -1,1 +1,15 @@
-<html><head><script src='https://aframe.io/releases/0.8.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head><body style='margin : 0px; overflow: hidden;'><a-scene arjs='sourceType: webcam;debugUIEnabled: false;'><a-marker-camera preset='hiro'></a-marker-camera></a-scene><a id="cta0" href="" style="color: rgb(255, 255, 255); background-color: rgb(72, 70, 174); padding: 8px; font-family: FontAwesome, Arial; position: absolute; bottom: 50px; margin-left: 10px; z-index: 5; height: fit-content;" onmousedown="dragMouseDown(this)" class="exp2">Text</a><audio id="img11aud" class="exp2"><source src="https://pitchar.io/uploads/audio/1549525708.mp3"></audio><button data-source="img11aud" onclick="playaud(this)" class="exp2" style="position: relative; bottom: 50px; margin-left: 10px;"><i class="fa fa-file-audio-o" style="color:#4846ae;font-size:28px;"></i></button><script>function playaud(e){var x= document.getElementById(e.dataset.source);x.play();}</script></body></html>
+<html><head>
+    <script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script>
+    <script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.js'></script>
+    </head>
+    <body style='margin : 0px; overflow: hidden;'>
+        <a-scene arjs='sourceType: webcam;debugUIEnabled: false;'>
+            <a-marker-camera preset='custom' type='pattern' url='https://55fd4c8b.ap.ngrok.io/build/tst.patt'>
+                <a-box position='0 0.5 0' material='color: red;'></a-box>
+            </a-marker-camera></a-scene>
+            <a-marker-camera preset='hiro' >
+                <a-box position='0 0.5 0' material='color: red;'></a-box>
+            </a-marker-camera></a-scene>
+                
+        </body>
+            </html>

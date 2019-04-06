@@ -1350,7 +1350,7 @@ function pushPolyModel(e) {
 
 async function objectloaded(id) {
 	object = document.getElementById(id);
-	if (object.hasLoaded) {
+	try {
 		var objectd = object.getObject3D('mesh');
 		var sphere = new THREE.Sphere();
 		var bbox = new THREE.Box3().setFromObject(objectd);
@@ -1361,9 +1361,9 @@ async function objectloaded(id) {
 		object.object3D.scale.x = pow;
 		object.object3D.scale.y = pow;
 		object.object3D.scale.z = pow;
-	} else {
+	} catch (err) {
 		setTimeout(function() {
 			objectloaded(id);
-		}, 1000);
+		}, 3000);
 	}
 }

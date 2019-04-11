@@ -1306,6 +1306,10 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 			selected.setAttribute('particle-system', { blending: '1', preset: 'dust' });
 		});
 
+		document.getElementById('fx8').addEventListener('click', function (e) {
+			resetImage(selected);			
+		});
+
 		function resetImage(e) {
 			e.removeAttribute('animation');
 			e.removeAttribute('particle-system');

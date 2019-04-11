@@ -400,6 +400,12 @@ function ytremove(e) {
 function ytset(e) {
 	ytembed = document.getElementById('ytembed');
 	ytembed.src = 'https://www.youtube.com/embed/' + e.dataset.source;
+	document.getElementById('ytBtnUnpushed').setAttribute('data-idyt', e.id);
+}
+
+function ytUnpushedVideo(e) {
+	document.getElementById(e.dataset.idyt).remove();
+	document.getElementById('ytembed').src = '';
 }
 
 function readURL(input) {

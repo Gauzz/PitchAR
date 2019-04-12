@@ -3,8 +3,9 @@ var start1 =
 	"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
 	"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head>" +
 	"<body style='margin : 0px; overflow: hidden;'>" +
-	"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>" +
-	"<a-marker-camera preset='hiro'>";
+	"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>" ;
+var marker="<a-marker-camera preset='hiro'>";
+	
 var mid3d = ' ';
 var mid2d = '</a-marker-camera></a-scene>';
 var end =
@@ -13,8 +14,8 @@ var end =
 var file;
 function readFile() {
 	showEntities();
-	console.log(start1 + mid3d + mid2d + end);
-	var file = start1 + mid3d + mid2d + end;
+	console.log(start1+ marker + mid3d + mid2d + end);
+	var file = start1 +marker +mid3d + mid2d + end;
 	return file;
 }
 

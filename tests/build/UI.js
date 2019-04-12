@@ -27,7 +27,7 @@ function auto() {
 });
 */
 	var sceneEl = document.querySelector('a-scene');
-	sceneEl.addEventListener('loaded', function() {
+	sceneEl.addEventListener('loaded', function () {
 		sceneEl.removeAttribute('inspector');
 	});
 }
@@ -50,7 +50,7 @@ function editcol() {
 $('#backcolor').ColorPicker({
 	color: '#4846ae',
 	flat: true,
-	onChange: function(hsb, hex, rgb) {
+	onChange: function (hsb, hex, rgb) {
 		cta.style.backgroundColor = '#' + hex;
 		$('#backcol').css('backgroundColor', '#' + hex);
 	}
@@ -59,7 +59,7 @@ $('#backcolor').ColorPicker({
 $('#butcolor').ColorPicker({
 	color: '#ffffff',
 	flat: true,
-	onChange: function(hsb, hex, rgb) {
+	onChange: function (hsb, hex, rgb) {
 		cta.style.color = '#' + hex;
 		$('#butcol').css('backgroundColor', '#' + hex);
 	}
@@ -124,7 +124,7 @@ function editphr(e) {
 $('#phrcolor').ColorPicker({
 	color: col,
 	flat: true,
-	onChange: function(hsb, hex, rgb) {
+	onChange: function (hsb, hex, rgb) {
 		var phrasetxt = document.getElementsByClassName('phrasetxt');
 		phrasetxt[0].style.color = '#' + hex;
 		phrasetxt[1].style.color = '#' + hex;
@@ -405,7 +405,7 @@ function ytset(e) {
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();
-		reader.onload = function(e) {
+		reader.onload = function (e) {
 			$('#my-image').attr('src', e.target.result);
 			filename = input.files[0].name;
 			var resize = new Croppie($('#my-image')[0], {
@@ -415,8 +415,8 @@ function readURL(input) {
 				enableResize: true,
 				enableOrientation: true
 			});
-			$('#use').on('click', function() {
-				resize.result('blob').then(function(dataImg) {
+			$('#use').on('click', function () {
+				resize.result('blob').then(function (dataImg) {
 					// use ajax to send data to php
 					imgfil = dataImg;
 					console.log(e);
@@ -428,7 +428,7 @@ function readURL(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
-$('#image').change(function() {
+$('#image').change(function () {
 	readURL(this);
 	console.log('changed');
 	var index = bool - 1;
@@ -450,13 +450,13 @@ function uploadImg(event) {
 		data: formData,
 		processData: false,
 		contentType: false,
-		xhr: function() {
+		xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 
 			// Upload progress
 			xhr.upload.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						//Do something with upload progress
@@ -470,7 +470,7 @@ function uploadImg(event) {
 			// Download progress
 			xhr.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						// Do something with download progress
@@ -535,13 +535,13 @@ function editNameAsset(e) {
 		data: formData,
 		processData: false,
 		contentType: false,
-		xhr: function() {
+		xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 
 			// Upload progress
 			xhr.upload.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						//Do something with upload progress
@@ -555,7 +555,7 @@ function editNameAsset(e) {
 			// Download progress
 			xhr.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						// Do something with download progress
@@ -649,9 +649,9 @@ image.addEventListener('click', () => {
 
 var l = 15;
 var m = 20;
-function fetchnew() {}
+function fetchnew() { }
 var searchImg = document.getElementsByClassName('searchbar');
-searchImg[0].addEventListener('keyup', function(event) {
+searchImg[0].addEventListener('keyup', function (event) {
 	event.preventDefault();
 	if (event.keyCode === 13) {
 		$.ajax({
@@ -684,7 +684,7 @@ searchImg[0].addEventListener('keyup', function(event) {
 });
 
 var searchYT = document.getElementsByClassName('searchYT');
-searchYT[0].addEventListener('keyup', function(event) {
+searchYT[0].addEventListener('keyup', function (event) {
 	event.preventDefault();
 	if (event.keyCode === 13) {
 		var q = searchYT[0].value;
@@ -698,7 +698,7 @@ searchYT[0].addEventListener('keyup', function(event) {
 			videoSyndicated: 'true'
 		});
 
-		request.execute(function(response) {
+		request.execute(function (response) {
 			document.getElementById('ytImgs').innerHTML = '';
 			var assets = response.result.items;
 			console.log(assets);
@@ -719,7 +719,7 @@ searchYT[0].addEventListener('keyup', function(event) {
 	}
 });
 
-$('#ytmodal').on('hidden.bs.modal', function() {
+$('#ytmodal').on('hidden.bs.modal', function () {
 	document.getElementById('ytembed').src = '';
 });
 
@@ -804,13 +804,13 @@ function uploadObj(event) {
 		data: formData,
 		processData: false,
 		contentType: false,
-		xhr: function() {
+		xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 
 			// Upload progress
 			xhr.upload.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						//Do something with upload progress
@@ -824,7 +824,7 @@ function uploadObj(event) {
 			// Download progress
 			xhr.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						// Do something with download progress
@@ -934,7 +934,7 @@ music.addEventListener('click', () => {
 });
 
 var searchFS = document.getElementsByClassName('searchFS');
-searchFS[0].addEventListener('keyup', function(event) {
+searchFS[0].addEventListener('keyup', function (event) {
 	event.preventDefault();
 	if (event.keyCode === 13) {
 		//alert("searchFS");
@@ -949,7 +949,7 @@ searchFS[0].addEventListener('keyup', function(event) {
 			method: 'GET'
 		};
 
-		$.ajax(settings).done(function(response) {
+		$.ajax(settings).done(function (response) {
 			//console.log(response);
 			document.getElementById('fsImgs').innerHTML = '';
 
@@ -1028,13 +1028,13 @@ function uploadAud(event) {
 		data: formData,
 		processData: false,
 		contentType: false,
-		xhr: function() {
+		xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 
 			// Upload progress
 			xhr.upload.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						//Do something with upload progress
@@ -1048,7 +1048,7 @@ function uploadAud(event) {
 			// Download progress
 			xhr.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						// Do something with download progress
@@ -1098,13 +1098,13 @@ function uploadVid(event) {
 		data: formData,
 		processData: false,
 		contentType: false,
-		xhr: function() {
+		xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 
 			// Upload progress
 			xhr.upload.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						//Do something with upload progress
@@ -1118,7 +1118,7 @@ function uploadVid(event) {
 			// Download progress
 			xhr.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						// Do something with download progress
@@ -1234,7 +1234,7 @@ scene.add(container);
 
 const API_KEY = 'AIzaSyANZMpdihFsQgcJkFIEjasfiLgX6Nyb8SE';
 var searchGooglePoly = document.getElementsByClassName('searchGooglePoly');
-searchGooglePoly[0].addEventListener('keyup', function(event) {
+searchGooglePoly[0].addEventListener('keyup', function (event) {
 	event.preventDefault();
 	if (event.keyCode === 13) {
 		//alert("searchGooglePoly");
@@ -1247,7 +1247,7 @@ searchGooglePoly[0].addEventListener('keyup', function(event) {
 			method: 'GET'
 		};
 
-		$.ajax(settings).done(function(response) {
+		$.ajax(settings).done(function (response) {
 			//console.log(response);
 			document.getElementById('googlePolyImgs').innerHTML = '';
 
@@ -1362,7 +1362,7 @@ async function objectloaded(id) {
 		object.object3D.scale.y = pow;
 		object.object3D.scale.z = pow;
 	} catch (err) {
-		setTimeout(function() {
+		setTimeout(function () {
 			objectloaded(id);
 		}, 3000);
 	}

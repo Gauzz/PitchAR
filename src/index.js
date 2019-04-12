@@ -700,9 +700,9 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 		function repos() {
 			console.log(cam.object3D.rotation.y);
-			var object = selected.getObject3D('mesh');
-			var sphere = new THREE.Sphere();
 			try {
+				var object = selected.getObject3D('mesh');
+				var sphere = new THREE.Sphere();
 				var bbox = new THREE.Box3().setFromObject(object);
 				console.log(bbox.getSize());
 				bbox.getBoundingSphere(sphere);
@@ -909,12 +909,12 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 				}
 			} catch (err) {
-				console.log(err);
-
+				var totalWidth = selected.getAttribute('value').length * 0.3;
+				console.log(totalWidth);
 				if (cam.object3D.rotation.x < -1.1) {
 					console.log(cam.object3D.rotation.x);
 					document.querySelector('#zaxis').object3D.position.x =
-						selected.object3D.position.x - 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z;
 
@@ -923,10 +923,10 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 
 					document.querySelector('#sc').object3D.position.x =
-						selected.object3D.position.x + 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#sc').object3D.position.z =
-						selected.object3D.position.z - 1.25 * selected.object3D.scale.z;
+						(selected.object3D.position.z - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#sc').object3D.position.y += 0.25 * selected.object3D.position.y;
 					}
@@ -934,21 +934,20 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#rz').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rz').object3D.position.z =
-						selected.object3D.position.z - 1.25 * selected.object3D.scale.z;
+						(selected.object3D.position.z - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#rz').object3D.position.y += 0.25 * selected.object3D.position.y;
 					}
 
 					document.querySelector('#ry').object3D.position.x =
-						selected.object3D.position.x + 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#ry').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#ry').object3D.position.z =
-						selected.object3D.position.z + 2 * selected.object3D.scale.z;
+						(selected.object3D.position.z + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 
 					document.querySelector('#rx').object3D.position.x =
-						selected.object3D.position.x +
-						1.25 * selected.object3D.scale.x +
-						0.05 * selected.object3D.scale.x * selected.object3D.position.x;
+						(selected.object3D.position.x +
+							totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rx').object3D.position.z = selected.object3D.position.z;
 					document.querySelector('#rx').object3D.rotation.y = 70;
@@ -957,7 +956,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 						document.querySelector('#rx').object3D.position.x += 0.15 * selected.object3D.position.x;
 					}
 				} else if (cam.object3D.rotation.y > -0.785398 && cam.object3D.rotation.y < 0.785398) {
-					document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x - 1.25 * selected.object3D.scale.x;
+					document.querySelector('#zaxis').object3D.position.x = (selected.object3D.position.x - totalWidth/4  - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z;
 
@@ -966,9 +965,9 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 
 					document.querySelector('#sc').object3D.position.x =
-						selected.object3D.position.x + 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#sc').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -976,7 +975,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#rz').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#rz').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -984,13 +983,12 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#ry').object3D.position.y =
-						selected.object3D.position.y - 2 * selected.object3D.scale.y;
+						(selected.object3D.position.y - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
 
 					document.querySelector('#rx').object3D.position.x =
-						selected.object3D.position.x +
-						1.25 * selected.object3D.scale.x +
-						0.05 * selected.object3D.scale.x * selected.object3D.position.x;
+						(selected.object3D.position.x +
+							totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rx').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.x > 0) {
@@ -998,32 +996,32 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 				} else if (cam.object3D.rotation.y < -0.785398 && cam.object3D.rotation.y > -2.35619) {
 					console.log('next phase');
-					document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z - 1.25 * selected.object3D.scale.z;
+					document.querySelector('#zaxis').object3D.position.z = (selected.object3D.position.z - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.x < 0) {
 						document.querySelector('#zaxis').object3D.position.x += 0.15 * selected.object3D.position.x;
 					}
 
-					document.querySelector('#sc').object3D.position.z = selected.object3D.position.z + 1.25 * selected.object3D.scale.z;
-					document.querySelector('#sc').object3D.position.y = selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+					document.querySelector('#sc').object3D.position.z = (selected.object3D.position.z + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
+					document.querySelector('#sc').object3D.position.y = (selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#sc').object3D.position.y += 0.25 * selected.object3D.position.y;
 					}
 
 					document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
-					document.querySelector('#rz').object3D.position.y = selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+					document.querySelector('#rz').object3D.position.y = (selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#rz').object3D.position.y += 0.25 * selected.object3D.position.y;
 					}
 
 					document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
-					document.querySelector('#ry').object3D.position.y = selected.object3D.position.y - 2 * selected.object3D.scale.y;
+					document.querySelector('#ry').object3D.position.y = (selected.object3D.position.y - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
 
-					document.querySelector('#rx').object3D.position.z = selected.object3D.position.z + 1.25 * selected.object3D.scale.z + 0.05 * selected.object3D.scale.z * selected.object3D.position.z;
+					document.querySelector('#rx').object3D.position.z = (selected.object3D.position.z + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rx').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.z > 0) {
@@ -1031,7 +1029,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 				} else if (cam.object3D.rotation.y < -2.35619) {
 					document.querySelector('#zaxis').object3D.position.x =
-						selected.object3D.position.x + 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.x < 0) {
@@ -1039,9 +1037,9 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 
 					document.querySelector('#sc').object3D.position.x =
-						selected.object3D.position.x - 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#sc').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -1049,7 +1047,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#rz').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#rz').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -1057,13 +1055,11 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#ry').object3D.position.y =
-						selected.object3D.position.y - 2 * selected.object3D.scale.y;
+						(selected.object3D.position.y - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
 
 					document.querySelector('#rx').object3D.position.x =
-						selected.object3D.position.x -
-						1.25 * selected.object3D.scale.x -
-						0.05 * selected.object3D.scale.x * selected.object3D.position.x;
+						(selected.object3D.position.x - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rx').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.x > 0) {
@@ -1072,7 +1068,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 				} else if (cam.object3D.rotation.y < 3.14 && cam.object3D.rotation.y > 2.07) {
 					console.log('reached');
 					document.querySelector('#zaxis').object3D.position.x =
-						selected.object3D.position.x + 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#zaxis').object3D.position.z = selected.object3D.position.z + 0.5;
 					if (selected.object3D.position.x < 0) {
@@ -1080,9 +1076,9 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 
 					document.querySelector('#sc').object3D.position.x =
-						selected.object3D.position.x - 1.25 * selected.object3D.scale.x;
+						(selected.object3D.position.x - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.z = selected.object3D.position.z - 0.5;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#sc').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -1090,7 +1086,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#rz').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#rz').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -1098,13 +1094,12 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
 					document.querySelector('#ry').object3D.position.y =
-						selected.object3D.position.y - 2 * selected.object3D.scale.y;
+						(selected.object3D.position.y - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
 
 					document.querySelector('#rx').object3D.position.x =
-						selected.object3D.position.x -
-						1.25 * selected.object3D.scale.x -
-						0.05 * selected.object3D.scale.x * selected.object3D.position.x;
+						(selected.object3D.position.x -
+							totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rx').object3D.position.z = selected.object3D.position.z - 0.5;
 					if (selected.object3D.position.x > 0) {
@@ -1112,7 +1107,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 				} else if (cam.object3D.rotation.y > 0.785398 && cam.object3D.rotation.y < 2.07) {
 					document.querySelector('#zaxis').object3D.position.z =
-						selected.object3D.position.z + 1.25 * selected.object3D.scale.z;
+						(selected.object3D.position.z + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#zaxis').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#zaxis').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.x < 0) {
@@ -1120,9 +1115,9 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 					}
 
 					document.querySelector('#sc').object3D.position.z =
-						selected.object3D.position.z - 1.25 * selected.object3D.scale.z;
+						(selected.object3D.position.z - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#sc').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#sc').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -1130,7 +1125,7 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#rz').object3D.position.z = selected.object3D.position.z;
 					document.querySelector('#rz').object3D.position.y =
-						selected.object3D.position.y + 1.25 * selected.object3D.scale.y;
+						(selected.object3D.position.y + totalWidth / 2 + 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rz').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.y > 0) {
 						document.querySelector('#rz').object3D.position.y += 0.25 * selected.object3D.position.y;
@@ -1138,13 +1133,12 @@ const { didMount, didUnmount } = (function getDidMountAndUnmount() {
 
 					document.querySelector('#ry').object3D.position.z = selected.object3D.position.z;
 					document.querySelector('#ry').object3D.position.y =
-						selected.object3D.position.y - 2 * selected.object3D.scale.y;
+						(selected.object3D.position.y - totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#ry').object3D.position.x = selected.object3D.position.x;
 
 					document.querySelector('#rx').object3D.position.z =
-						selected.object3D.position.z -
-						1.25 * selected.object3D.scale.z -
-						0.05 * selected.object3D.scale.z * selected.object3D.position.z;
+						(selected.object3D.position.z -
+							totalWidth / 2 - 0.2) * selected.object3D.scale.x;
 					document.querySelector('#rx').object3D.position.y = selected.object3D.position.y;
 					document.querySelector('#rx').object3D.position.x = selected.object3D.position.x;
 					if (selected.object3D.position.z > 0) {

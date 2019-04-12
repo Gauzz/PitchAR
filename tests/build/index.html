@@ -551,9 +551,12 @@
   <div id='ytmodal' class='modal' tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header">          
           <button type="button" onclick='ytremove(this);' class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
+          </button>
+          <button type="button" id="ytBtnUnpushed" onclick='ytUnpushedVideo(this);' data-dismiss="modal" class="close">
+            <i class="fa fa-trash"></i> &nbsp;&nbsp;&nbsp;
           </button>
           <br>
         </div>  
@@ -592,7 +595,9 @@
     <button width='100px' id='fx6'>Snow Particles</button>
     <br>
     <button width='100px' id='fx7'>Dust Particles</button>
-    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>    
+    <button width='100px' id='fx8'>Remove Effects</button>
+    <br>
     <button width='100px' id='remove'><i class="fa fa-trash"></i> Remove</button>
   </div>
   <script src="Crop/croppie.js"></script>  

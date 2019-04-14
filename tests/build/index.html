@@ -1,152 +1,167 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-    <link rel='stylesheet' href='https://code.getmdl.io/1.3.0/material.blue-indigo.min.css'>
-    <script defer src='https://code.getmdl.io/1.3.0/material.min.js'></script>
-    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
-    <script src='threex-arpatternfile.js'></script>
 
-    <link rel="stylesheet" href="Crop/croppie.css" />
-    <link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
-    <script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Roboto');
-      @font-face {
-    font-family: 'orbitron';
-    src: url('css/orbitron-black-webfont.eot');
-    src: url('css/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'),
-         url('css/orbitron-black-webfont.woff') format('woff'),
-         url('css/orbitron-black-webfont.ttf') format('truetype'),
-         url('css/orbitron-black-webfont.svg#orbitron-black-webfont') format('svg');
-    font-weight: normal;
-    font-style: normal;
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all"
+    rel="stylesheet" type="text/css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js"
+    type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <link rel='stylesheet' href='https://code.getmdl.io/1.3.0/material.blue-indigo.min.css'>
+  <script defer src='https://code.getmdl.io/1.3.0/material.min.js'></script>
+  <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet'>
+  <script src='threex-arpatternfile.js'></script>
+
+  <link rel="stylesheet" href="Crop/croppie.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
+  <script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+    @font-face {
+      font-family: 'orbitron';
+      src: url('css/orbitron-black-webfont.eot');
+      src: url('css/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'),
+        url('css/orbitron-black-webfont.woff') format('woff'),
+        url('css/orbitron-black-webfont.ttf') format('truetype'),
+        url('css/orbitron-black-webfont.svg#orbitron-black-webfont') format('svg');
+      font-weight: normal;
+      font-style: normal;
     }
-      @font-face {
-    font-family: 'leaguescript';
-    src: url('css/LeagueScriptNumberOne-webfont.eot');
-    src: url('css/LeagueScriptNumberOne-webfont.eot?#iefix') format('embedded-opentype'),
-         url('css/LeagueScriptNumberOne-webfont.woff') format('woff'),
-         url('css/LeagueScriptNumberOne-webfont.ttf') format('truetype'),
-         url('css/LeagueScriptNumberOne-webfont.svg#orbitron-black-webfont') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'leaguemono';
-    src: url('css/LeagueMono-Regular.eot');
-    src: url('css/LeagueMono-Regular.eot?#iefix') format('embedded-opentype'),
-         url('css/LeagueMono-Regular.woff') format('woff'),
-         url('css/LeagueMono-Regular.ttf') format('truetype'),
-         url('css/LeagueMono-Regular.svg#orbitron-black-webfont') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'knewave';
-    src: url('css/knewave-webfont.eot');
-    src: url('css/knewave-webfont.eot?#iefix') format('embedded-opentype'),
-         url('css/knewave-webfont.woff') format('woff'),
-         url('css/knewave-webfont.ttf') format('truetype'),
-         url('css/knewave-webfont.svg#orbitron-black-webfont') format('svg');
-    font-weight: normal;
-    font-style: normal;
-  }
- 
 
-    </style>
-    <link rel="stylesheet" href="UI.css"/>
-    <title>PitchAR AR Creator</title>
-    <script>
-      var unpic;
-      var pexpic;
-    </script>
-    <script src="../build.js"></script>    
-  </head>
-  <body>
-         
-    <a-scene id='perswin' vr-mode-ui="enabled: false">
-      <a-assets>
-        <img src="honeycomb.jpg" crossorigin="anonymous" id="wireframe">
-        <img src="marker/hiro.png" crossorigin="anonymous" id="logo">
-        <img src="z-axis.svg" crossorigin="anonymous" id="zpos">
-        <img src="x-rot.svg" crossorigin="anonymous" id="xrot">
-        <img src="y-rot.svg" crossorigin="anonymous" id="yrot">
-        <img src="z-rot.svg" crossorigin="anonymous" id="zrot">
-        <img src="scale.svg" crossorigin="anonymous" id="scale">
-      </a-assets>
-      <a-sky color=""></a-sky>
-        <a-box  id='object' visible='false' click-drag position="0 0.5 0" rotation="0 0 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-box>
-        <a-entity id="modifier" position="0 0 0" >
-          <a-image id='zaxis' click-drag look-at='#cam' position="-1.25 0.6 0" rotation="0 0 0" src='#zpos'geometry="primitive: circle;radius:0.2;"></a-image>
-          <a-image id='rx' click-drag look-at='#cam' position="1.25 0.6 0" rotation="0 0 0" src='#xrot'geometry="primitive: circle;radius:0.2;"></a-image>
-          <a-image id='ry' click-drag look-at='#cam' position="0  -1.25 0" rotation="0 0 0" src='#yrot'geometry="primitive: circle;radius:0.2;"></a-image>
-          <a-image id='rz' click-drag look-at='#cam' position="0 2 0" rotation="0 0 0" src='#zrot' geometry="primitive: circle;radius:0.2;"></a-image>
-          <a-image id='sc' click-drag look-at='#cam' position="1.25 2 0" rotation="0 0 0" src='#scale' geometry="primitive: circle;radius:0.24;" material="color:#000000"></a-image>
-        </a-entity>
-        <a-camera id='cam' look-controls='enabled:false' wasd-controls='enabled:false;' position='0 1.5 6' rotation="0 0 0"  orbit-controls="target: #imglogo;invertZoom:true;minPolarAngle:0.75;maxPolarAngle:1.5;enableKeys:false;">
-          <a-animation attribute="position"
-                dur="3000"
-                easing="linear"
-                from ="0 0.5 1"
-                to="0 1.5 6"></a-animation>
-        </a-camera>
-        <a-image  src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"material="color: #ececec;opacity:0.2;" ></a-image>
-        <a-image id='imglogo'  src="#logo" position="0 0.1 0"rotation="-90 0 0" scale="2 2 0"material="color: #ececec;opacity:1;" ></a-image>
-      </a-scene>
-  <div id='uploadbar' style="position:fixed;top:0px;left:0px;height:5px;width:0%;z-index:9999;background-color:#4846ae;"></div>    
+    @font-face {
+      font-family: 'leaguescript';
+      src: url('css/LeagueScriptNumberOne-webfont.eot');
+      src: url('css/LeagueScriptNumberOne-webfont.eot?#iefix') format('embedded-opentype'),
+        url('css/LeagueScriptNumberOne-webfont.woff') format('woff'),
+        url('css/LeagueScriptNumberOne-webfont.ttf') format('truetype'),
+        url('css/LeagueScriptNumberOne-webfont.svg#orbitron-black-webfont') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'leaguemono';
+      src: url('css/LeagueMono-Regular.eot');
+      src: url('css/LeagueMono-Regular.eot?#iefix') format('embedded-opentype'),
+        url('css/LeagueMono-Regular.woff') format('woff'),
+        url('css/LeagueMono-Regular.ttf') format('truetype'),
+        url('css/LeagueMono-Regular.svg#orbitron-black-webfont') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'knewave';
+      src: url('css/knewave-webfont.eot');
+      src: url('css/knewave-webfont.eot?#iefix') format('embedded-opentype'),
+        url('css/knewave-webfont.woff') format('woff'),
+        url('css/knewave-webfont.ttf') format('truetype'),
+        url('css/knewave-webfont.svg#orbitron-black-webfont') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+  <link rel="stylesheet" href="UI.css" />
+  <title>PitchAR AR Creator</title>
+  <script>
+    var unpic;
+    var pexpic;
+  </script>
+  <script src="../build.js"></script>
+</head>
+
+<body>
+
+  <a-scene id='perswin' vr-mode-ui="enabled: false">
+    <a-assets>
+      <img src="honeycomb.jpg" crossorigin="anonymous" id="wireframe">
+      <img src="marker/hiro.png" crossorigin="anonymous" id="logo">
+      <img src="z-axis.svg" crossorigin="anonymous" id="zpos">
+      <img src="x-rot.svg" crossorigin="anonymous" id="xrot">
+      <img src="y-rot.svg" crossorigin="anonymous" id="yrot">
+      <img src="z-rot.svg" crossorigin="anonymous" id="zrot">
+      <img src="scale.svg" crossorigin="anonymous" id="scale">
+    </a-assets>
+    <a-sky color=""></a-sky>
+    <a-box id='object' visible='false' click-drag position="0 0.5 0" rotation="0 0 0" width="1" height="1" depth="1"
+      color="#4CC3D9"></a-box>
+    <a-entity id="modifier" position="0 0 0">
+      <a-image id='zaxis' click-drag look-at='#cam' position="-1.25 0.6 0" rotation="0 0 0" src='#zpos'
+        geometry="primitive: circle;radius:0.2;"></a-image>
+      <a-image id='rx' click-drag look-at='#cam' position="1.25 0.6 0" rotation="0 0 0" src='#xrot'
+        geometry="primitive: circle;radius:0.2;"></a-image>
+      <a-image id='ry' click-drag look-at='#cam' position="0  -1.25 0" rotation="0 0 0" src='#yrot'
+        geometry="primitive: circle;radius:0.2;"></a-image>
+      <a-image id='rz' click-drag look-at='#cam' position="0 2 0" rotation="0 0 0" src='#zrot'
+        geometry="primitive: circle;radius:0.2;"></a-image>
+      <a-image id='sc' click-drag look-at='#cam' position="1.25 2 0" rotation="0 0 0" src='#scale'
+        geometry="primitive: circle;radius:0.24;" material="color:#000000"></a-image>
+    </a-entity>
+    <a-camera id='cam' look-controls='enabled:false' wasd-controls='enabled:false;' position='0 1.5 6' rotation="0 0 0"
+      orbit-controls="target: #imglogo;invertZoom:true;minPolarAngle:0.75;maxPolarAngle:1.5;enableKeys:false;">
+      <a-animation attribute="position" dur="3000" easing="linear" from="0 0.5 1" to="0 1.5 6"></a-animation>
+    </a-camera>
+    <a-image src="#wireframe" position="0 0 0" rotation="-90 0 0" scale="80 80 0"
+      material="color: #ececec;opacity:0.2;"></a-image>
+    <a-image id='imglogo' src="#logo" position="0 0.1 0" rotation="-90 0 0" scale="2 2 0"
+      material="color: #ececec;opacity:1;"></a-image>
+  </a-scene>
+  <div id='uploadbar'
+    style="position:fixed;top:0px;left:0px;height:5px;width:0%;z-index:9999;background-color:#4846ae;"></div>
   <div id="d2"></div>
   <div id="p5">
     <button id="p7"><i class="fa fa-rotate-left"></i></button>
     <button id="p7"><i class="fa fa-rotate-right"></i></button>
-    <button ><div id="p6">Share</div></button>
-  </div>
-  <button type="button" data-toggle="modal" data-target="#choosemarker">
-  <div id="p4">
-    Change Marker
-  </div> 
-  </button>
-    <p id="p2"></p>
-    <button type="button" data-toggle="modal" data-target="#share">
-      <div id="p4" style='left: calc(100vw - 100px);'>Share
-      </div> 
+    <button>
+      <div id="p6">Share</div>
     </button>
+  </div>
+  <button id='choosemarkerbut' type="button" data-toggle="modal" data-target="#choosemarker">
+    <div id="p4">
+      Change Marker
+    </div>
+  </button>
+  <p id="p2"></p>
+  <button type="button" data-toggle="modal" data-target="#share">
+    <div id="p4" style='left: calc(100vw - 100px);'>Share
+    </div>
+  </button>
   <p>
     &nbsp;
-    <button id='imagebut'type="button" data-toggle="modal" data-target="#images">
-  <i id="p1" class="fa fa-image"></i>
-  </button>
-  &nbsp;
-  <button id='asset'type="button" data-toggle="modal" data-target="#assets">
-    <i id="p1" class="fa fa-cube"></i>
+    <button id='imagebut' type="button" data-toggle="modal" data-target="#images">
+      <i id="p1" class="fa fa-image"></i>
     </button>
     &nbsp;
-  <button id='txtbut' type="button" data-toggle="modal" data-target="#txt">
-  <i id="p1" class="fa fa-text-width"></i>
-  </button>
-  &nbsp;
-  <button id='musicbut' type="button" data-toggle="modal" data-target="#music">
-    <i id="p1" class="fa fa-music"></i>
+    <button id='asset' type="button" data-toggle="modal" data-target="#assets">
+      <i id="p1" class="fa fa-cube"></i>
+    </button>
+    &nbsp;
+    <button id='txtbut' type="button" data-toggle="modal" data-target="#txt">
+      <i id="p1" class="fa fa-text-width"></i>
+    </button>
+    &nbsp;
+    <button id='musicbut' type="button" data-toggle="modal" data-target="#music">
+      <i id="p1" class="fa fa-music"></i>
     </button>
     &nbsp;
     <button id='ctabut' type="button" data-toggle="modal" data-target="#cta">
       <i id="p1" class="fa fa-caret-square-o-right"></i>
-      </button>
-      &nbsp;
-      <button id="videobut" type="button" data-toggle="modal" data-target="#videos">
-        <i id="p1" class="fa fa-video-camera"></i>
-        </button>   
+    </button>
+    &nbsp;
+    <button id="videobut" type="button" data-toggle="modal" data-target="#videos">
+      <i id="p1" class="fa fa-video-camera"></i>
+    </button>
   </P>
   <div class="modal " id="choosemarker" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -158,56 +173,64 @@
         </div>
         <br>
         <div class="modal-body">
-            <div class='mdl-grid'>
-                <div class='mdl-cell mdl-cell--4-col'>
-                  <label id='buttonUpload' for='fileinput' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
-                    <input type='file' id='fileinput' style='display: none' accept='image/*'>
-                    Upload
-                  </label>
-                  <div class='mdl-tooltip' for='buttonUpload'>
-                    Upload the image to put inside the marker
-                  </div>
+          <div class='mdl-grid'>
+            <div class='mdl-cell mdl-cell--4-col'>
+              <label id='buttonUpload' for='fileinput'
+                class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
+                <input type='file' id='fileinput' style='display: none' accept='image/*'>
+                Upload
+              </label>
+              <div class='mdl-tooltip' for='buttonUpload'>
+                Upload the image to put inside the marker
               </div>
-              
-                    <div class='mdl-cell mdl-cell--6-col'>
-                      <label class="mdl-js-ripple-effect" for="patternRatioSlider">
-                        <span class="">Pattern Ratio 0.50</span>
-                        <input id='patternRatioSlider' class="mdl-slider mdl-js-slider" type="range" min="10" max="90" value="50" >
-                      </label>
-                      <div class='mdl-tooltip' for='patternRatioSlider'>
-                        Set size of inner image vs black border
-                      </div>
-                    </div>
-                    <div class='mdl-cell mdl-cell--9-col'>
-                  <button id='buttonDownloadEncoded' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' style="margin-right: 12%;">
-                    Save Marker
-                  </button>
-                  <div class='mdl-tooltip' for='buttonDownloadEncoded'>
-                    Save marker encoded from the uploaded image
-                  </div>
-                  <button id='buttonDownloadFullImage' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
-                    Download Image
-                  </button>
-                  <div class='mdl-tooltip' for='buttonDownloadFullImage'>
-                    Download marker image
-                  </div>
-                </div>              
-                <div class='mdl-grid'>
-                    <div class='mdl-cell mdl-cell--3-col'>
-                      <div id='imageContainer'></div>
-                    </div>
-                    <div class='mdl-cell mdl-cell--3-col'></div>
-                </div>  
+            </div>
+
+            <div class='mdl-cell mdl-cell--6-col'>
+              <label class="mdl-js-ripple-effect" for="patternRatioSlider">
+                <span class="">Pattern Ratio 0.50</span>
+                <input id='patternRatioSlider' class="mdl-slider mdl-js-slider" type="range" min="10" max="90"
+                  value="50">
+              </label>
+              <div class='mdl-tooltip' for='patternRatioSlider'>
+                Set size of inner image vs black border
+              </div>
+            </div>
+            <div class='mdl-cell mdl-cell--9-col'>
+              <button id='buttonDownloadEncoded'
+                class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'
+                style="margin-right: 12%;">
+                Save Marker
+              </button>
+              <div class='mdl-tooltip' for='buttonDownloadEncoded'>
+                Save marker encoded from the uploaded image
+              </div>
+              <button id='buttonDownloadFullImage'
+                class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
+                Download Image
+              </button>
+              <div class='mdl-tooltip' for='buttonDownloadFullImage'>
+                Download marker image
+              </div>
+            </div>
+            <div class='mdl-grid'>
+              <div class='mdl-cell mdl-cell--3-col'>
+                <div id='imageContainer'></div>
+              </div>
+              <div class='mdl-cell mdl-cell--3-col'></div>
+            </div>
+          </div>
+          <div id='gallerymarkers'>
+            <img src='marker/hiro.png' width='150px'
+              style='padding:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
+          </div>
         </div>
-        <img src='marker/hiro.png' width='150px'style='padding:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
-      </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
- 
+
   <div class="modal " id="share" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -218,21 +241,23 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="form0" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+          <form id="form0" enctype="multipart/form-data" method="post"
+            action="https://pitchar.io/api/_create-assets.php">
             <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-            <label>Name : </label><input id="" name="name" type="text" >
+            <label>Name : </label><input id="" name="name" type="text">
             <br>
             <label style='position: relative;
             top: -15px;'>Description : </label>&Tab;<textarea id="" name="description" type="textarea"></textarea>
             <input type="hidden" name="submit" value="1">
             <br>
-            <label>Tags : </label>&nbsp;<input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
+            <label>Tags : </label>&nbsp;<input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags"
+              data-role="tagsinput" />
             <input type="hidden" name='experience' id='exptxt'>
           </form>
           <button type="button" onclick="sharelnk(this)" style='width:200px;' class="uploadbut">
-            Get sharable link</button>  
-            <input type='text' id='shrlnk' placeholder='Sharing Link' >
-        
+            Get sharable link</button>
+          <input type='text' id='shrlnk' placeholder='Sharing Link'>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
@@ -240,8 +265,8 @@
       </div>
     </div>
   </div>
- 
-  
+
+
   <div class="modal " id="images" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -249,41 +274,46 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-     <br>
+          <br>
           <ul class="nav nav-tabs ">
-            <li class="active col-lg-6"><a data-toggle="tab" href="#gallery"><center>MY Gallery</center></a></li>
-            <li class="col-lg-6"><a data-toggle="tab" href="#unsplash"><center>Unsplash</center></a></li>
-            </ul>
-          
+            <li class="active col-lg-6"><a data-toggle="tab" href="#gallery">
+                <center>MY Gallery</center>
+              </a></li>
+            <li class="col-lg-6"><a data-toggle="tab" href="#unsplash">
+                <center>Unsplash</center>
+              </a></li>
+          </ul>
+
         </div>
         <div id='assetbody' onscroll="fetchnew()" class="modal-body">
           <div class="tab-content">
             <div id="gallery" class="tab-pane  in active">
-              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">       
-              <form id="form" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">
+              <form id="form" enctype="multipart/form-data" method="post"
+                action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <input id="image" type="file" accept='image/*' > 
+                <input id="image" type="file" accept='image/*'>
                 <input type="hidden" name="create" value="1">
                 <input type="hidden" name="type" value="image">
                 <img id="my-image" src="#" />
                 <br>
                 <br><br>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
-              </form>                                              
-                <button id="use" type="button" class="uploadbut">
-                    Upload Image</button>  
-                <br><br>                    
-                <div class="demo"></div>
-                <div id='galleryimgs'></div>
-                
+              </form>
+              <button id="use" type="button" class="uploadbut">
+                Upload Image</button>
+              <br><br>
+              <div class="demo"></div>
+              <div id='galleryimgs'></div>
+
             </div>
             <div id="unsplash" class="tab-pane ">
-            <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-            <div id="unsplashImgs"></div>
-            <br><br> 
+              <input type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">
+              <div id="unsplashImgs"></div>
+              <br><br>
+            </div>
           </div>
         </div>
-           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
         </div>
@@ -303,24 +333,31 @@
           <br>
 
           <ul class="nav nav-tabs ">
-            <li class="active col-lg-6"><a data-toggle="tab" href="#modelsGallery"><center>MY Gallery</center></a></li>
-            <li class="col-lg-6"><a data-toggle="tab" href="#googlePoly"><center>Google Poly</center></a></li>
+            <li class="active col-lg-6"><a data-toggle="tab" href="#modelsGallery">
+                <center>MY Gallery</center>
+              </a></li>
+            <li class="col-lg-6"><a data-toggle="tab" href="#googlePoly">
+                <center>Google Poly</center>
+              </a></li>
           </ul>
-          
+
         </div>
 
         <div id='assetbody' onscroll="fetchnew()" class="modal-body">
           <div class="tab-content">
             <div id="modelsGallery" class="tab-pane  in active">
-              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-     
-              <form id="form2" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">
+
+              <form id="form2" enctype="multipart/form-data" method="post"
+                action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
                 <input type="hidden" name="create" value="1">
                 <label>Name :</label><input name="name"><br>
                 <label>Thumbnail :</label><input type="file" name="thumbnail" placeholder="thumbnail">
-                <label class="obj">Object File :</label><input class="obj" type="file" name="obj" placeholder="object file">
-                <label class="mtl">Material file :</label><input type="file" name="mtl" class="mtl" placeholder="material file">
+                <label class="obj">Object File :</label><input class="obj" type="file" name="obj"
+                  placeholder="object file">
+                <label class="mtl">Material file :</label><input type="file" name="mtl" class="mtl"
+                  placeholder="material file">
                 <select name="type" class='type' onchange="updatetype(this);">
                   <option value="obj">Obj</option>
                   <option value="gltf">gltf</option>
@@ -329,23 +366,23 @@
                 </select>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
               </form>
-                
-                <button type="button" onclick="uploadObj()" class="uploadbut">
-                    Upload Object</button>  
-                <br><br>    
-                <div id='galleryobjs'></div> 
-           
+
+              <button type="button" onclick="uploadObj()" class="uploadbut">
+                Upload Object</button>
+              <br><br>
+              <div id='galleryobjs'></div>
+
             </div>
 
             <div id="googlePoly" class="tab-pane">
-              <input type="search" class="searchGooglePoly searchbar" autocomplete="on" onsubmit="searchImg(this)">  
+              <input type="search" class="searchGooglePoly searchbar" autocomplete="on" onsubmit="searchImg(this)">
               <div id="googlePolyImgs"></div>
-              <br><br>         
+              <br><br>
             </div>
 
           </div>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
         </div>
@@ -353,7 +390,7 @@
     </div>
   </div>
 
-  
+
   <div class="modal" id="txt" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -364,21 +401,25 @@
           </button>
         </div>
         <div class="modal-body">
-          
-            <input id='phrase' onkeyup="phrasechanged(this)" type="text" placeholder="TEXT">
-            <br>
-            <div id='phrcol' onclick="editphr()" title="Button Color" style="background-color:crimson;height: 10px;
+
+          <input id='phrase' onkeyup="phrasechanged(this)" type="text" placeholder="TEXT">
+          <br>
+          <div id='phrcol' onclick="editphr()" title="Button Color" style="background-color:crimson;height: 10px;
             width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
-            border-width: 0.5px;" ></div>
-            <div id='phrcolor'></div>
-            <br>
-            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'  style='color:crimson;font-family:orbitron;cursor:pointer;'>TEXT</span>
-            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:roboto;cursor:pointer;'>TEXT</span>
-            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:leaguemono;cursor:pointer;'>TEXT</span>
-            <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)' style='color:crimson;font-family:knewave;cursor:pointer;'>TEXT</span>          
-            <br>
-            <br>
-          </div>
+            border-width: 0.5px;"></div>
+          <div id='phrcolor'></div>
+          <br>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:orbitron;cursor:pointer;'>TEXT</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:roboto;cursor:pointer;'>TEXT</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:leaguemono;cursor:pointer;'>TEXT</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:knewave;cursor:pointer;'>TEXT</span>
+          <br>
+          <br>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
@@ -397,41 +438,46 @@
           <br>
 
           <ul class="nav nav-tabs ">
-            <li class="active col-lg-6"><a data-toggle="tab" href="#audgallery"><center>MY Gallery</center></a></li>
-            <li class="col-lg-6"><a data-toggle="tab" href="#audApidiv"><center>Free Sound</center></a></li>
+            <li class="active col-lg-6"><a data-toggle="tab" href="#audgallery">
+                <center>MY Gallery</center>
+              </a></li>
+            <li class="col-lg-6"><a data-toggle="tab" href="#audApidiv">
+                <center>Free Sound</center>
+              </a></li>
           </ul>
         </div>
         <div class="modal-body">
           <div class="tab-content">
             <div id="audgallery" class="tab-pane  in active">
-              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-     
-              <form id="form4" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">
+
+              <form id="form4" enctype="multipart/form-data" method="post"
+                action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <label>Name :</label><input id="audioname" name="audio" type="text" >
-                <br><label>Audio :</label><input id="audio" name="audio" type="file" >
-                <label>Thumbnail :</label><input id="audiothumb" name="thumbnail" type="file" >
+                <label>Name :</label><input id="audioname" name="audio" type="text">
+                <br><label>Audio :</label><input id="audio" name="audio" type="file">
+                <label>Thumbnail :</label><input id="audiothumb" name="thumbnail" type="file">
                 <input type="hidden" name="create" value="1">
                 <input type="hidden" name="type" value="audio">
 
                 <br>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
               </form>
-                
-                <button type="button" onclick="uploadAud()" class="uploadbut">
-                    Upload Audio</button>  
-                <br><br>    
-                
-                <br><br>
-                <div id='galleryauds'></div> 
-                    
+
+              <button type="button" onclick="uploadAud()" class="uploadbut">
+                Upload Audio</button>
+              <br><br>
+
+              <br><br>
+              <div id='galleryauds'></div>
+
             </div>
             <div id="audApidiv" class="tab-pane ">
-              <input type="search" class="searchFS searchbar" autocomplete="on" onsubmit="searchFS(this)">  
-              <div id="fsImgs"></div>      
+              <input type="search" class="searchFS searchbar" autocomplete="on" onsubmit="searchFS(this)">
+              <div id="fsImgs"></div>
             </div>
           </div>
-       </div>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
@@ -448,31 +494,32 @@
           </button>
         </div>
         <div class="modal-body">
-        <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href="" style="color:#FFF;background-color:#4846ae;padding: 8px;font-family:'FontAwesome', Arial;">Text</a>
-        <br><br><br>  
-        <div id='backcol' onclick="editback()" title="Button Color" style="background-color:#4846ae;height: 10px;
+          <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href=""
+            style="color:#FFF;background-color:#4846ae;padding: 8px;font-family:'FontAwesome', Arial;">Text</a>
+          <br><br><br>
+          <div id='backcol' onclick="editback()" title="Button Color" style="background-color:#4846ae;height: 10px;
         width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
-    border-width: 0.5px;" ></div>
-        <div id='backcolor'></div>
-        <div id='butcol' onclick="editcol()" title="Text Color" style="background-color:#ffffff;height: 10px;
+    border-width: 0.5px;"></div>
+          <div id='backcolor'></div>
+          <div id='butcol' onclick="editcol()" title="Text Color" style="background-color:#ffffff;height: 10px;
         width: 30px;display: -webkit-inline-box; border:#d3d3d3;border-style: solid;
-    border-width: 0.5px;" ></div>
-        <div id='butcolor'></div>       
-        <br>
-        <select id='buticn' onchange="chgtxt(this)" style="font-family:'FontAwesome', Arial; padding: 8px;">
-            <option> </option>  
+    border-width: 0.5px;"></div>
+          <div id='butcolor'></div>
+          <br>
+          <select id='buticn' onchange="chgtxt(this)" style="font-family:'FontAwesome', Arial; padding: 8px;">
+            <option> </option>
             <option>&#xf060</option>
             <option>&#xf061</option>
             <option>&#xf062</option>
             <option>&#xf063</option>
             <option>&#xf000</option>
-            <option>&#xf001</option>  
-            <option>&#xf002</option>  
-            <option>&#xf003</option>  
-            <option>&#xf004</option>  
-            <option>&#xf005</option>  
-            <option>&#xf006</option>  
-            <option>&#xf007</option>  
+            <option>&#xf001</option>
+            <option>&#xf002</option>
+            <option>&#xf003</option>
+            <option>&#xf004</option>
+            <option>&#xf005</option>
+            <option>&#xf006</option>
+            <option>&#xf007</option>
             <option>&#xf008</option>
             <option>&#xf009</option>
             <option>&#xf00a</option>
@@ -480,16 +527,18 @@
             <option>&#xf00c</option>
             <option>&#xf00d</option>
             <option>&#xf00e</option>
-            <option>&#xf00f</option>  
+            <option>&#xf00f</option>
           </select>
-        
-        <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)">
-        <input id='butlink' type="text" placeholder="http://" onchange="chglnk(this)">
-        <input title="Roundness of Button" type="range" min="1" max="50" value="0" class="slider" id="butround" oninput="chground(this)">
-        <br><br>      
-        <button onclick="addbut(this);" data-dismiss="modal" style="right:10px; background-color: #d3d3d3;padding: 8px; float: right;">OK</button>       
-      </div>     
-      <div style="height:60px;width:100%;"></div>
+
+          <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)">
+          <input id='butlink' type="text" placeholder="http://" onchange="chglnk(this)">
+          <input title="Roundness of Button" type="range" min="1" max="50" value="0" class="slider" id="butround"
+            oninput="chground(this)">
+          <br><br>
+          <button onclick="addbut(this);" data-dismiss="modal"
+            style="right:10px; background-color: #d3d3d3;padding: 8px; float: right;">OK</button>
+        </div>
+        <div style="height:60px;width:100%;"></div>
       </div>
     </div>
   </div>
@@ -500,58 +549,63 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-     <br>
-            <ul class="nav nav-tabs ">
-              <li class="active col-lg-6"><a data-toggle="tab" href="#vidgallery"><center>MY Gallery</center></a></li>
-              <li class="col-lg-6"><a data-toggle="tab" href="#ytdiv"><center>YouTube</center></a></li>
-            </ul>
-        
+          <br>
+          <ul class="nav nav-tabs ">
+            <li class="active col-lg-6"><a data-toggle="tab" href="#vidgallery">
+                <center>MY Gallery</center>
+              </a></li>
+            <li class="col-lg-6"><a data-toggle="tab" href="#ytdiv">
+                <center>YouTube</center>
+              </a></li>
+          </ul>
+
         </div>
         <div id='videobody' onscroll="" class="modal-body">
           <div class="tab-content">
             <div id="vidgallery" class="tab-pane  in active">
-              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">  
-     
-              <form id="form6" enctype="multipart/form-data" method="post" action="https://pitchar.io/api/_create-assets.php">
+              <input id='searchasset' type="search" class="searchbar" autocomplete="on" onsubmit="searchImg(this)">
+
+              <form id="form6" enctype="multipart/form-data" method="post"
+                action="https://pitchar.io/api/_create-assets.php">
                 <input id='auth' name="authtoken" type="hidden" value="jzXPgvSfhYMx7I3">
-                <label>Name :</label><br><input id="videoname" name="name"  ><br>
-                <label>Video :</label><input id="video" name="video" type="file" >
-                <label>Thumbnail :</label><input id="videothumb" name="thumbnail" type="file" >
+                <label>Name :</label><br><input id="videoname" name="name"><br>
+                <label>Video :</label><input id="video" name="video" type="file">
+                <label>Thumbnail :</label><input id="videothumb" name="thumbnail" type="file">
                 <input type="hidden" name="create" value="1">
                 <label>Is this a 360 video? :</label>
-                <input type='hidden'  id='vidtype' name='type' value="2D">
-                <input type='checkbox'onclick="chgvidtype(this);">
-                <br>  <br>
+                <input type='hidden' id='vidtype' name='type' value="2D">
+                <input type='checkbox' onclick="chgvidtype(this);">
+                <br> <br>
                 <input type="textarea" name="tags" rows=4 col=4 value="" placeholder="tags" data-role="tagsinput" />
               </form>
-                
-                <button type="button" onclick="uploadVid(this)" class="uploadbut">
-                    Upload Video</button>  
-                <br><br>                    
-                <div class="demo"></div>
-                <div id='galleryvids'></div> 
-                
+
+              <button type="button" onclick="uploadVid(this)" class="uploadbut">
+                Upload Video</button>
+              <br><br>
+              <div class="demo"></div>
+              <div id='galleryvids'></div>
+
             </div>
             <div id="ytdiv" class="tab-pane ">
-            <input type="search" class="searchYT searchbar" autocomplete="on" onsubmit="searchYT(this)">  
-            <div id="ytImgs"></div>
-            <br><br> 
-        
+              <input type="search" class="searchYT searchbar" autocomplete="on" onsubmit="searchYT(this)">
+              <div id="ytImgs"></div>
+              <br><br>
+
             </div>
           </div>
-        
-           </div>
+
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary close" data-dismiss="modal"></button>
         </div>
       </div>
     </div>
   </div>
- 
+
   <div id='ytmodal' class='modal' tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">          
+        <div class="modal-header">
           <button type="button" onclick='ytremove(this);' class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -559,18 +613,19 @@
             <i class="fa fa-trash"></i> &nbsp;&nbsp;&nbsp;
           </button>
           <br>
-        </div>  
+        </div>
         <div class="modal-body">
-          <iframe id='ytembed' src='' width="100%" height="60%" frameborder=0px allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+          <iframe id='ytembed' src='' width="100%" height="60%" frameborder=0px
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
-  </div>      
+  </div>
 
 
   <div class="sidebar">
     <center>
-    EFFECTS
+      EFFECTS
     </center>
     <button width='100px' id='anim1'>Rotate</button>
     <br>
@@ -595,105 +650,104 @@
     <button width='100px' id='fx6'>Snow Particles</button>
     <br>
     <button width='100px' id='fx7'>Dust Particles</button>
-    <br><br><br><br><br><br><br><br>    
+    <br><br><br><br><br><br><br><br>
     <button width='100px' id='fx8'>Remove Effects</button>
     <br>
     <button width='100px' id='remove'><i class="fa fa-trash"></i> Remove</button>
   </div>
-  <script src="Crop/croppie.js"></script>  
+  <script src="Crop/croppie.js"></script>
   <script src="UI.js"></script>
   <script src="Experience.js"></script>
-<script>
+  <script>
 
     function init() {
-    gapi.client.setApiKey("AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs");
-    gapi.client.load("youtube", "v3", function() {
-    });
-    
-}
+      gapi.client.setApiKey("AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs");
+      gapi.client.load("youtube", "v3", function () {
+      });
 
-var innerImageURL = null
-                    var fullMarkerURL = null
+    }
 
-                    innerImageURL = 'trainer/inner-images/inner-hiro.png'
-                    updateFullMarkerImage()
-                  
-                    document.querySelector('#buttonDownloadEncoded').addEventListener('click', function(){
-                      if( innerImageURL === null ){
-                        alert('upload a file first')
-                        return
-                      }
-                      console.assert(innerImageURL)
-                      THREEx.ArPatternFile.encodeImageURL(innerImageURL, function onComplete(patternFileString){
-                        THREEx.ArPatternFile.triggerDownload(patternFileString)
-                     
-                        fetch(fullMarkerURL)
-                        .then(res => res.blob())
-                        .then(blob => console.log(blob) )
-                      })
-                    })
-                  
-                  
-                    document.querySelector('#buttonDownloadFullImage').addEventListener('click', function(){
-                      // debugger
-                      if( innerImageURL === null ){
-                        alert('upload a file first')
-                        return
-                      }
-                  
-                      // tech from https://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
-                      var domElement = window.document.createElement('a');
-                      domElement.href = fullMarkerURL;
-                      domElement.download = 'marker.png';
-                      document.body.appendChild(domElement)
-                      domElement.click();
-                      document.body.removeChild(domElement)
-                    })
-                  
-                  
-                  
-                    document.querySelector('#patternRatioSlider').addEventListener('input', function(){
-                      // update the patternRatio number
-                      var patternRatio = document.querySelector('#patternRatioSlider').value/100
-                      var domElement = document.querySelector('[for=patternRatioSlider] span')
-                      domElement.innerHTML = `Pattern Ratio ${patternRatio.toFixed(2)}`
-                  
-                      // update fullMarkerImage
-                      updateFullMarkerImage()
-                    })
-                  
-                  
-                    document.querySelector('#fileinput').addEventListener('change', function(){
-                      var file = this.files[0];
-                      // debugger
-                  
-                      var reader = new FileReader();
-                      reader.onload = function(event){
-                        innerImageURL = event.target.result
-                        updateFullMarkerImage()
-                      };
-                      reader.readAsDataURL(file);
-                    })
-                  
-                    function updateFullMarkerImage(){
-                      // get patternRatio
-                      var patternRatio = document.querySelector('#patternRatioSlider').value/100
-                  
-                      THREEx.ArPatternFile.buildFullMarker(innerImageURL, patternRatio, function onComplete(markerUrl){
-                        fullMarkerURL = markerUrl
-                  
-                        var fullMarkerImage = document.createElement('img')
-                        fullMarkerImage.src = fullMarkerURL
-                  
-                        // put fullMarkerImage into #imageContainer
-                        var container = document.querySelector('#imageContainer')
-                        while (container.firstChild) container.removeChild(container.firstChild);
-                        container.appendChild(fullMarkerImage)
+    var innerImageURL = null
+    var fullMarkerURL = null
 
-                      })
-                    }
+    innerImageURL = 'trainer/inner-images/inner-hiro.png'
+    updateFullMarkerImage()
 
-</script>
-<script src="https://apis.google.com/js/client.js?onload=init"></script>  
+    document.querySelector('#buttonDownloadEncoded').addEventListener('click', function () {
+      if (innerImageURL === null) {
+        alert('upload a file first')
+        return
+      }
+      console.assert(innerImageURL)
+
+      THREEx.ArPatternFile.encodeImageURL(innerImageURL, function onComplete(patternFileString) {
+        THREEx.ArPatternFile.triggerDownload(patternFileString)
+
+      })
+    })
+
+
+    document.querySelector('#buttonDownloadFullImage').addEventListener('click', function () {
+      // debugger
+      if (innerImageURL === null) {
+        alert('upload a file first')
+        return
+      }
+
+      // tech from https://stackoverflow.com/questions/3665115/create-a-file-in-memory-for-user-to-download-not-through-server
+      var domElement = window.document.createElement('a');
+      domElement.href = fullMarkerURL;
+      domElement.download = 'marker.png';
+      document.body.appendChild(domElement)
+      domElement.click();
+      document.body.removeChild(domElement)
+    })
+
+
+
+    document.querySelector('#patternRatioSlider').addEventListener('input', function () {
+      // update the patternRatio number
+      var patternRatio = document.querySelector('#patternRatioSlider').value / 100
+      var domElement = document.querySelector('[for=patternRatioSlider] span')
+      domElement.innerHTML = `Pattern Ratio ${patternRatio.toFixed(2)}`
+
+      // update fullMarkerImage
+      updateFullMarkerImage()
+    })
+
+
+    document.querySelector('#fileinput').addEventListener('change', function () {
+      var file = this.files[0];
+      // debugger
+
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        innerImageURL = event.target.result
+        updateFullMarkerImage()
+      };
+      reader.readAsDataURL(file);
+    })
+
+    function updateFullMarkerImage() {
+      // get patternRatio
+      var patternRatio = document.querySelector('#patternRatioSlider').value / 100
+
+      THREEx.ArPatternFile.buildFullMarker(innerImageURL, patternRatio, function onComplete(markerUrl) {
+        fullMarkerURL = markerUrl
+
+        var fullMarkerImage = document.createElement('img')
+        fullMarkerImage.src = fullMarkerURL
+
+        // put fullMarkerImage into #imageContainer
+        var container = document.querySelector('#imageContainer')
+        while (container.firstChild) container.removeChild(container.firstChild);
+        container.appendChild(fullMarkerImage)
+
+      })
+    }
+
+  </script>
+  <script src="https://apis.google.com/js/client.js?onload=init"></script>
 </body>
+
 </html>

@@ -3,9 +3,9 @@ var start1 =
 	"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
 	"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head>" +
 	"<body style='margin : 0px; overflow: hidden;'>" +
-	"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>" ;
-var marker="<a-marker-camera preset='hiro'>";
-	
+	"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>";
+var marker = "<a-marker-camera preset='hiro'>";
+
 var mid3d = ' ';
 var mid2d = '</a-marker-camera></a-scene>';
 var end =
@@ -14,8 +14,8 @@ var end =
 var file;
 function readFile() {
 	showEntities();
-	console.log(start1+ marker + mid3d + mid2d + end);
-	var file = start1 +marker +mid3d + mid2d + end;
+	console.log(start1 + marker + mid3d + mid2d + end);
+	var file = start1 + marker + mid3d + mid2d + end;
 	return file;
 }
 
@@ -49,13 +49,13 @@ function sharelnk(e) {
 		data: formData,
 		processData: false,
 		contentType: false,
-		xhr: function() {
+		xhr: function () {
 			var xhr = new window.XMLHttpRequest();
 
 			// Upload progress
 			xhr.upload.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						//Do something with upload progress
@@ -69,7 +69,7 @@ function sharelnk(e) {
 			// Download progress
 			xhr.addEventListener(
 				'progress',
-				function(evt) {
+				function (evt) {
 					if (evt.lengthComputable) {
 						var percentComplete = evt.loaded / evt.total;
 						// Do something with download progress
@@ -86,6 +86,23 @@ function sharelnk(e) {
 			console.log(data);
 			uploadbar.style.width = 0;
 			document.getElementById('shrlnk').value = data.Data.share_experience;
+		}
+	});
+}
+
+function selectMarker(e) {
+	$.ajax({
+		method: 'POST',
+		url: 'https://pitchar.io/pitchar_api/_fetch_marker.php',
+		data: { authtoken: token, submit: 1, id: e.dataset.markerid },
+		success(data) {
+			console.log(data);
+			marker = "<a-marker preset='pattern' type='pattern' url=" + "'" + data.Data[0].linkpatt + "'" + ">";
+			var logo = document.getElementById('imglogo');
+			logo.setAttribute('src', data.Data[0].linkmarker);
+			//	logo.object3D.position.z = -1.5;
+			$('#choosemarker .close').click();
+			$('.modal-backdrop').remove();
 		}
 	});
 }

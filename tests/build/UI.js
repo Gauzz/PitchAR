@@ -1374,7 +1374,7 @@ async function objectloaded(id) {
 	}
 }
 document.getElementById('choosemarkerbut').addEventListener('click', function (e) {
-	document.getElementById('gallerymarkers').innerHTML = "<img src='marker/hiro.png' width='150px' style='padding:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>";
+	document.getElementById('gallerymarkers').innerHTML = "<img src='marker/hiro.png' width='150px' style='padding:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);' onclick='resetMarker(this);'>";
 	$.ajax({
 		method: 'POST',
 		url: 'https://pitchar.io/pitchar_api/_fetch_markers.php',

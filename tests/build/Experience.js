@@ -97,6 +97,13 @@ function selectMarker(e) {
 		data: { authtoken: token, submit: 1, id: e.dataset.markerid },
 		success(data) {
 			console.log(data);
+			start1 =
+				"<html><head><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
+				"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
+				"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head>" +
+				"<body style='margin : 0px; overflow: hidden;'>" +
+				"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>";
+			mid2d = '</a-marker-camera></a-scene>';
 			marker = "<a-marker preset='pattern' type='pattern' url=" + "'" + data.Data[0].linkpatt + "'" + ">";
 			var logo = document.getElementById('imglogo');
 			logo.setAttribute('src', data.Data[0].linkmarker);
@@ -105,4 +112,38 @@ function selectMarker(e) {
 			$('.modal-backdrop').remove();
 		}
 	});
+}
+
+function resetMarker(e) {
+	start1 =
+		"<html><head><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
+		"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
+		"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head>" +
+		"<body style='margin : 0px; overflow: hidden;'>" +
+		"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>";
+
+	mid2d = '</a-marker-camera></a-scene>';
+
+	marker = "<a-marker-camera preset='hiro'>";
+	var logo = document.getElementById('imglogo');
+	logo.setAttribute('src', "marker/hiro.png");
+	//	logo.object3D.position.z = -1.5;
+	$('#choosemarker .close').click();
+	$('.modal-backdrop').remove();
+}
+
+function markerless(e) {
+	start1 =
+		"<html><head><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
+		"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
+		"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script></head>" +
+		"<body style='margin : 0px; overflow: hidden;'>" +
+		" <a-scene embedded arjs='debugUIEnabled: false;' vr-mode-ui='enabled: false'> ";
+	marker = "";
+	mid2d = '</a-scene>';
+	var logo = document.getElementById('imglogo');
+	logo.setAttribute('src', "#");
+	//	logo.object3D.position.z = -1.5;
+	$('#choosemarker .close').click();
+	$('.modal-backdrop').remove();
 }

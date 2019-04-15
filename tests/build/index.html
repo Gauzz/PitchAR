@@ -186,6 +186,16 @@
             </div>
 
             <div class='mdl-cell mdl-cell--6-col'>
+              <label id='markerless'
+                class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
+                <button onclick='markerless(this);'> GO MARKERLESS</button>
+              </label>
+              <div class='mdl-tooltip' for='markerless'>
+                Create markerless AR
+              </div>
+            </div>
+
+            <div class='mdl-cell mdl-cell--6-col' style='display:none;'>
               <label class="mdl-js-ripple-effect" for="patternRatioSlider">
                 <span class="">Pattern Ratio 0.50</span>
                 <input id='patternRatioSlider' class="mdl-slider mdl-js-slider" type="range" min="10" max="90"
@@ -220,7 +230,7 @@
             </div>
           </div>
           <div id='gallerymarkers'>
-            <img src='marker/hiro.png' width='150px'
+            <img src='marker/hiro.png' onclick='resetMarker(this);' width='150px'
               style='padding:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'>
           </div>
         </div>

@@ -318,21 +318,36 @@ function pushAud(e) {
 	}
 
 	var src = document.createElement('source');
-	src.src = e.dataset.source;
+	src.src = e.dataset.source;	
 	node.appendChild(src);
 	d2.appendChild(node);
 	var play = document.createElement('button');
 	play.innerHTML = "<i class='fa fa-file-audio-o' style='color:#4846ae;font-size:28px;'></i>";
-	play.setAttribute('data-source', id);
+	play.setAttribute('data-source', e.dataset.source);
+	play.id = id + 'btn';
 	play.style.position = 'fixed';
 	play.style.bottom = '50px';
 	play.style.marginLeft = 10 + n * 60 + 'px';
-	play.setAttribute('onclick', 'playaud(this)');
+	//play.setAttribute('onclick', 'playaud(this)');
+	play.setAttribute('onclick', 'audioset(this)');	
+	play.setAttribute('data-toggle', 'modal');
+	play.setAttribute('data-target', '#audioModal');
+
 	play.classList.add('exp2');
 	node.classList.add('exp2');
 	d2.appendChild(play);
 	$('#music .close').click();
-	$('.modal-backdrop').remove();
+	$('.modal-backdrop').remove();		
+}
+
+function audioset(e) {	
+	document.getElementById('audBtnUnpushed').setAttribute('data-idaud', e.id);
+	document.getElementById('audBtnPlayModal').setAttribute('data-source', e.id.slice(0, e.id.length-3));	
+}
+
+function audBtnUnpushed(e) {	
+	document.getElementById(e.dataset.idaud).remove();	
+	document.getElementById(e.dataset.idaud.slice(0, e.dataset.idaud.length-3)).remove();	
 }
 
 function previewAudio(e) {

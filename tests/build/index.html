@@ -494,6 +494,28 @@
       </div>
     </div>
   </div>
+
+  <div id='audioModal' class='modal' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <button type="button" id="audBtnUnpushed" onclick='audBtnUnpushed(this);' data-dismiss="modal" class="close">
+            <i class="fa fa-trash"></i> &nbsp;&nbsp;&nbsp;
+          </button>
+          <button type="button" class="close" id="audBtnPlayModal" onclick='playaud(this);'>
+            <i class="fa fa-play"></i> &nbsp;&nbsp;&nbsp;
+          </button>
+          <br>
+        </div>
+        <div class="modal-body">          
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal " id="cta" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

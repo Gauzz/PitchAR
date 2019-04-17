@@ -10,22 +10,11 @@ var filename = '';
 var bool = 0;
 var object;
 function auto() {
-	/*  $.ajax({
-  method: 'post',
-  url: 'https://pitchar.io/api/_token.php',
-  data: {
-      submit: true,
-    },
-  success(result){
-            console.log(result);   
-            console.log("success");
-            token=result.project[0].token;
-            console.log(token);   
-            
-    },
-
-});
-*/
+	document.getElementById('auth').value = token;
+	document.getElementById('auth2').value = token;
+	document.getElementById('auth3').value = token;
+	document.getElementById('auth4').value = token;
+	document.getElementById('auth5').value = token;
 	var sceneEl = document.querySelector('a-scene');
 	sceneEl.addEventListener('loaded', function () {
 		sceneEl.removeAttribute('inspector');
@@ -665,7 +654,7 @@ searchImg[0].addEventListener('keyup', function (event) {
 			url: 'https://pitchar.io/api/_search_assets.php',
 			data: {
 				submit: true,
-				authtoken: 'jzXPgvSfhYMx7I3',
+				authtoken: token,
 				tags: document.getElementById('searchasset').value
 			},
 			success(result) {

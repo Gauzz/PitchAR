@@ -1,4 +1,8 @@
-var token = 'jzXPgvSfhYMx7I3';
+var params = (new URL(document.location)).searchParams;
+
+var token = params.get("token");
+
+var expid = params.get("edit");
 
 var Blobimg;
 

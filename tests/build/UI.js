@@ -183,12 +183,29 @@ function addbut(e) {
 	x.style.marginLeft = 10 + n * 60 + 'px';
 	x.style.zIndex = '5';
 	x.id = 'cta' + ctaid;
-	x.style.height = 'fit-content';
+	x.style.height = 'fit-content';		  
 	x.classList.add('exp2');
+	x.setAttribute('data-toggle', 'modal');
+  x.setAttribute('data-target', '#ctaModal');
 	var d2 = document.getElementById('d2');
 	d2.appendChild(x);
 	++ctaid;
+
+	$("#"+x.id).click(function(event){
+		event.preventDefault();  
+		ctaset(this);
+  });
 }
+
+function ctaset(e) {		
+	document.getElementById('ctaBtnUnpushed').setAttribute('data-idcta', e.id);	
+}
+
+function ctaUnpushed (e) {	
+	document.getElementById(e.dataset.idcta).remove();	
+	//document.getElementById(e.dataset.idaud.slice(0, e.dataset.idaud.length-3)).remove();	
+}
+
 
 function add(event) {
 	obj = document.querySelector('#object');

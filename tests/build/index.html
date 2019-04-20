@@ -570,6 +570,28 @@
       </div>
     </div>
   </div>
+
+  <div id='ctaModal' class='modal' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <button type="button" id="ctaBtnUnpushed" onclick='ctaUnpushed(this);' data-dismiss="modal" class="close">
+            <i class="fa fa-trash"></i> &nbsp;&nbsp;&nbsp;
+          </button>
+          <button type="button" class="close" id="ctaBtnGo">
+            <i class="fa fa-play"></i> &nbsp;&nbsp;&nbsp;
+          </button>
+          <br>
+        </div>
+        <div class="modal-body">          
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal " id="videos" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

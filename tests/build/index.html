@@ -40,6 +40,30 @@
     }
 
     @font-face {
+      font-family: 'yatraone';
+      src: url('css/YatraOne-Regular.ttf');
+      src: url('css/YatraOne-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'greatvibes';
+      src: url('css/GreatVibes-Regular.ttf');
+      src: url('css/GreatVibes-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'amita';
+      src: url('css/Amita-Regular.ttf');
+      src: url('css/Amita-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
       font-family: 'leaguescript';
       src: url('css/LeagueScriptNumberOne-webfont.eot');
       src: url('css/LeagueScriptNumberOne-webfont.eot?#iefix') format('embedded-opentype'),
@@ -415,15 +439,27 @@
             width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
             border-width: 0.5px;"></div>
           <div id='phrcolor'></div>
+          <select id='aligntxt'>
+            <option value='left'> left </option>
+            <option value='right'> right </option>
+            <option value='center'> center </option>
+          </select>
           <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
-            style='color:crimson;font-family:orbitron;cursor:pointer;'>TEXT</span>
+            style='color:crimson;font-family:orbitron;cursor:pointer;'>Orbitron</span>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
-            style='color:crimson;font-family:roboto;cursor:pointer;'>TEXT</span>
+            style='color:crimson;font-family:roboto;cursor:pointer;'>Roboto</span>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
-            style='color:crimson;font-family:leaguemono;cursor:pointer;'>TEXT</span>
+            style='color:crimson;font-family:leaguemono;cursor:pointer;'>League Mono</span>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
-            style='color:crimson;font-family:knewave;cursor:pointer;'>TEXT</span>
+            style='color:crimson;font-family:knewave;cursor:pointer;'>Knewave</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:yatraone;cursor:pointer;'>Yatra One</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:greatvibes;cursor:pointer;'>Great Vibes</span>
+          <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
+            style='color:crimson;font-family:amita;cursor:pointer;'>Amita</span>
+
           <br>
           <br>
         </div>

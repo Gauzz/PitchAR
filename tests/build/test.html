@@ -1,14 +1,44 @@
-<html><head>
-    <script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script>
-    <script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.js'></script>
-    </head>
-    <body style='margin : 0px; overflow: hidden;'>
-        <a-scene arjs='sourceType: webcam;debugUIEnabled: false;'>
-            <a-marker preset="pattern" type='pattern' url='https://42081b65.ap.ngrok.io/build/tst1.patt'>
-                <a-box position='0 0.5 0' material='color: red;'></a-box>
-            </a-marker>
-            <a-marker preset='hiro' >
-                <a-box position='0 0.5 0' material='color: red;'></a-box>
-            </a-marker></a-scene>                
-    </body>
+<html>
+
+<head>
+    <script src='https://aframe.io/releases/0.8.0/aframe.min.js'></script>
+    <script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+    <a-scene arjs='sourceType: webcam;debugUIEnabled: false;'>
+        <a-marker-camera preset='hiro'>
+            <a-image
+                src="https://images.unsplash.com/photo-1552124304-4e34dc2fd70d?ixlib=rb-1.2.1;q=80;fm=jpg;crop=entropy;cs=tinysrgb;w=400;fit=max;ixid=eyJhcHBfaWQiOjQ2MDYzfQ"
+                material="src:https://images.unsplash.com/photo-1552124304-4e34dc2fd70d?ixlib=rb-1.2.1;q=80;fm=jpg;crop=entropy;cs=tinysrgb;w=400;fit=max;ixid=eyJhcHBfaWQiOjQ2MDYzfQ;color:#FFF;shader:flat;side:double;transparent:true"
+                id="" height="1.61" geometry="height:1.61;width:1.25;primitive:plane" width="1.25" rotation="0
+                0 0" scale="1 1 1" click-drag="" class="exp" position="-0.13138179560954247 1.6075796262199549
+                -0.2683646172256049"></a-image>
+        </a-marker-camera>
+    </a-scene>
+    <div id='splashscreen'
+        style="background-color: white; height:100% ; width:100%; position:absolute; top:0px; left:0px; z-index:4;">
+        <img src='https://stemkoski.github.io/AR-Examples/markers/hiro.png' width='40%'
+            style='margin: 10px;float:left;'>
+        <a href="#" style="position: absolute;top: 0px;margin: 10px;text-decoration: none;color:#4846ae;">Share
+            Marker</a>
+        <a href="https://stemkoski.github.io/AR-Examples/markers/hiro.png'"
+            style="position: absolute;top: 24px;margin: 10px;text-decoration: none;color: #505050;;">Facebook</a>
+        <a href="https://stemkoski.github.io/AR-Examples/markers/hiro.png'"
+            style="position: absolute;top: 48px;margin: 10px;text-decoration: none;color:#505050;">Whatsapp</a>
+        <a href="https://stemkoski.github.io/AR-Examples/markers/hiro.png'"
+            style="position: absolute;top: 72px;margin: 10px;text-decoration: none;color:#505050;"> URL</a>
+        <a href="https://stemkoski.github.io/AR-Examples/markers/hiro.png'" style="position: absolute;top: calc(40vw + 10px);left: 10px;
+            margin: 10px;text-decoration: none;color:#4846ae;">Download Image
+            Marker</a>
+        <button
+            style="background-color: #4846ae;color: white;width:100%;position:absolute;bottom:0px;left:0px;padding:10px;"
+            onclick="document.getElementById('splashscreen').style.display= 'none' "> Watch AR Experience </button>
+    </div>
+    <script>function playaud(e) { var x = document.getElementById(e.dataset.source); x.play(); }</script>
+</body>
+
 </html>

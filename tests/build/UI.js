@@ -98,11 +98,17 @@ function phrasechanged(e) {
 		phrasetxt[1].innerText = 'TEXT';
 		phrasetxt[2].innerText = 'TEXT';
 		phrasetxt[3].innerText = 'TEXT';
+		phrasetxt[4].innerText = 'TEXT';
+		phrasetxt[5].innerText = 'TEXT';
+		phrasetxt[6].innerText = 'TEXT';
 	}
 	phrasetxt[0].innerText = e.value;
 	phrasetxt[1].innerText = e.value;
 	phrasetxt[2].innerText = e.value;
 	phrasetxt[3].innerText = e.value;
+	phrasetxt[4].innerText = e.value;
+	phrasetxt[5].innerText = e.value;
+	phrasetxt[6].innerText = e.value;
 }
 var col;
 function editphr(e) {
@@ -119,6 +125,10 @@ $('#phrcolor').ColorPicker({
 		phrasetxt[1].style.color = '#' + hex;
 		phrasetxt[2].style.color = '#' + hex;
 		phrasetxt[3].style.color = '#' + hex;
+		phrasetxt[4].style.color = '#' + hex;
+		phrasetxt[5].style.color = '#' + hex;
+		phrasetxt[6].style.color = '#' + hex;
+		
 		$('#phrcol').css('backgroundColor', '#' + hex);
 	}
 });
@@ -126,12 +136,14 @@ $('#phrcolor').hide();
 var n = 0;
 function pushTxt(e) {
 	n++;
+	var aligntxt = document.getElementById('aligntxt');
 	var txt = document.createElement('a-text');
 	txt.setAttribute('rotation', { x: 0, y: 0, z: 0 });
 	txt.setAttribute('scale', { x: 1, y: 1, z: 1 });
 	txt.setAttribute('click-drag', '');
 	txt.setAttribute('visible', 'true');
 	txt.setAttribute('value', e.innerText);
+	txt.setAttribute('align', aligntxt.value);
 	if (e.style.fontFamily == 'roboto');
 	else {
 		txt.setAttribute('font', './css/' + e.style.fontFamily + '.fnt');
@@ -498,6 +510,7 @@ function uploadImg(event) {
 			overlay.appendChild(del);
 			div.appendChild(node);
 			if (data.data.image != '') document.getElementById('galleryimgs').appendChild(div);
+			else uploadImg(event);
 			uploadbar.style.width = 0;
 		}
 	});
@@ -750,7 +763,6 @@ asset.addEventListener('click', () => {
 					var div = document.createElement('div');
 					node.src = asset.objthumbnail;
 					node.width = 125;
-					node.height = 125;
 					node.id = 'img' + i;
 					node.setAttribute('data-type', asset.Assetstype);
 					node.setAttribute('data-objfile', asset.obj);
@@ -837,7 +849,6 @@ function uploadObj(event) {
 			var node = document.createElement('img');
 			node.src = data.data.objthumbnail;
 			node.width = 125;
-			node.height = 125;
 			node.setAttribute('data-type', asset.type);
 			node.setAttribute('data-objfile', asset.obj);
 			if (asset.Assetstype == 'obj') node.setAttribute('data-mtlfile', asset.mtl);

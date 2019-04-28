@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="Crop/croppie.css" />
   <link rel="stylesheet" media="screen" type="text/css" href="colorpicker/css/colorpicker.css" />
   <script type="text/javascript" src="colorpicker/js/colorpicker.js"></script>
+  <script type="text/javascript" src="https://johnresig.com/files/htmlparser.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css?family=Roboto');
 
@@ -537,12 +538,12 @@
           <button type="button" id="audBtnUnpushed" onclick='audBtnUnpushed(this);' data-dismiss="modal" class="close">
             <i class="fa fa-trash"></i> &nbsp;&nbsp;&nbsp;
           </button>
-          <button type="button" class="close" id="audBtnPlayModal" onclick='playaud(this);'>
+          <button type="button" class="close" id="audBtnPlayModal" onclick='playAudio(this);'>
             <i class="fa fa-play"></i> &nbsp;&nbsp;&nbsp;
           </button>
           <br>
         </div>
-        <div class="modal-body">          
+        <div class="modal-body">
         </div>
       </div>
     </div>
@@ -622,7 +623,7 @@
           </button>
           <br>
         </div>
-        <div class="modal-body">          
+        <div class="modal-body">
         </div>
       </div>
     </div>
@@ -744,7 +745,6 @@
   <script src="UI.js"></script>
   <script src="Experience.js"></script>
   <script>
-
     function init() {
       gapi.client.setApiKey("AIzaSyACc5T8EmsRDs1nK_i8zqmcK8T9hVy-ljs");
       gapi.client.load("youtube", "v3", function () {

@@ -12,6 +12,10 @@ var end =
 	"<div id='ytmodal' class='modal' tabindex='-1' role='dialog'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><button type='button' onclick='ytremove(this);' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><br></div><div class='modal-body'><iframe id='ytembed' src='' width='100%' height='60%' frameborder=0px allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen ></iframe></div></div></div></div>" +
 	"<script>function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; }function playaud(e){var x= document.getElementById(e.dataset.source);x.play();}</script></body></html>";
 var file;
+
+if (expid != 0)
+	editExperience();
+
 function readFile() {
 	showEntities();
 	console.log(start1 + marker + mid3d + mid2d + end);
@@ -146,4 +150,27 @@ function markerless(e) {
 	//	logo.object3D.position.z = -1.5;
 	$('#choosemarker .close').click();
 	$('.modal-backdrop').remove();
+}
+
+function editExperience() {
+	$.ajax({
+		method: 'POST',
+		url: 'https://pitchar.io/pitchar_api/_fetch_experience.php',
+		data: { authtoken: token, experienceid: expid, submit: 1 },
+		success(data) {
+			var dom = document.createElement('html');
+			var scene = document.getElementById('perswin');
+			dom.innerHTML = data.Data[0].experience;
+			var els = dom.querySelectorAll('.exp');
+			var els2 = document.querySelectorAll('.exp2');
+			console.log(els2);
+			for (var i = 0; i < els.length; i++) {
+				scene.appendChild(els[i]);
+			}
+			for (var i = 0; i < els2.length; i++) {
+				document.getElementById('d2').appendChild(els2[i]);
+				console.log(els2[i]);
+			}
+		}
+	});
 }

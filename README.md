@@ -15,11 +15,13 @@ post url : https://pitchar.io/api/_search_media.php
             "tags": "media,video,obj,thumbnail"
 
 
- "authtoken": "jzXPgvSfhYMx7I3",
+{
+            "authtoken": "jzXPgvSfhYMx7I3",
             "type": "audio",
-            "video": "https://pitchar.io/uploads/video/1603641722.mp4",
-            "thumbnail": "https://pitchar.io/uploads/videoThumbnail/1549526962.png",
-            "audio": "",
-            "extension": "",
+            "video": "",
+            "thumbnail": "https://pitchar.io/uploads/videoThumbnail/1549526590.png",
+            "audio": "https://pitchar.io/uploads/audio/1549526590.mp3",
+            "extension": "mp3",
             "project_name": "project name",
             "tags": "media,video,obj,thumbnail"
+        },

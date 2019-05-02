@@ -983,8 +983,8 @@ k = 0;
 let music = document.getElementById('musicbut');
 music.addEventListener('click', () => {
 	document.getElementById('galleryauds').innerHTML = '';
-	//   document.getElementsByClassName("searchbar")[5].value="";
-	//   document.getElementsByClassName("searchbar")[6].value="";
+	document.getElementsByClassName("searchbar")[5].value="";
+	document.getElementsByClassName("searchbar")[6].value="";
 	console.log('reached audio');
 	$.ajax({
 		method: 'post',
@@ -1060,6 +1060,50 @@ music.addEventListener('click', () => {
 		}
 	});
 });
+
+
+
+
+
+var l = 15;
+var m = 20;
+function fetchnew() { }
+var searchAud = document.getElementsByClassName('searchbar');
+searchAud[4].addEventListener('keyup', function (event) {
+	event.preventDefault();
+	if (event.keyCode === 13) {
+		$.ajax({
+			method: 'post',
+			url: 'https://pitchar.io/api/_search_media.php',
+			data: {
+				submit: true,
+				authtoken: token,
+				tags: searchAud[4].value
+			},
+			success(result) {
+				console.log(result);
+				document.getElementById('galleryauds').innerHTML = '';
+				var medias = result.media;
+				for (var i = 0; i < medias.length; i++) {
+					media = medias[i];
+					var node = document.createElement('img');
+					node.src = media.thumbnail;
+					node.width = 125;
+					node.height = 125;
+					node.id = 'img' + i;
+					node.style = 'margin:4px;';
+					node.setAttribute('onclick', 'previewAudio(this);');
+					if (media.type == 'audio') document.getElementById('galleryauds').appendChild(node);
+					perm = i;
+				}
+			}
+		});
+	}
+});
+
+
+
+
 
 var searchFS = document.getElementsByClassName('searchFS');
 searchFS[0].addEventListener('keyup', function (event) {

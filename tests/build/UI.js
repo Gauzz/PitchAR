@@ -894,6 +894,45 @@ asset.addEventListener('click', () => {
 	});
 });
 
+var l = 15;
+var m = 20;
+function fetchnew() { }
+var searchObj = document.getElementsByClassName('searchbar');
+searchObj[2].addEventListener('keyup', function (event) {
+	event.preventDefault();
+	if (event.keyCode === 13) {
+		$.ajax({
+			method: 'post',
+			url: 'https://pitchar.io/api/_search_assets.php',
+			data: {
+				submit: true,
+				authtoken: token,
+				tags: searchObj[2].value
+			},
+			success(result) {
+				console.log(result);
+				document.getElementById('galleryobjs').innerHTML = '';
+				var assets = result.assets;
+				for (var i = 0; i < assets.length; i++) {
+					asset = assets[i];
+					var node = document.createElement('img');
+					node.src = asset.objthumbnail;
+					node.width = 125;
+					node.height = 125;
+					node.id = 'img' + i;
+					node.style = 'margin:4px;';
+					node.setAttribute('onclick', 'pushObj(this);');
+					if (asset.Assetstype == 'zip' ||
+					asset.Assetstype == 'fbx' ||
+					asset.Assetstype == 'gltf' ||
+					asset.Assetstype == 'obj') document.getElementById('galleryobjs').appendChild(node);
+					perm = i;
+				}
+			}
+		});
+	}
+});
+
 function delobj(e) {
 	$.ajax({
 		method: 'POST',

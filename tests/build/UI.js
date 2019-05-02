@@ -1311,6 +1311,9 @@ let video = document.getElementById('videobut');
 video.addEventListener('click', () => {
 	console.log('reached video');
 	document.getElementById('galleryvids').innerHTML = '';
+	document.getElementsByClassName("searchbar")[7].value="";
+	document.getElementsByClassName("searchbar")[8].value="";
+
 	$.ajax({
 		method: 'post',
 		url: 'https://pitchar.io/api/_fetch-media.php',
@@ -1364,6 +1367,44 @@ video.addEventListener('click', () => {
 		}
 	});
 });
+
+
+var l = 15;
+var m = 20;
+function fetchnew() { }
+var searchVid = document.getElementsByClassName('searchbar');
+searchVid[6].addEventListener('keyup', function (event) {
+	event.preventDefault();
+	if (event.keyCode === 13) {
+		$.ajax({
+			method: 'post',
+			url: 'https://pitchar.io/api/_search_media.php',
+			data: {
+				submit: true,
+				authtoken: token,
+				tags: searchVid[6].value
+			},
+			success(result) {
+				console.log(result);
+				document.getElementById('galleryvids').innerHTML = '';
+				var medias = result.medias;
+				for (var i = 0; i < medias.length; i++) {
+					media = medias[i];
+					var node = document.createElement('img');
+					node.src = media.thumbnail;
+					node.width = 125;
+					node.height = 125;
+					node.id = 'img' + i;
+					node.style = 'margin:4px;';
+					node.setAttribute('onclick', 'pushVid(this);');
+					if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(node);
+					perm = i;
+				}
+			}
+		});
+	}
+});
+
 
 //video functionalities
 function chgvidtype(e) {

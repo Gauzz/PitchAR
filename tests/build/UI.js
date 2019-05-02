@@ -9,6 +9,7 @@ var imgfil = '';
 var filename = '';
 var bool = 0;
 var object;
+var edittype;
 function auto() {
 	document.getElementById('auth').value = token;
 	document.getElementById('auth2').value = token;
@@ -19,9 +20,16 @@ function auto() {
 	sceneEl.addEventListener('loaded', function () {
 		sceneEl.removeAttribute('inspector');
 	});
-	
+
 }
 auto();
+
+function editAssetId(e) {
+	console.log('here');
+	document.getElementById('elementid').value = e.dataset.pid;
+	edittype = e.dataset.typ;
+	console.log(e.dataset.pid);
+}
 
 //CTA Functionalities
 var cta = document.getElementById('ctabutton');
@@ -385,12 +393,13 @@ function pauseAudio(e) {
 	e.innerHTML = "<i class='fa fa-play'></i>&nbsp;&nbsp;&nbsp;";
 	e.removeAttribute('onclick');
 	e.setAttribute('onclick', 'playAudio(this);');
-	try{
-	var player = document.getElementById(e.dataset.source);
-	player.pause();}
-	catch(err){
-	var player2 = document.getElementById(e.id + 'aud');
-	player2.pause();
+	try {
+		var player = document.getElementById(e.dataset.source);
+		player.pause();
+	}
+	catch (err) {
+		var player2 = document.getElementById(e.id + 'aud');
+		player2.pause();
 	}
 }
 
@@ -398,20 +407,21 @@ function playAudio(e) {
 	e.innerHTML = "<i class='fa fa-pause'></i>&nbsp;&nbsp;&nbsp;";
 	e.removeAttribute('onclick');
 	e.setAttribute('onclick', 'pauseAudio(this);');
-	try{
-	var player = document.getElementById(e.dataset.source);
-	player.play();}
-	catch(err){
-	var player2 = document.getElementById(e.id+'aud');
-	player2.play();
+	try {
+		var player = document.getElementById(e.dataset.source);
+		player.play();
+	}
+	catch (err) {
+		var player2 = document.getElementById(e.id + 'aud');
+		player2.play();
 	}
 }
 
-function toogleLoop(checkboxElem) {
-	if (checkboxElem.checked) {
-		checkboxElem.dataset.loop = true;
+function toogleLoop(e) {
+	if (e.value == 'repeat') {
+		e.dataset.loop = true;
 	} else {
-		checkboxElem.dataset.loop = false;
+		e.dataset.loop = false;
 	}
 }
 
@@ -558,70 +568,112 @@ function uploadImg(event) {
 	});
 }
 
+
 //for edit name
 function editNameAsset(e) {
-	let form = document.querySelector('#form');
-	let formData = new FormData(form);
-
-	var txt;
-	var newName = prompt('Please enter new name:');
-	if (newName == null || newName == '') {
-		//"User cancelled the prompt.";
-		return;
-	}
-
+	let formData = new FormData();
 	formData.append('update-assets', 'true');
+	formData.append('update-media', 'true');
 	formData.append('authtoken', token);
-	formData.append('type', 'image');
-	formData.append('image', '');
+	var newName = document.getElementById('newname').value;
+	var newTags = document.getElementById('newtags').value;
+	var pid = document.getElementById('elementid').value;
+	console.log(newName + '   ' + newTags + '  ' + pid);
 	formData.append('name', newName);
-	formData.append('project_id', e.dataset.pid);
-
+	formData.append('project_id', pid);
+	formData.append('tags', newTags);
 	console.log(formData);
 	console.log(form);
-	$.ajax({
-		method: 'POST',
-		url: 'https://pitchar.io/api/_update-assets.php',
-		data: formData,
-		processData: false,
-		contentType: false,
-		xhr: function () {
-			var xhr = new window.XMLHttpRequest();
+	if (edittype == 'a') {
+		$.ajax({
+			method: 'POST',
+			url: 'https://pitchar.io/api/_update-assets.php',
+			data: formData,
+			processData: false,
+			contentType: false,
+			xhr: function () {
+				var xhr = new window.XMLHttpRequest();
 
-			// Upload progress
-			xhr.upload.addEventListener(
-				'progress',
-				function (evt) {
-					if (evt.lengthComputable) {
-						var percentComplete = evt.loaded / evt.total;
-						//Do something with upload progress
-						uploadbar.style.width = percentComplete * 100 + '%';
-						if (percentComplete == 1) uploadbar.style.width = 0;
-					}
-				},
-				false
-			);
+				// Upload progress
+				xhr.upload.addEventListener(
+					'progress',
+					function (evt) {
+						if (evt.lengthComputable) {
+							var percentComplete = evt.loaded / evt.total;
+							//Do something with upload progress
+							uploadbar.style.width = percentComplete * 100 + '%';
+							if (percentComplete == 1) uploadbar.style.width = 0;
+						}
+					},
+					false
+				);
 
-			// Download progress
-			xhr.addEventListener(
-				'progress',
-				function (evt) {
-					if (evt.lengthComputable) {
-						var percentComplete = evt.loaded / evt.total;
-						// Do something with download progress
-						uploadbar.style.width = percentComplete * 100 + '%';
-						if (percentComplete == 1) uploadbar.style.width = 0;
-					}
-				},
-				false
-			);
+				// Download progress
+				xhr.addEventListener(
+					'progress',
+					function (evt) {
+						if (evt.lengthComputable) {
+							var percentComplete = evt.loaded / evt.total;
+							// Do something with download progress
+							uploadbar.style.width = percentComplete * 100 + '%';
+							if (percentComplete == 1) uploadbar.style.width = 0;
+						}
+					},
+					false
+				);
 
-			return xhr;
-		},
-		success(data) {
-			alert('Name Changed');
-		}
-	});
+				return xhr;
+			},
+			success(data) {
+				alert('Name & tags changed');
+			}
+		});
+	}
+	else {
+		$.ajax({
+			method: 'POST',
+			url: 'https://pitchar.io/api/_update_media.php',
+			data: formData,
+			processData: false,
+			contentType: false,
+			xhr: function () {
+				var xhr = new window.XMLHttpRequest();
+
+				// Upload progress
+				xhr.upload.addEventListener(
+					'progress',
+					function (evt) {
+						if (evt.lengthComputable) {
+							var percentComplete = evt.loaded / evt.total;
+							//Do something with upload progress
+							uploadbar.style.width = percentComplete * 100 + '%';
+							if (percentComplete == 1) uploadbar.style.width = 0;
+						}
+					},
+					false
+				);
+
+				// Download progress
+				xhr.addEventListener(
+					'progress',
+					function (evt) {
+						if (evt.lengthComputable) {
+							var percentComplete = evt.loaded / evt.total;
+							// Do something with download progress
+							uploadbar.style.width = percentComplete * 100 + '%';
+							if (percentComplete == 1) uploadbar.style.width = 0;
+						}
+					},
+					false
+				);
+
+				return xhr;
+			},
+			success(data) {
+				alert('Name & tags changed');
+			}
+		});
+	}
 }
 
 //for image fetch
@@ -680,11 +732,14 @@ image.addEventListener('click', () => {
 				overlay.appendChild(del);
 				div.appendChild(node);
 				div.appendChild(overlay);
-				var del = document.createElement('button');
-				del.setAttribute('onclick', 'editNameAsset(this)');
-				del.setAttribute('data-pid', asset.id);
-				del.innerHTML = "<i class='fa fa-edit'></i>";
-				overlay.appendChild(del);
+				var edit = document.createElement('button');
+				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('data-toggle', "modal");
+				edit.setAttribute('data-target', "#editmodal");
+				edit.setAttribute('data-pid', asset.id);
+				edit.setAttribute('data-typ', 'a');
+				edit.innerHTML = "<i class='fa fa-edit'></i>";
+				overlay.appendChild(edit);
 				div.appendChild(node);
 				div.appendChild(overlay);
 
@@ -821,6 +876,14 @@ asset.addEventListener('click', () => {
 					del.setAttribute('data-pid', asset.id);
 					del.innerHTML = "<i class='fa fa-trash'></i>";
 					overlay.appendChild(del);
+					var edit = document.createElement('button');
+					edit.setAttribute('onclick', 'editAssetId(this)');
+					edit.setAttribute('data-toggle', "modal");
+					edit.setAttribute('data-target', "#editmodal");
+					edit.setAttribute('data-pid', asset.id);
+					edit.setAttribute('data-typ', 'a');
+					edit.innerHTML = "<i class='fa fa-edit'></i>";
+					overlay.appendChild(edit);
 					div.appendChild(node);
 					div.appendChild(overlay);
 					document.getElementById('galleryobjs').appendChild(div);
@@ -955,9 +1018,18 @@ music.addEventListener('click', () => {
 				var del = document.createElement('button');
 				del.setAttribute('onclick', 'delaud(this)');
 				del.innerHTML = "<i class='fa fa-trash'></i>";
+				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
 				div.appendChild(node);
 				div.appendChild(overlay);
+				var edit = document.createElement('button');
+				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('data-toggle', "modal");
+				edit.setAttribute('data-target', "#editmodal");
+				edit.setAttribute('data-pid', media.id);
+				edit.setAttribute('data-typ', 'm');
+				edit.innerHTML = "<i class='fa fa-edit'></i>";
+				overlay.appendChild(edit);
 				if (media.type == 'audio') document.getElementById('galleryauds').appendChild(div);
 				perm = i;
 
@@ -969,12 +1041,18 @@ music.addEventListener('click', () => {
 				div.appendChild(node);
 				div.appendChild(overlay);
 
-				var audioLoop = document.createElement('input');
+				var audioLoop = document.createElement('select');
 				audioLoop.id = 'audioLoop' + i;
-				audioLoop.setAttribute('type', 'checkbox');
+				var opt1 = document.createElement('option');
+				opt1.value = 'play once';
+				opt1.innerHTML = 'play once';
+				audioLoop.appendChild(opt1);
+				var opt2 = document.createElement('option');
+				opt2.value = 'repeat';
+				opt2.innerHTML = 'repeat';
+				audioLoop.appendChild(opt2);
 				audioLoop.setAttribute('data-loop', false);
 				audioLoop.setAttribute('onclick', 'toogleLoop(this)');
-				//audioLoop.innerHTML="<i class='fa fa-undo'></i>";
 				overlay.appendChild(audioLoop);
 				div.appendChild(node);
 				div.appendChild(overlay);
@@ -1040,13 +1118,20 @@ searchFS[0].addEventListener('keyup', function (event) {
 				div.appendChild(node);
 				div.appendChild(overlay);
 
-				var audioLoop = document.createElement('input');
+				var audioLoop = document.createElement('select');
 				audioLoop.id = 'audioLoop' + i;
-				audioLoop.setAttribute('type', 'checkbox');
+				var opt1 = document.createElement('option');
+				opt1.value = 'play once';
+				opt1.innerHTML = 'play once';
+				audioLoop.appendChild(opt1);
+				var opt2 = document.createElement('option');
+				opt2.value = 'repeat';
+				opt2.innerHTML = 'repeat';
+				audioLoop.appendChild(opt2);
 				audioLoop.setAttribute('data-loop', false);
 				audioLoop.setAttribute('onclick', 'toogleLoop(this)');
-				//audioLoop.innerHTML="<i class='fa fa-undo'></i>";
 				overlay.appendChild(audioLoop);
+
 				div.appendChild(node);
 				div.appendChild(overlay);
 			}
@@ -1257,9 +1342,21 @@ video.addEventListener('click', () => {
 				var overlay = document.createElement('div');
 				overlay.setAttribute('class', 'options');
 				var del = document.createElement('button');
+				del.setAttribute('onclick', 'delaud(this)');
 				del.innerHTML = "<i class='fa fa-trash'></i>";
+				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
-				div.appendChild(node);
+				var edit = document.createElement('button');
+				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('data-toggle', "modal");
+				edit.setAttribute('data-target', "#editmodal");
+				edit.setAttribute('data-pid', media.id);
+				edit.setAttribute('data-typ', 'm');
+				edit.innerHTML = "<i class='fa fa-edit'></i>";
+				overlay.appendChild(edit);
+				var videotype = document.createElement('button');
+				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
+				overlay.appendChild(videotype);
 				div.appendChild(overlay);
 				if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(div);
 				perm = i;

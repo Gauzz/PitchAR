@@ -708,6 +708,28 @@
     </div>
   </div>
 
+  <div id='editmodal' class='modal' tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <br>
+        </div>
+        <div class="modal-body">
+          <label>Name : </label>&nbsp;<input id='newname' type='text' name='name'>
+          <br>
+          <label>Tags : </label>&nbsp;<input id='newtags' type="textarea" name="tags" rows=4 col=4 value=""
+            placeholder="tags" data-role="tagsinput" />
+          <input type='hidden' id='elementid' value=''>
+          <br>
+          <button onclick='editNameAsset(this)'>Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="sidebar">
     <center>

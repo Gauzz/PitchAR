@@ -1134,6 +1134,52 @@ searchAud[4].addEventListener('keyup', function (event) {
 					node.setAttribute('onclick', 'previewAudio(this);');
 					if (media.type == 'audio') document.getElementById('galleryauds').appendChild(node);
 					perm = i;
+					var div = document.createElement('div');
+				div.setAttribute('class', 'hbox');
+				div.appendChild(node);
+				var overlay = document.createElement('div');
+				overlay.setAttribute('class', 'options');
+				var del = document.createElement('button');
+				del.setAttribute('onclick', 'delaud(this)');
+				del.innerHTML = "<i class='fa fa-trash'></i>";
+				del.setAttribute('data-pid', media.id);
+				overlay.appendChild(del);
+				div.appendChild(node);
+				div.appendChild(overlay);
+				var edit = document.createElement('button');
+				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('data-toggle', "modal");
+				edit.setAttribute('data-target', "#editmodal");
+				edit.setAttribute('data-pid', media.id);
+				edit.setAttribute('data-typ', 'm');
+				edit.innerHTML = "<i class='fa fa-edit'></i>";
+				overlay.appendChild(edit);
+				if (media.type == 'audio') document.getElementById('galleryauds').appendChild(div);
+				perm = i;
+
+				var audioPrev = document.createElement('button');
+				audioPrev.setAttribute('data-source', media.audio);
+				audioPrev.setAttribute('onclick', 'previewAudio(this);');
+				audioPrev.innerHTML = "<i class='fa fa-play'></i>";
+				overlay.appendChild(audioPrev);
+				div.appendChild(node);
+				div.appendChild(overlay);
+
+				var audioLoop = document.createElement('select');
+				audioLoop.id = 'audioLoop' + i;
+				var opt1 = document.createElement('option');
+				opt1.value = 'play once';
+				opt1.innerHTML = 'play once';
+				audioLoop.appendChild(opt1);
+				var opt2 = document.createElement('option');
+				opt2.value = 'repeat';
+				opt2.innerHTML = 'repeat';
+				audioLoop.appendChild(opt2);
+				audioLoop.setAttribute('data-loop', false);
+				audioLoop.setAttribute('onclick', 'toogleLoop(this)');
+				overlay.appendChild(audioLoop);
+				div.appendChild(node);
+				div.appendChild(overlay);
 				}
 			}
 		});

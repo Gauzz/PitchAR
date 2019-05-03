@@ -1482,6 +1482,16 @@ searchVid[6].addEventListener('keyup', function (event) {
 					node.setAttribute('onclick', 'pushVid(this);');
 					if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(node);
 					perm = i;
+					var div = document.createElement('div');
+			div.setAttribute('class', 'hbox');
+			div.appendChild(node);
+			var overlay = document.createElement('div');
+			overlay.setAttribute('class', 'options');
+			var del = document.createElement('button');
+			del.innerHTML = "<i class='fa fa-trash'></i>";
+			overlay.appendChild(del);
+			div.appendChild(node);
+			div.appendChild(overlay);
 				}
 			}
 		});

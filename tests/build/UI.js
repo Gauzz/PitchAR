@@ -782,6 +782,31 @@ searchImg[0].addEventListener('keyup', function (event) {
 					node.setAttribute('onclick', 'pushImg(this);');
 					if (asset.Assetstype == 'image') document.getElementById('galleryimgs').appendChild(node);
 					perm = i;
+					var div = document.createElement('div');
+				div.setAttribute('class', 'hbox');
+				div.appendChild(node);
+				var overlay = document.createElement('div');
+				overlay.setAttribute('class', 'options');
+
+				var del = document.createElement('button');
+				del.setAttribute('onclick', 'delimg(this)');
+				del.setAttribute('data-pid', asset.id);
+				del.innerHTML = "<i class='fa fa-trash'></i>";
+				overlay.appendChild(del);
+				div.appendChild(node);
+				div.appendChild(overlay);
+				var edit = document.createElement('button');
+				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('data-toggle', "modal");
+				edit.setAttribute('data-target', "#editmodal");
+				edit.setAttribute('data-pid', asset.id);
+				edit.setAttribute('data-typ', 'a');
+				edit.innerHTML = "<i class='fa fa-edit'></i>";
+				overlay.appendChild(edit);
+				div.appendChild(node);
+				div.appendChild(overlay);
+				document.getElementById('galleryimgs').appendChild(div);
+
 				}
 			}
 		});

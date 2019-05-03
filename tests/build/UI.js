@@ -1536,7 +1536,8 @@ video.addEventListener('click', () => {
 				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
 				overlay.appendChild(videotype);
 				div.appendChild(overlay);
-				if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(div);
+				if (media.type == '2D' || media.type == '360')
+					document.getElementById('galleryvids').appendChild(div);
 				perm = i;
 			}
 		}
@@ -1584,6 +1585,7 @@ searchVid[6].addEventListener('keyup', function (event) {
 			overlay.appendChild(del);
 			div.appendChild(node);
 			div.appendChild(overlay);
+			document.getElementById('galleryvids').appendChild(div);
 				}
 			}
 		});

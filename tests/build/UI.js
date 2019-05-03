@@ -1395,7 +1395,7 @@ video.addEventListener('click', () => {
 	console.log('reached video');
 	document.getElementById('galleryvids').innerHTML = '';
 	document.getElementsByClassName("searchbar")[7].value="";
-	document.getElementsByClassName("searchbar")[8].value="";
+	//document.getElementsByClassName("searchbar")[8].value="";
 
 	$.ajax({
 		method: 'post',

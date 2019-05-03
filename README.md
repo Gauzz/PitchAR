@@ -25,3 +25,5 @@ post url : https://pitchar.io/api/_search_media.php
             "project_name": "project name",
             "tags": "media,video,obj,thumbnail"
         },
+
+croppie doc : https://foliotek.github.io/Croppie/

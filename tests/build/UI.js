@@ -1433,7 +1433,7 @@ video.addEventListener('click', () => {
 				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
 				var edit = document.createElement('button');
-				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('onclick', 'editMediaId(this)');
 				edit.setAttribute('data-toggle', "modal");
 				edit.setAttribute('data-target', "#editmodal");
 				edit.setAttribute('data-pid', media.id);

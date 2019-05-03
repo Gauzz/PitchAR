@@ -1525,7 +1525,7 @@ video.addEventListener('click', () => {
 				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
 				var edit = document.createElement('button');
-				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('onclick', 'editMediaId(this)');
 				edit.setAttribute('data-toggle', "modal");
 				edit.setAttribute('data-target', "#editmodal");
 				edit.setAttribute('data-pid', media.id);
@@ -1536,7 +1536,8 @@ video.addEventListener('click', () => {
 				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
 				overlay.appendChild(videotype);
 				div.appendChild(overlay);
-				if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(div);
+				if (media.type == '2D' || media.type == '360')
+					document.getElementById('galleryvids').appendChild(div);
 				perm = i;
 			}
 		}
@@ -1574,7 +1575,9 @@ searchVid[6].addEventListener('keyup', function (event) {
 					node.setAttribute('onclick', 'pushVid(this);');
 					if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(node);
 					perm = i;
-					var div = document.createElement('div');
+				
+
+			var div = document.createElement('div');
 				div.setAttribute('class', 'hbox');
 				div.appendChild(node);
 				var overlay = document.createElement('div');
@@ -1585,7 +1588,7 @@ searchVid[6].addEventListener('keyup', function (event) {
 				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
 				var edit = document.createElement('button');
-				edit.setAttribute('onclick', 'editAssetId(this)');
+				edit.setAttribute('onclick', 'editMediaId(this)');
 				edit.setAttribute('data-toggle', "modal");
 				edit.setAttribute('data-target', "#editmodal");
 				edit.setAttribute('data-pid', media.id);
@@ -1596,7 +1599,8 @@ searchVid[6].addEventListener('keyup', function (event) {
 				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
 				overlay.appendChild(videotype);
 				div.appendChild(overlay);
-				if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(div);
+				if (media.type == '2D' || media.type == '360')
+					document.getElementById('galleryvids').appendChild(div);
 				perm = i;
 				}
 			}

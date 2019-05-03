@@ -1575,7 +1575,13 @@ searchVid[6].addEventListener('keyup', function (event) {
 					node.setAttribute('onclick', 'pushVid(this);');
 					if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(node);
 					perm = i;
+<<<<<<< HEAD
 					var div = document.createElement('div');
+=======
+				
+
+			var div = document.createElement('div');
+>>>>>>> 19a27c08c88b7f0a59f90db571510098fa7a4c2a
 				div.setAttribute('class', 'hbox');
 				div.appendChild(node);
 				var overlay = document.createElement('div');
@@ -1596,7 +1602,14 @@ searchVid[6].addEventListener('keyup', function (event) {
 				var videotype = document.createElement('button');
 				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
 				overlay.appendChild(videotype);
+<<<<<<< HEAD
 				document.getElementById('galleryvids').appendChild(div);
+=======
+				div.appendChild(overlay);
+				if (media.type == '2D' || media.type == '360')
+					document.getElementById('galleryvids').appendChild(div);
+				perm = i;
+>>>>>>> 19a27c08c88b7f0a59f90db571510098fa7a4c2a
 				}
 			}
 		});

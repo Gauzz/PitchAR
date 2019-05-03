@@ -1107,6 +1107,7 @@ music.addEventListener('click', () => {
 				overlay.appendChild(del);
 				div.appendChild(node);
 				div.appendChild(overlay);
+				
 				var edit = document.createElement('button');
 				edit.setAttribute('onclick', 'editAssetId(this)');
 				edit.setAttribute('data-toggle', "modal");
@@ -1188,10 +1189,12 @@ searchAud[4].addEventListener('keyup', function (event) {
 				var del = document.createElement('button');
 				del.setAttribute('onclick', 'delaud(this)');
 				del.innerHTML = "<i class='fa fa-trash'></i>";
-				del.setAttribute('data-pid', media.id);
+				del.setAttribute('data-pid',media.id);
+				console.log(media.id);
 				overlay.appendChild(del);
 				div.appendChild(node);
 				div.appendChild(overlay);
+				document.getElementById('galleryauds').appendChild(div);
 				var edit = document.createElement('button');
 				edit.setAttribute('onclick', 'editAssetId(this)');
 				edit.setAttribute('data-toggle', "modal");
@@ -1313,6 +1316,7 @@ searchFS[0].addEventListener('keyup', function (event) {
 		});
 	}
 });
+
 
 function delaud(e) {
 	$.ajax({

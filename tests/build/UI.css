@@ -254,4 +254,13 @@ a :focus{
       position: absolute;
       font-size: 13px;
     }
+    
+
+ 
+}
+
+.phrasetxt{ 
+  display: block;
+  min-width: 500px;
+  word-wrap: break-word;
 }

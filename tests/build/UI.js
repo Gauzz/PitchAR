@@ -1470,7 +1470,7 @@ searchVid[6].addEventListener('keyup', function (event) {
 			success(result) {
 				console.log(result);
 				document.getElementById('galleryvids').innerHTML = '';
-				var medias = result.medias;
+				var medias = result.media;
 				for (var i = 0; i < medias.length; i++) {
 					media = medias[i];
 					var node = document.createElement('img');

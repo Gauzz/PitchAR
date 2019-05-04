@@ -27,3 +27,10 @@ post url : https://pitchar.io/api/_search_media.php
         },
 
 croppie doc : https://foliotek.github.io/Croppie/
+
+https://www.w3schools.com/js/js_ajax_intro.asp
+
+https://www.w3schools.com/js/js_json_intro.asp
+
+https://www.w3schools.com/js/js_htmldom.asp
+

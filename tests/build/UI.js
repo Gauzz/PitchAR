@@ -3,7 +3,7 @@ let k = 0;
 let perm = 0;
 let ctaid = 0;
 var n = 0;
-var cnt = 0;
+var cnt = 1;
 var uploadbar = document.getElementById('uploadbar');
 var imgfil = '';
 var filename = '';
@@ -424,30 +424,45 @@ function toogleLoop(e) {
 		e.dataset.loop = false;
 	}
 }
-
+var pos=0;
 function pushYT(e) {
-	cnt++;
+	if (cnt<=3){
+		//if (pos<=3){
+
 	ytembed = document.getElementById('ytembed');
 	ytembed.src = 'https://www.youtube.com/embed/' + e.dataset.source;
 	var d2 = document.getElementById('d2');
 	var node = document.createElement('img');
 	var id = e.id + 'play';
-	node.id = id;
+	node.id = id+cnt;
 	node.src = e.src;
 	node.style.position = 'fixed';
-	node.style.top = 100 * cnt + 'px';
-	node.style.marginLeft = '160px';
-	node.style.width = '150px';
+	node.style.top = 50 + (100 * (cnt)) + 'px';
+	//pos=cnt;
+	//pos= node.style.top;
+	//console.log(pos);
+	node.style.marginLeft = '10px';
+	node.style.width = '80px';
 	node.classList.add('exp2');
 	node.setAttribute('onclick', 'ytset(this);');
 	node.setAttribute('data-source', e.dataset.source);
 	node.setAttribute('data-toggle', 'modal');
 	node.setAttribute('data-target', '#ytmodal');
 	d2.appendChild(node);
+	cnt++;	
+}
+	else{
+		alert("Limit Reached");
+		}				
+	
+
 }
 
 function ytremove(e) {
+
 	document.getElementById('ytembed').src = '';
+	
+	
 }
 
 function ytset(e) {
@@ -457,9 +472,44 @@ function ytset(e) {
 }
 
 function ytUnpushedVideo(e) {
+	len= (e.dataset.idyt).length;
+	var idd= (e.dataset.idyt).charAt(len-1);
+	console.log(idd);
 	document.getElementById(e.dataset.idyt).remove();
 	document.getElementById('ytembed').src = '';
+		cnt--;
+		
+		if(idd=="1")
+		{
+			cnt=1;
+		}
+		else if(idd=="2"){
+
+			cnt=2;
+		}
+		else if(idd=="3"){
+
+			cnt=3;
+		}
+		/*cnt =1 if (position of deleted video is 150px)
+		else if position of deleted video is 250px c=2 
+		else if position of deleted video is 350 px c=3*/
+	//alert (cnt);
+	/*var node = document.createElement('img');
+	node.style.top = 50 + (100 * (cnt)) + 'px';
+	pos= node.style.top;
+	alert(pos);*/
+	/*if(cnt==3){
+			pos=
+			pushYT();
+	*///cnt= (pos-50)/100;
+	//alert(cnt);
+	
+	
+	//alert(cnt);
+
 }
+//}
 
 function readURL(input) {
 	if (input.files && input.files[0]) {
@@ -836,6 +886,7 @@ searchYT[0].addEventListener('keyup', function (event) {
 			for (var i = 0; i < assets.length; i++) {
 				asset = assets[i];
 				var node = document.createElement('img');
+
 				node.src = asset.snippet.thumbnails.high.url;
 				node.width = 125;
 				node.id = 'ytimg' + i;
@@ -1321,7 +1372,9 @@ function delaud(e) {
 		data: { authtoken: token, product_id: e.dataset.pid },
 		success(data) {
 			console.log(data);
-			e.parentNode.parentNode.style.display = 'none';
+			
+
+			e.parentNode.parentNode.style.display= 'none';
 		}
 	});
 }
@@ -1525,7 +1578,7 @@ video.addEventListener('click', () => {
 				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
 				var edit = document.createElement('button');
-				edit.setAttribute('onclick', 'editMediaId(this)');
+				edit.setAttribute('onclick', 'editAssetId(this)');
 				edit.setAttribute('data-toggle', "modal");
 				edit.setAttribute('data-target', "#editmodal");
 				edit.setAttribute('data-pid', media.id);
@@ -1575,13 +1628,10 @@ searchVid[6].addEventListener('keyup', function (event) {
 					node.setAttribute('onclick', 'pushVid(this);');
 					if (media.type == '2D' || media.type == '360') document.getElementById('galleryvids').appendChild(node);
 					perm = i;
-<<<<<<< HEAD
-					var div = document.createElement('div');
-=======
-				
+
 
 			var div = document.createElement('div');
->>>>>>> 19a27c08c88b7f0a59f90db571510098fa7a4c2a
+
 				div.setAttribute('class', 'hbox');
 				div.appendChild(node);
 				var overlay = document.createElement('div');
@@ -1592,7 +1642,7 @@ searchVid[6].addEventListener('keyup', function (event) {
 				del.setAttribute('data-pid', media.id);
 				overlay.appendChild(del);
 				var edit = document.createElement('button');
-				edit.setAttribute('onclick', 'editMediaId(this)');
+				edit.setAttribute('onclick', 'editAssetId(this)');
 				edit.setAttribute('data-toggle', "modal");
 				edit.setAttribute('data-target', "#editmodal");
 				edit.setAttribute('data-pid', media.id);
@@ -1602,14 +1652,14 @@ searchVid[6].addEventListener('keyup', function (event) {
 				var videotype = document.createElement('button');
 				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
 				overlay.appendChild(videotype);
-<<<<<<< HEAD
 				document.getElementById('galleryvids').appendChild(div);
-=======
+					console.log(media.id);
+
 				div.appendChild(overlay);
 				if (media.type == '2D' || media.type == '360')
 					document.getElementById('galleryvids').appendChild(div);
-				perm = i;
->>>>>>> 19a27c08c88b7f0a59f90db571510098fa7a4c2a
+				
+
 				}
 			}
 		});

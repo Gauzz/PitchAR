@@ -207,6 +207,14 @@
               </label>
               <div class='mdl-tooltip' for='buttonUpload'>
                 Upload the image to put inside the marker
+                <div>
+                  <canvas id="canvas">
+                    Your browser does not support the HTML5 canvas element.
+                  </canvas>
+                </div>
+                
+<div id="result"></div>
+
               </div>
             </div>
 
@@ -263,6 +271,8 @@
           <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
         </div>
       </div>
+      		
+
     </div>
   </div>
 
@@ -369,7 +379,7 @@
             <li class="active col-lg-6"><a data-toggle="tab" href="#modelsGallery">
                 <center>MY Gallery</center>
               </a></li>
-            <li class="col-lg-6"><a data-toggle="tab" href="#googlePoly">
+            <li class="col-lg-6" ><a data-toggle="tab" href="#googlePoly">
                 <center>Google Poly</center>
               </a></li>
           </ul>

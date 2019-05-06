@@ -860,6 +860,80 @@ asset.addEventListener('click', () => {
 	document.getElementById('galleryobjs').innerHTML = '';
 	document.getElementsByClassName('searchbar')[2].value = '';
 	document.getElementsByClassName('searchbar')[3].value = '';
+
+	var scene = new THREE.Scene();
+var container = new THREE.Group();
+scene.add(container);
+
+const API_KEY = 'AIzaSyANZMpdihFsQgcJkFIEjasfiLgX6Nyb8SE';
+//var searchGooglePoly = document.getElementsByClassName('searchGooglePoly');
+//searchGooglePoly[0].addEventListener('keyup', function (event) {
+	//event.preventDefault();
+	//if (event.keyCode === 13) {
+		//alert("searchGooglePoly");
+
+		var settings = {
+			async: true,
+			crossDomain: true,
+			url: `https://poly.googleapis.com/v1/assets?keywords=${searchGooglePoly[0]
+				.value}&format=OBJ&key=${API_KEY}`,
+			method: 'GET'
+		};
+
+		$.ajax(settings).done(function (response) {
+			//console.log(response);
+			document.getElementById('googlePolyImgs').innerHTML = '';
+
+			var modResults = response.assets;
+			//console.log(modResults);
+			for (var i = 0; i < modResults.length; i++) {
+				var node = document.createElement('img');
+				node.src = modResults[i].thumbnail.url;
+				node.width = 125;
+				node.height = 125;
+				node.id = 'img' + i;
+				node.style = 'margin:4px;';
+
+				var format = modResults[i].formats.find((format) => {
+					return format.formatType === 'OBJ';
+				});
+				var obj = format.root;
+				var mtl = format.resources.find((resource) => {
+					return resource.url.endsWith('mtl');
+				});
+				var path = obj.url.slice(0, obj.url.indexOf(obj.relativePath));
+
+				node.setAttribute('data-obj', obj.url);
+				node.setAttribute('data-mtl', mtl.url);
+
+				//node.setAttribute("onclick","pushAud(this);");
+				if (format !== undefined) {
+					node.setAttribute('onclick', 'pushPolyModel(this);');
+				}
+
+				node.setAttribute('class', 'image');
+				node.setAttribute('data-source', modResults[i].name);
+				var div = document.createElement('div');
+				div.setAttribute('class', 'hbox');
+				div.appendChild(node);
+				var overlay = document.createElement('div');
+				overlay.setAttribute('class', 'options');
+				var del = document.createElement('button');
+				del.setAttribute('onclick', 'delaud(this)');
+				del.innerHTML = "<i class='fa fa-trash'></i>";
+				overlay.appendChild(del);
+				div.appendChild(node);
+				div.appendChild(overlay);
+				document.getElementById('googlePolyImgs').appendChild(div);
+
+				div.appendChild(node);
+				div.appendChild(overlay);
+			}
+		});
+	//}
+//});
+
+
 	$.ajax({
 		method: 'post',
 		url: 'https://pitchar.io/api/_fetch-assets.php',
@@ -1783,4 +1857,6 @@ document.getElementById('choosemarkerbut').addEventListener('click', function (e
 			}
 		}
 	});
+
+	
 });

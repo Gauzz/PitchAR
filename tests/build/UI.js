@@ -1196,6 +1196,83 @@ music.addEventListener('click', () => {
 	document.getElementsByClassName("searchbar")[5].value="";
 	document.getElementsByClassName("searchbar")[6].value="";
 	console.log('reached audio');
+	var searchFS = document.getElementsByClassName('searchFS');
+//searchFS[0].addEventListener('keyup', function (event) {
+//	event.preventDefault();
+//	if (event.keyCode === 13) {
+		//alert("searchFS");
+
+		var settings = {
+			async: true,
+			crossDomain: true,
+			url:
+				'https://freesound.org/apiv2/search/text/?query=' +
+				searchFS[0].value +
+				'&fields=name,previews&token=EGxQRoYUVQsqYXQ5gbbk9oSp5zU9MICs4KEa9404',
+			method: 'GET'
+		};
+
+		$.ajax(settings).done(function (response) {
+			//console.log(response);
+			document.getElementById('fsImgs').innerHTML = '';
+
+			var audResults = response.results;
+			//console.log(audResults);
+			for (var i = 0; i < audResults.length; i++) {
+				var node = document.createElement('img');
+				//node.src=media.thumbnail;
+				node.width = 125;
+				node.height = 125;
+				node.id = 'img' + i;
+				node.style = 'margin:4px;';
+				node.setAttribute('onclick', 'pushAud(this);');
+				node.setAttribute('class', 'image');
+				node.setAttribute('data-source', audResults[i].previews['preview-lq-mp3']);
+				var div = document.createElement('div');
+				div.setAttribute('class', 'hbox');
+				div.appendChild(node);
+				var overlay = document.createElement('div');
+				overlay.setAttribute('class', 'options');
+				var del = document.createElement('button');
+				del.setAttribute('onclick', 'delaud(this)');
+				del.innerHTML = "<i class='fa fa-trash'></i>";
+				overlay.appendChild(del);
+				div.appendChild(node);
+				div.appendChild(overlay);
+				document.getElementById('fsImgs').appendChild(div);
+				//if(media.type=='audio')
+				//document.getElementById("galleryauds").appendChild(div);
+				//perm=i;
+
+				var audioPrev = document.createElement('button');
+				audioPrev.setAttribute('data-source', audResults[i].previews['preview-lq-mp3']);
+				audioPrev.id = audResults[i].name;
+				audioPrev.setAttribute('onclick', 'previewAudio(this);');
+				audioPrev.innerHTML = "<i class='fa fa-play'></i>";
+				overlay.appendChild(audioPrev);
+				div.appendChild(node);
+				div.appendChild(overlay);
+
+				var audioLoop = document.createElement('select');
+				audioLoop.id = 'audioLoop' + i;
+				var opt1 = document.createElement('option');
+				opt1.value = 'play once';
+				opt1.innerHTML = 'play once';
+				audioLoop.appendChild(opt1);
+				var opt2 = document.createElement('option');
+				opt2.value = 'repeat';
+				opt2.innerHTML = 'repeat';
+				audioLoop.appendChild(opt2);
+				audioLoop.setAttribute('data-loop', false);
+				audioLoop.setAttribute('onclick', 'toogleLoop(this)');
+				overlay.appendChild(audioLoop);
+
+				div.appendChild(node);
+				div.appendChild(overlay);
+			}
+		});
+	//}
+//});
 	$.ajax({
 		method: 'post',
 		url: 'https://pitchar.io/api/_fetch-media.php',
@@ -1619,6 +1696,42 @@ video.addEventListener('click', () => {
 	document.getElementById('galleryvids').innerHTML = '';
 	document.getElementsByClassName("searchbar")[7].value="";
 	//document.getElementsByClassName("searchbar")[8].value="";
+	var searchYT = document.getElementsByClassName('searchYT');
+//searchYT[0].addEventListener('keyup', function (event) {
+	//event.preventDefault();
+	//if (event.keyCode === 13) {
+		var q = searchYT[0].value;
+		console.log(q);
+		var request = gapi.client.youtube.search.list({
+			q: q,
+			maxResults: 12,
+			type: 'video',
+			part: 'snippet',
+			videoEmbeddable: 'true',
+			videoSyndicated: 'true'
+		});
+
+		request.execute(function (response) {
+			document.getElementById('ytImgs').innerHTML = '';
+			var assets = response.result.items;
+			console.log(assets);
+
+			for (var i = 0; i < assets.length; i++) {
+				asset = assets[i];
+				var node = document.createElement('img');
+
+				node.src = asset.snippet.thumbnails.high.url;
+				node.width = 125;
+				node.id = 'ytimg' + i;
+				node.style = 'margin:4px;';
+				node.setAttribute('onclick', 'pushYT(this);');
+				node.setAttribute('data-source', asset.id.videoId);
+				document.getElementById('ytImgs').appendChild(node);
+				perm = i;
+			}
+		});
+	//}
+//});
 
 	$.ajax({
 		method: 'post',

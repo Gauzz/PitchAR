@@ -8,18 +8,30 @@ var marker = "<a-marker-camera preset='hiro'>";
 
 var mid3d = ' ';
 var mid2d = '</a-marker-camera></a-scene>';
+var end1="<div id='splashscreen' style='background-color: white; height:100% ; width:100%; position:absolute; top:0px; left:0px; z-index:4;'>"+
+"<img src='https://stemkoski.github.io/AR-Examples/markers/hiro.png' width='40%' style='margin: 10px;float:left;'>"+
+"<a href='#' style='position: absolute;top: 0px;margin: 10px;text-decoration: none;color:#4846ae;'>Share Marker</a>"+
+"<a href='https://stemkoski.github.io/AR-Examples/markers/hiro.png' style='position: absolute;top: 24px;margin: 10px;text-decoration: none;color: #505050;;'>Facebook</a>"+
+"<a href='https://stemkoski.github.io/AR-Examples/markers/hiro.png' style='position: absolute;top: 48px;margin: 10px;text-decoration: none;color:#505050;'>Whatsapp</a>"+
+"<a href='https://stemkoski.github.io/AR-Examples/markers/hiro.png' style='position: absolute;top: 72px;margin: 10px;text-decoration: none;color:#505050;'> URL</a>"+
+"<a href='https://stemkoski.github.io/AR-Examples/markers/hiro.png' style='position: absolute;top: calc(40vw + 10px);left: 10px; margin: 10px;text-decoration: none;color:#4846ae;'>Download Image Marker</a>"+
+"<button style='background-color: #4846ae;color: white;width:100%;position:absolute;bottom:0px;left:0px;padding:10px;' onclick='xyz()'> Watch AR Experience </button>"+
+"</div>" ;
 var end =
 	"<div id='ytmodal' class='modal' tabindex='-1' role='dialog'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><button type='button' onclick='ytremove(this);' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><br></div><div class='modal-body'><iframe id='ytembed' src='' width='100%' height='60%' frameborder=0px allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen ></iframe></div></div></div></div>" +
-	"<script>function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; }function audioset(e){var x= document.getElementById(e.dataset.source);x.play();}</script></body></html>";
+	"<script>function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; }function audioset(e){var x= document.getElementById(e.dataset.source);x.play();} function xyz(){document.getElementById('splashscreen').style.display= 'none';}</script></body></html>";
+
 var file;
 
 if (expid != 0)
 	editExperience();
 
+	
+
 function readFile() {
 	showEntities();
 	console.log(start1 + marker + mid3d + mid2d + end);
-	var file = start1 + marker + mid3d + mid2d + end;
+	var file = start1 + marker + mid3d + mid2d + end1+end;
 	return file;
 }
 
@@ -93,6 +105,15 @@ function sharelnk(e) {
 		}
 	});
 }
+
+
+function gotolink(){
+
+	var k= document.getElementById('shrlnk').value;
+	window.open(k);
+}
+
+
 
 function selectMarker(e) {
 	$.ajax({

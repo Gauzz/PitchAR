@@ -51,7 +51,11 @@
     "aframe-orbit-controls-component-2": "^0.1.14",
     "aframe-particle-system-component": "^1.1.3",
     "animejs": "^3.0.1",
+<<<<<<< HEAD
     "cropperjs": "^1.5.1",
+=======
+    "cropper": "^4.0.0",
+>>>>>>> 11b3b83cc2243b370863444134784076a6788c60
     "deep-equal": "^1.0.1",
     "https-server": "^0.1.2",
     "npm": "^6.9.0",

@@ -254,4 +254,21 @@ a :focus{
       position: absolute;
       font-size: 13px;
     }
+    
+
+ 
+}
+
+.phrasetxt{ 
+  display: block;
+  min-width: 500px;
+  word-wrap: break-word;
+}
+
+#canvas {
+  height: 600px;
+  width: 600px;
+  background-color: #ffffff;
+  cursor: default;
+  border: 1px solid black;
 }

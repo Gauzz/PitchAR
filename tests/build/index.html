@@ -205,6 +205,14 @@
               </label>
               <div class='mdl-tooltip' for='buttonUpload'>
                 Upload the image to put inside the marker
+                <div>
+                  <canvas id="canvas">
+                    Your browser does not support the HTML5 canvas element.
+                  </canvas>
+                </div>
+                
+<div id="result"></div>
+
               </div>
             </div>
 
@@ -261,6 +269,8 @@
           <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
         </div>
       </div>
+      		
+
     </div>
   </div>
 
@@ -289,6 +299,8 @@
           <button type="button" onclick="sharelnk(this)" style='width:200px;' class="uploadbut">
             Get sharable link</button>
           <input type='text' id='shrlnk' placeholder='Sharing Link'>
+          <button type="button" onclick="gotolink()" style='width:10px;'><i class="fa fa-external-link"></i></button>
+
 
         </div>
         <div class="modal-footer">
@@ -367,7 +379,7 @@
             <li class="active col-lg-6"><a data-toggle="tab" href="#modelsGallery">
                 <center>MY Gallery</center>
               </a></li>
-            <li class="col-lg-6"><a data-toggle="tab" href="#googlePoly">
+            <li class="col-lg-6" ><a data-toggle="tab" href="#googlePoly">
                 <center>Google Poly</center>
               </a></li>
           </ul>
@@ -444,21 +456,29 @@
             <option value='center'> center </option>
           </select>
           <br>
+         
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
-            style='color:crimson;font-family:orbitron;cursor:pointer;'>Orbitron</span>
+            style='color:crimson;font-family:orbitron;cursor:pointer;max-width:10px;'>Orbitron</span>
+         
+            <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:roboto;cursor:pointer;'>Roboto</span>
+            <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:leaguemono;cursor:pointer;'>League Mono</span>
+            <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:knewave;cursor:pointer;'>Knewave</span>
+            <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:yatraone;cursor:pointer;'>Yatra One</span>
+            <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:greatvibes;cursor:pointer;'>Great Vibes</span>
+            <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:amita;cursor:pointer;'>Amita</span>
-
+        
           <br>
           <br>
         </div>
@@ -468,6 +488,7 @@
       </div>
     </div>
   </div>
+  
   <div class="modal " id="music" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -616,7 +637,32 @@
           <button type="button" id="ctaBtnUnpushed" onclick='ctaUnpushed(this);' data-dismiss="modal" class="close">
             <i class="fa fa-trash"></i> &nbsp;&nbsp;&nbsp;
           </button>
-          <button type="button" class="close" id="ctaBtnGo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <button type="button" class="close" id="ctaBtnGo" onClick= 'linkvisit()'>
+      
+
+
+
+
+
+
             <i class="fa fa-play"></i> &nbsp;&nbsp;&nbsp;
           </button>
           <br>

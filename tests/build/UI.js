@@ -3,7 +3,8 @@ let k = 0;
 let a=0;
 let perm = 0;
 let ctaid = 0;
-var n = 0;
+var w = 0;
+var n=0;
 var u = 0;
 var cnt = 1;
 var uploadbar = document.getElementById('uploadbar');
@@ -357,8 +358,8 @@ function updatetype(e) {
 
 
 function pushAud(e) {
-	n++;
-	a=(10 + n * 60);
+	w++;
+	a=(10 + w * 60);
 	var d2 = document.getElementById('d2');
 	var node = document.createElement('audio');
 	var id = e.id + 'aud';
@@ -410,9 +411,9 @@ var rmvnode=(p-10)/60;
 //console.log(q); //margin of removed node
 //console.log(l); //margin of next node
 
-console.log(n); //total nodes added
+console.log(w); //total nodes added
 console.log(rmvnode); //position of removed node
-for(var i=rmvnode+1; i<=n; i++)
+for(var i=rmvnode+1; i<=w; i++)
 {
 	
 play=play.nextSibling.nextSibling;

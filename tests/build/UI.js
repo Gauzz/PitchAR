@@ -761,6 +761,8 @@ image.addEventListener('click', () => {
 			console.log(result);
 			console.log('success2');
 			var assets = result.assets;
+			console.log(assets);
+			
 			for (var i = 0; i < assets.length; i++) {
 				asset = assets[i];
 				var node = document.createElement('img');
@@ -1036,7 +1038,11 @@ const API_KEY = 'AIzaSyANZMpdihFsQgcJkFIEjasfiLgX6Nyb8SE';
 					overlay.appendChild(edit);
 					div.appendChild(node);
 					div.appendChild(overlay);
+
+					if ((asset.Assetstype == 'gltf' && asset.gltf != '') || (asset.Assetstype == 'fbx' && asset.fbx != '') || (asset.Assetstype == 'obj' && asset.obj != '' ))
+					{
 					document.getElementById('galleryobjs').appendChild(div);
+					}
 				}
 				perm = i;
 			}
@@ -1318,7 +1324,7 @@ music.addEventListener('click', () => {
 				edit.setAttribute('data-typ', 'm');
 				edit.innerHTML = "<i class='fa fa-edit'></i>";
 				overlay.appendChild(edit);
-				if (media.type == 'audio') document.getElementById('galleryauds').appendChild(div);
+				if (media.type == 'audio' && media.audio != '') document.getElementById('galleryauds').appendChild(div);
 				perm = i;
 
 				var audioPrev = document.createElement('button');
@@ -1780,7 +1786,7 @@ video.addEventListener('click', () => {
 				videotype.innerHTML = "<b style='position:absolute;left:2px;top:2px;'>" + media.type + "</b>";
 				overlay.appendChild(videotype);
 				div.appendChild(overlay);
-				if (media.type == '2D' || media.type == '360')
+				if (media.type == '2D' || media.type == '360' && media.video != '')
 					document.getElementById('galleryvids').appendChild(div);
 				perm = i;
 			}

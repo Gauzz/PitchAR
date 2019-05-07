@@ -1,5 +1,6 @@
 
 let k = 0;
+let t=0;
 let a=0;
 let perm = 0;
 let ctaid = 0;
@@ -201,10 +202,15 @@ function pushVid(e) {
 
 function addbut(e) {
 	u++;
+	if(u==0)
+	{t=0;}
+	else
+	{var t=parseInt(document.getElementById('buttext').value.length);}
+	//console.log(t);
 	var x = cta.cloneNode(true);
 	x.style.position = 'fixed';
 	x.style.bottom = '100px';
-	x.style.marginLeft = 10 + u * 60 + 'px';
+	x.style.marginLeft = 10 + (t*10) + (u * 60) +'px';
 	x.style.zIndex = '5';
 	x.id = 'cta' + ctaid;
 	x.style.height = 'fit-content';

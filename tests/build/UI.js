@@ -1,8 +1,10 @@
 
 let k = 0;
+let a=0;
 let perm = 0;
 let ctaid = 0;
 var n = 0;
+var u = 0;
 var cnt = 1;
 var uploadbar = document.getElementById('uploadbar');
 var imgfil = '';
@@ -197,11 +199,11 @@ function pushVid(e) {
 }
 
 function addbut(e) {
-	n++;
+	u++;
 	var x = cta.cloneNode(true);
 	x.style.position = 'fixed';
-	x.style.bottom = '50px';
-	x.style.marginLeft = 10 + n * 60 + 'px';
+	x.style.bottom = '100px';
+	x.style.marginLeft = 10 + u * 60 + 'px';
 	x.style.zIndex = '5';
 	x.id = 'cta' + ctaid;
 	x.style.height = 'fit-content';
@@ -223,8 +225,31 @@ function ctaset(e) {
 }
 
 function ctaUnpushed(e) {
-	document.getElementById(e.dataset.idcta).remove();
+	
 	//document.getElementById(e.dataset.idaud.slice(0, e.dataset.idaud.length-3)).remove();	
+	var play=document.getElementById(e.dataset.idcta);
+var q=play.style.marginLeft;
+var p=parseInt(q.substring(0,q.indexOf("p")));
+var rmvnode=(p-10)/60;
+
+//var l=play.nextSibling.nextSibling.style.marginLeft;
+//console.log(q); //margin of removed node
+//console.log(l); //margin of next node
+
+console.log(u); //total nodes added
+console.log(rmvnode); //position of removed node
+for(var i=rmvnode+1; i<=u; i++)
+{
+	
+play=play.nextSibling;
+console.log(play);
+var l=play.style.marginLeft;
+var a=parseInt(play.style.marginLeft.substring(0,play.style.marginLeft.indexOf("p")));
+a=a-60;
+play.style.marginLeft=a+"px";
+}	
+
+document.getElementById(e.dataset.idcta).remove();
 }
 
 
@@ -333,6 +358,7 @@ function updatetype(e) {
 
 function pushAud(e) {
 	n++;
+	a=(10 + n * 60);
 	var d2 = document.getElementById('d2');
 	var node = document.createElement('audio');
 	var id = e.id + 'aud';
@@ -354,7 +380,7 @@ function pushAud(e) {
 	play.id = id + 'btn';
 	play.style.position = 'fixed';
 	play.style.bottom = '50px';
-	play.style.marginLeft = 10 + n * 60 + 'px';
+	play.style.marginLeft = a + 'px';
 	//play.setAttribute('onclick', 'playaud(this)');
 	play.setAttribute('onclick', 'audioset(this)');
 	play.setAttribute('data-toggle', 'modal');
@@ -373,8 +399,32 @@ function audioset(e) {
 }
 
 function audBtnUnpushed(e) {
-	document.getElementById(e.dataset.idaud).remove();
+	//document.getElementById(e.dataset.idaud).remove();
 	document.getElementById(e.dataset.idaud.slice(0, e.dataset.idaud.length - 3)).remove();
+var play=document.getElementById(e.dataset.idaud);
+var q=play.style.marginLeft;
+var p=parseInt(q.substring(0,q.indexOf("p")));
+var rmvnode=(p-10)/60;
+
+//var l=play.nextSibling.nextSibling.style.marginLeft;
+//console.log(q); //margin of removed node
+//console.log(l); //margin of next node
+
+console.log(n); //total nodes added
+console.log(rmvnode); //position of removed node
+for(var i=rmvnode+1; i<=n; i++)
+{
+	
+play=play.nextSibling.nextSibling;
+console.log(play);
+var l=play.style.marginLeft;
+var a=parseInt(play.style.marginLeft.substring(0,play.style.marginLeft.indexOf("p")));
+a=a-60;
+play.style.marginLeft=a+"px";
+}	
+
+document.getElementById(e.dataset.idaud).remove();
+
 }
 
 function previewAudio(e) {

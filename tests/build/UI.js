@@ -14,6 +14,7 @@ var filename = '';
 var bool = 0;
 var object;
 var edittype;
+var linkid;
 function auto() {
 	document.getElementById('auth').value = token;
 	document.getElementById('auth2').value = token;
@@ -202,17 +203,36 @@ function pushVid(e) {
 
 function addbut(e) {
 	u++;
+<<<<<<< HEAD
 	if(u==0)
 	{t=0;}
 	else
 	{var t=parseInt(document.getElementById('buttext').value.length);}
 	//console.log(t);
+=======
+	
+
+
+
+
+	lnk = document.getElementById("butlink").value;
+	console.log(lnk);
+	
+
+
+
+
+
+
+
+>>>>>>> 9774e1afb8e3ff94b7d3a1473dbd2095e2c7136e
 	var x = cta.cloneNode(true);
 	x.style.position = 'fixed';
 	x.style.bottom = '100px';
 	x.style.marginLeft = 10 + (t*10) + (u * 60) +'px';
 	x.style.zIndex = '5';
 	x.id = 'cta' + ctaid;
+	linkid= x.id;
 	x.style.height = 'fit-content';
 	x.classList.add('exp2');
 	x.setAttribute('data-toggle', 'modal');
@@ -230,6 +250,40 @@ function addbut(e) {
 function ctaset(e) {
 	document.getElementById('ctaBtnUnpushed').setAttribute('data-idcta', e.id);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function linkvisit(){
+
+		//alert(linkid);
+		window.open(document.getElementById(linkid).href);
+		//console.log(window.open(document.getElementById('cta'+ ctaid ).href););
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function ctaUnpushed(e) {
 	

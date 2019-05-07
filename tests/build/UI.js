@@ -302,6 +302,7 @@ play.style.marginLeft=a+"px";
 }	
 
 document.getElementById(e.dataset.idcta).remove();
+u--;
 }
 
 
@@ -476,6 +477,7 @@ play.style.marginLeft=a+"px";
 }	
 
 document.getElementById(e.dataset.idaud).remove();
+w--;
 
 }
 

@@ -94,6 +94,15 @@ function sharelnk(e) {
 	});
 }
 
+
+function gotolink(){
+
+	var k= document.getElementById('shrlnk').value;
+	window.open(k);
+}
+
+
+
 function selectMarker(e) {
 	$.ajax({
 		method: 'POST',

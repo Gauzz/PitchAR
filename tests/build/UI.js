@@ -203,13 +203,12 @@ function pushVid(e) {
 
 function addbut(e) {
 	u++;
-<<<<<<< HEAD
 	if(u==0)
 	{t=0;}
 	else
 	{var t=parseInt(document.getElementById('buttext').value.length);}
 	//console.log(t);
-=======
+
 	
 
 
@@ -225,7 +224,6 @@ function addbut(e) {
 
 
 
->>>>>>> 9774e1afb8e3ff94b7d3a1473dbd2095e2c7136e
 	var x = cta.cloneNode(true);
 	x.style.position = 'fixed';
 	x.style.bottom = '100px';

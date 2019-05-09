@@ -68,7 +68,7 @@ a :focus{
   opacity: 1;
   
   }
-  #p2{
+  /*#p2{
   font-size:25px;
   border-radius: 30%;
   background-color: white;
@@ -80,7 +80,7 @@ a :focus{
   bottom: 9%;
   position:absolute;
   
-  }
+  }*/
   #p1:hover{
   font-size:35px;
   color: blue;

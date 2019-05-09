@@ -1,6 +1,6 @@
 
 let k = 0;
-let t=0;
+var t=0;
 let a=0;
 let perm = 0;
 let ctaid = 0;
@@ -203,8 +203,9 @@ function pushVid(e) {
 
 function addbut(e) {
 	u++;
-	if(u==0)
-	{t=0;}
+	if(u==0){
+		t=0;
+	}
 	else
 	{var t=parseInt(document.getElementById('buttext').value.length);}
 	//console.log(t);

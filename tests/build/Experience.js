@@ -1,6 +1,13 @@
 var start1 =
-	"<html><head><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
+<<<<<<< HEAD
+	"<html><head><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
 	"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
+=======
+	"<html><head><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
+	"<script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
+	"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>" + 
+	"<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
+>>>>>>> 6e42ecc1293a8273cbe8cd159fb6ab074458c165
 	"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script></head>" +
 	"<body style='margin : 0px; overflow: hidden;'>" +
 	"<a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam;debugUIEnabled: false;'>";
@@ -13,7 +20,7 @@ var mid2d = '</a-marker-camera></a-scene>';
 
 var end1="<div id='splashscreen' style='background-color: white; height:100% ; width:100%; position:absolute; top:0px; left:0px; z-index:4;'>"+
 "<img src='"+linkmarker+"' width='40%' style='margin: 10px;float:left;'>"+
-"<a href='#' style='position: absolute;top: 0px;margin: 10px;text-decoration: none;color:#4846ae;'>Share Marker</a>"+
+"<a style='position: absolute;top: 0px;margin: 10px;text-decoration: none;color:#4846ae;'>Share Marker</a>"+
 "<a onclick='facebook()' style='position: absolute;top: 24px;margin: 10px;text-decoration: none;color: #505050; cursor: pointer;'>Facebook</a>"+
 "<a onclick='whatsapp()' data-action='share/whatsapp/share' style='position: absolute;top: 48px;margin: 10px;text-decoration: none;color:#505050; cursor: pointer;'>Whatsapp</a>"+
 "<a onclick='urll()' style='position: absolute;top: 72px;margin: 10px;text-decoration: none;color:#505050; cursor: pointer;'> URL</a>"+
@@ -22,7 +29,7 @@ var end1="<div id='splashscreen' style='background-color: white; height:100% ; w
 "</div>" ;
 var end =
 	"<div id='ytmodal' class='modal' tabindex='-1' role='dialog'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><button type='button' onclick='ytremove(this);' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><br></div><div class='modal-body'><iframe id='ytembed' src='' width='100%' height='60%' frameborder=0px allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen ></iframe></div></div></div></div>" +
-	"<script> function urll() {window.open('"+linkmarker+"'); } function whatsapp() { window.open('whatsapp://send?text="+ document.location.href +"'); } function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; } function facebook(){window.open('https://www.facebook.com/sharer/sharer.php?u=#"+document.location.href+"');} function audioset(e){var x= document.getElementById(e.dataset.source);x.play();} function xyz(){document.getElementById('splashscreen').style.display= 'none';}</script></body></html>";
+	"<script> function linkvisit(linkid){window.open(linkid.href);} function urll() {window.open('"+linkmarker+"'); } function whatsapp() { window.open('whatsapp://send?text="+ document.location.href +"'); } function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; } function facebook(){window.open('https://www.facebook.com/sharer/sharer.php?u=#"+document.location.href+"');} function audioset(e){var x= document.getElementById(e.dataset.source);x.play();} function xyz(){document.getElementById('splashscreen').style.display= 'none';}</script></body></html>";
 
 var file;
 
@@ -43,6 +50,21 @@ function showEntities() {
 	var sceneEl = document.querySelector('#perswin');
 	var els = sceneEl.querySelectorAll('.exp');
 	var els2 = document.querySelectorAll('.exp2');
+	
+	// if(els2.className == "linkbttn")
+	// if(els2.className.contains("linkbttn"))
+	// console.log("898989");
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	mid3d = '';
 	var temp = '';
 	for (var i = 0; i < els.length; i++) {
@@ -50,11 +72,22 @@ function showEntities() {
 		if (els[i].object3D.visible) mid3d += els[i].outerHTML;
 	}
 	for (var j = 0; j < els2.length; j++) {
-		temp += els2[j].outerHTML;
+		
+		if(els2[j].classList.contains("linkbttn"))
+		{// document.getElementsByClassName("linkbttn")
+		// lnk = document.getElementById("butlink").value;
+		// console.log(lnk);
+		// console.log(els2[j]);
+		els2[j].setAttribute('onclick', 'linkvisit(this)');
+		
+	
+	}
+	temp += els2[j].outerHTML;
 		console.log(els2[j]);
 	}
 	mid2d += temp;
 	return mid3d + mid2d;
+
 }
 
 function sharelnk(e) {
@@ -205,14 +238,14 @@ function editExperience() {
 			var scene = document.getElementById('perswin');
 			dom.innerHTML = data.Data[0].experience;
 			var els = dom.querySelectorAll('.exp');
-			var els2 = document.querySelectorAll('.exp2');
+			var els2 = dom.querySelectorAll('.exp2');
 			console.log(els2);
 			for (var i = 0; i < els.length; i++) {
 				scene.appendChild(els[i]);
 			}
 			for (var i = 0; i < els2.length; i++) {
 				document.getElementById('d2').appendChild(els2[i]);
-				console.log(els2[i]);
+				console.log(dom);
 			}
 		}
 	});

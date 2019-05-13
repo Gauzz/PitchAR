@@ -200,32 +200,45 @@
         <div class="modal-body">
           <div class='mdl-grid'>
             <div class='mdl-cell mdl-cell--4-col'>
-              <label id='buttonUpload' for='fileinput'
-                class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
+              <label id='buttonUpload' for='fileinput' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
                 <input type='file' id='fileinput' style='display: none' accept='image/*'>
                 Upload
               </label>
-              <div class='mdl-tooltip' for='buttonUpload'>
+<<<<<<< HEAD
+              <!-- <div class='mdl-tooltip' for='buttonUpload'>
                 Upload the image to put inside the marker
-                <div>
+                <div> >
                   <canvas id="canvas">
                     Your browser does not support the HTML5 canvas element.
                   </canvas>
                 </div>
+<<<<<<< HEAD
 
                 <div id="result"></div>
+=======
+=======
+              <div style="margin-Left: 20px" class='mdl-tooltip' for='buttonUpload'>
+                Upload the image to put inside the marker
+>>>>>>> 6e42ecc1293a8273cbe8cd159fb6ab074458c165
+                
+                
+                    <div id="result"></div>
+>>>>>>> d12d6e928767a5c1a8d88ce3bed552dc298384f7
 
-              </div>
+              </div> -->
             </div>
 
             <div class='mdl-cell mdl-cell--6-col'>
-              <label id='markerless'
-                class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
+              <label id='markerless' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
                 <button onclick='markerless(this);'> GO MARKERLESS</button>
               </label>
-              <div class='mdl-tooltip' for='markerless'>
+<<<<<<< HEAD
+              <!-- <div class='mdl-tooltip' for='markerless'>
+=======
+              <div  class='mdl-tooltip' for='markerless'>
+>>>>>>> 6e42ecc1293a8273cbe8cd159fb6ab074458c165
                 Create markerless AR
-              </div>
+              </div> -->
             </div>
 
             <div class='mdl-cell mdl-cell--6-col' style='display:none;'>
@@ -244,16 +257,16 @@
                 style="margin-right: 12%;">
                 Save Marker
               </button>
-              <div class='mdl-tooltip' for='buttonDownloadEncoded'>
+              <!-- <div class='mdl-tooltip' for='buttonDownloadEncoded'>
                 Save marker encoded from the uploaded image
-              </div>
+              </div> -->
               <button id='buttonDownloadFullImage'
                 class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>
                 Download Image
               </button>
-              <div class='mdl-tooltip' for='buttonDownloadFullImage'>
+              <!-- <div class='mdl-tooltip' for='buttonDownloadFullImage'>
                 Download marker image
-              </div>
+              </div> -->
             </div>
             <div class='mdl-grid'>
               <div class='mdl-cell mdl-cell--3-col'>
@@ -581,7 +594,7 @@
         </div>
         <div class="modal-body">
           <label>Preview: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><a id='ctabutton' href=""
-            style="color:#FFF;background-color:#4846ae;padding: 8px;font-family:'FontAwesome', Arial;">Text</a>
+            style="color:#FFF;background-color:#4846ae;padding: 8px;font-family:FontAwesome, Arial;">Text</a>
           <br><br><br>
           <div id='backcol' onclick="editback()" title="Button Color" style="background-color:#4846ae;height: 10px;
         width: 30px;display: -webkit-inline-box;border:#d3d3d3;border-style: solid;
@@ -592,7 +605,7 @@
     border-width: 0.5px;"></div>
           <div id='butcolor'></div>
           <br>
-          <select id='buticn' onchange="chgtxt(this)" style="font-family:'FontAwesome', Arial; padding: 8px;">
+          <select id='buticn' onchange="chgtxt(this)" style="font-family:FontAwesome, Arial; padding: 8px;">
             <option> </option>
             <option>&#xf060</option>
             <option>&#xf061</option>
@@ -616,8 +629,10 @@
             <option>&#xf00f</option>
           </select>
 
-          <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)">
+          <input id="buttext" type="text" placeholder="Text" onchange="chgtxt(this)" onkeyup="chgtxt(this)"  onfocus="msg()" maxlength="8">
+          <p id="xx"> ... </p>
           <input id='butlink' type="text" placeholder="http://" onchange="chglnk(this)">
+          
           <input title="Roundness of Button" type="range" min="1" max="50" value="0" class="slider" id="butround"
             oninput="chground(this)">
           <br><br>
@@ -641,6 +656,7 @@
           </button>
 
 
+<<<<<<< HEAD
 
 
 
@@ -665,6 +681,10 @@
 
 
 
+=======
+          <button type="button" class="close" id="ctaBtnGo" onClick= 'linkvisit()'>
+      
+>>>>>>> d12d6e928767a5c1a8d88ce3bed552dc298384f7
             <i class="fa fa-play"></i> &nbsp;&nbsp;&nbsp;
           </button>
           <br>

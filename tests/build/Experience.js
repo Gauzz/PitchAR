@@ -1,5 +1,5 @@
 var start1 =
-	"<html><head><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
+	"<html><head><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><script src='https://aframe.io/releases/0.9.0/aframe.min.js'></script><script src='https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js'></script>" +
 	"<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>" +
 	"<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script></head>" +
 	"<body style='margin : 0px; overflow: hidden;'>" +
@@ -22,7 +22,7 @@ var end1="<div id='splashscreen' style='background-color: white; height:100% ; w
 "</div>" ;
 var end =
 	"<div id='ytmodal' class='modal' tabindex='-1' role='dialog'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><button type='button' onclick='ytremove(this);' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button><br></div><div class='modal-body'><iframe id='ytembed' src='' width='100%' height='60%' frameborder=0px allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen ></iframe></div></div></div></div>" +
-	"<script> function urll() {window.open('"+linkmarker+"'); } function whatsapp() { window.open('whatsapp://send?text="+ document.location.href +"'); } function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; } function facebook(){window.open('https://www.facebook.com/sharer/sharer.php?u=#"+document.location.href+"');} function audioset(e){var x= document.getElementById(e.dataset.source);x.play();} function xyz(){document.getElementById('splashscreen').style.display= 'none';}</script></body></html>";
+	"<script> function linkvisit(linkid){window.open(linkid.href);} function urll() {window.open('"+linkmarker+"'); } function whatsapp() { window.open('whatsapp://send?text="+ document.location.href +"'); } function ytremove(e){document.getElementById('ytembed').src = '';} function ytset(e){ ytembed= document.getElementById('ytembed'); ytembed.src= 'https://www.youtube.com/embed/'+e.dataset.source; } function facebook(){window.open('https://www.facebook.com/sharer/sharer.php?u=#"+document.location.href+"');} function audioset(e){var x= document.getElementById(e.dataset.source);x.play();} function xyz(){document.getElementById('splashscreen').style.display= 'none';}</script></body></html>";
 
 var file;
 
@@ -43,6 +43,21 @@ function showEntities() {
 	var sceneEl = document.querySelector('#perswin');
 	var els = sceneEl.querySelectorAll('.exp');
 	var els2 = document.querySelectorAll('.exp2');
+	
+	// if(els2.className == "linkbttn")
+	// if(els2.className.contains("linkbttn"))
+	// console.log("898989");
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	mid3d = '';
 	var temp = '';
 	for (var i = 0; i < els.length; i++) {
@@ -50,7 +65,17 @@ function showEntities() {
 		if (els[i].object3D.visible) mid3d += els[i].outerHTML;
 	}
 	for (var j = 0; j < els2.length; j++) {
-		temp += els2[j].outerHTML;
+		
+		if(els2[j].classList.contains("linkbttn"))
+		{// document.getElementsByClassName("linkbttn")
+		// lnk = document.getElementById("butlink").value;
+		// console.log(lnk);
+		// console.log(els2[j]);
+		els2[j].setAttribute('onclick', 'linkvisit(this)');
+		
+	
+	}
+	temp += els2[j].outerHTML;
 		console.log(els2[j]);
 	}
 	mid2d += temp;

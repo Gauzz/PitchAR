@@ -272,3 +272,10 @@ a :focus{
   cursor: default;
   border: 1px solid black;
 }
+
+/*.mdl-tooltip {
+  left= 256.8px;
+}*/
+/* .is-active{
+  left: 100px;
+} */

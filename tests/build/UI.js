@@ -229,11 +229,16 @@ function addbut(e) {
 	x.style.position = 'fixed';
 	x.style.bottom = '100px';
 	x.style.marginLeft = 10 + (t*10) + (u * 60) +'px';
-	x.style.zIndex = '5';
+	x.style.zIndex = '1';
 	x.id = 'cta' + ctaid;
 	linkid= x.id;
 	x.style.height = 'fit-content';
 	x.classList.add('exp2');
+
+
+	x.classList.add('linkbttn');
+	
+	
 	x.setAttribute('data-toggle', 'modal');
 	x.setAttribute('data-target', '#ctaModal');
 	var d2 = document.getElementById('d2');
@@ -265,9 +270,8 @@ function ctaset(e) {
 
 function linkvisit(){
 
-		//alert(linkid);
 		window.open(document.getElementById(linkid).href);
-		//console.log(window.open(document.getElementById('cta'+ ctaid ).href););
+		
 }
 
 
@@ -2132,7 +2136,6 @@ document.getElementById('choosemarkerbut').addEventListener('click', function (e
 		url: 'https://pitchar.io/pitchar_api/_fetch_markers.php',
 		data: { authtoken: token, submit: 1 },
 		success(data) {
-			console.log(data);
 			var markers = data.Data;
 			for (var i = 0; i < markers.length; i++) {
 				marker = markers[i];
@@ -2147,5 +2150,8 @@ document.getElementById('choosemarkerbut').addEventListener('click', function (e
 		}
 	});
 
+
+	
 	
 });
+

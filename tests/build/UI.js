@@ -7,7 +7,7 @@ let ctaid = 0;
 var w = 0;
 var n=0;
 var u = 0;
-var cnt = 1;
+var cnt = 0;
 var uploadbar = document.getElementById('uploadbar');
 var imgfil = '';
 var filename = '';
@@ -201,35 +201,33 @@ function pushVid(e) {
 	$('.modal-backdrop').remove();
 }
 
+function msg(){
+	document.getElementById("xx").innerHTML="<i>Text should not exceed 8 characters</i>"
+}
+
 function addbut(e) {
 	u++;
-	if(u==0){
-		t=0;
-	}
-	else
-	{var t=parseInt(document.getElementById('buttext').value.length);}
-	//console.log(t);
-
-	
-
-
-
-
+	//  if(u==1)
+	// {
+	// 	t=0;
+	// }
+	// else
+	// {var t=parseInt(document.getElementById('buttext').value.length);}
+	// console.log(t);
 	lnk = document.getElementById("butlink").value;
 	console.log(lnk);
-	
-
-
-
-
-
-
-
 	var x = cta.cloneNode(true);
 	x.style.position = 'fixed';
+<<<<<<< HEAD
 	x.style.bottom = '100px';
 	x.style.marginLeft = 10 + (t*10) + (u * 60) +'px';
 	x.style.zIndex = '1';
+=======
+	x.style.bottom = '150px';
+	// x.style.left = 10 + (t*10) + (u * 60) +'px';
+	x.style.marginLeft = 10 + (u * 120) +'px';
+	x.style.zIndex = '5';
+>>>>>>> 6e42ecc1293a8273cbe8cd159fb6ab074458c165
 	x.id = 'cta' + ctaid;
 	linkid= x.id;
 	x.style.height = 'fit-content';
@@ -258,33 +256,11 @@ function ctaset(e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 function linkvisit(){
 
 		window.open(document.getElementById(linkid).href);
 		
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -294,7 +270,7 @@ function ctaUnpushed(e) {
 	var play=document.getElementById(e.dataset.idcta);
 var q=play.style.marginLeft;
 var p=parseInt(q.substring(0,q.indexOf("p")));
-var rmvnode=(p-10)/60;
+var rmvnode=(p-10)/120;
 
 //var l=play.nextSibling.nextSibling.style.marginLeft;
 //console.log(q); //margin of removed node
@@ -309,7 +285,7 @@ play=play.nextSibling;
 console.log(play);
 var l=play.style.marginLeft;
 var a=parseInt(play.style.marginLeft.substring(0,play.style.marginLeft.indexOf("p")));
-a=a-60;
+a=a-120;
 play.style.marginLeft=a+"px";
 }	
 
@@ -542,9 +518,10 @@ function toogleLoop(e) {
 }
 var pos=0;
 function pushYT(e) {
-	if (cnt<=3){
+	
+	if (cnt<3){
 		//if (pos<=3){
-
+	cnt++;	
 	ytembed = document.getElementById('ytembed');
 	ytembed.src = 'https://www.youtube.com/embed/' + e.dataset.source;
 	var d2 = document.getElementById('d2');
@@ -565,7 +542,7 @@ function pushYT(e) {
 	node.setAttribute('data-toggle', 'modal');
 	node.setAttribute('data-target', '#ytmodal');
 	d2.appendChild(node);
-	cnt++;	
+	
 }
 	else{
 		alert("Limit Reached");
@@ -588,25 +565,51 @@ function ytset(e) {
 }
 
 function ytUnpushedVideo(e) {
-	len= (e.dataset.idyt).length;
-	var idd= (e.dataset.idyt).charAt(len-1);
-	console.log(idd);
-	document.getElementById(e.dataset.idyt).remove();
-	document.getElementById('ytembed').src = '';
-		cnt--;
+	// len= (e.dataset.idyt).length;
+	// var idd= (e.dataset.idyt).charAt(len-1);
+	// console.log(idd);
+	// document.getElementById(e.dataset.idyt).remove();
+	// document.getElementById('ytembed').src = '';
+	// 	cnt--;
 		
-		if(idd=="1")
-		{
-			cnt=1;
-		}
-		else if(idd=="2"){
+	// 	if(idd=="1")
+	// 	{
+	// 		cnt=1;
+	// 	}
+	// 	else if(idd=="2"){
 
-			cnt=2;
-		}
-		else if(idd=="3"){
+	// 		cnt=2;
+	// 	}
+	// 	else if(idd=="3"){
 
-			cnt=3;
-		}
+	// 		cnt=3;
+	// 	}
+
+
+
+	var play=document.getElementById(e.dataset.idyt);
+	var q=play.style.top;
+	var p=parseInt(q.substring(0,q.indexOf("p")));
+	console.log(p);
+	var rmvnode=(p-50)/100;
+	console.log(rmvnode); //position of removed video
+	console.log(cnt); //total video
+	
+	for(var i=rmvnode+1; i<=cnt; i++)
+	{
+		play=play.nextSibling;
+		console.log(play);
+		var l=play.style.top;
+		var a=parseInt(play.style.top.substring(0,play.style.top.indexOf("p")));
+		a=a-100;
+		play.style.top=a+"px";
+
+	}
+
+	document.getElementById(e.dataset.idyt).remove();
+	cnt--;
+
+
 		/*cnt =1 if (position of deleted video is 150px)
 		else if position of deleted video is 250px c=2 
 		else if position of deleted video is 350 px c=3*/

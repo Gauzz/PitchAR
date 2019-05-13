@@ -23,7 +23,7 @@ function auto() {
 	document.getElementById('auth5').value = token;
 	var sceneEl = document.querySelector('a-scene');
 	sceneEl.addEventListener('loaded', function () {
-		sceneEl.removeAttribute('inspector');
+	//	sceneEl.removeAttribute('inspector');
 	});
 
 }

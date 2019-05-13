@@ -119,6 +119,8 @@
     <a-sky color=""></a-sky>
     <a-box id='object' visible='false' click-drag position="0 0.5 0" rotation="0 0 0" width="1" height="1" depth="1"
       color="#4CC3D9"></a-box>
+    <a-entity class='exp' json-model="src: https://threejs.org/examples/models/fbx/Samba Dancing.fbx;"></a-entity>
+
     <a-entity id="modifier" position="0 0 0">
       <a-image id='zaxis' click-drag look-at='#cam' position="-1.25 0.6 0" rotation="0 0 0" src='#zpos'
         geometry="primitive: circle;radius:0.2;"></a-image>
@@ -210,8 +212,8 @@
                     Your browser does not support the HTML5 canvas element.
                   </canvas>
                 </div>
-                
-<div id="result"></div>
+
+                <div id="result"></div>
 
               </div>
             </div>
@@ -269,7 +271,7 @@
           <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
         </div>
       </div>
-      		
+
 
     </div>
   </div>
@@ -379,7 +381,7 @@
             <li class="active col-lg-6"><a data-toggle="tab" href="#modelsGallery">
                 <center>MY Gallery</center>
               </a></li>
-            <li class="col-lg-6" ><a data-toggle="tab" href="#googlePoly">
+            <li class="col-lg-6"><a data-toggle="tab" href="#googlePoly">
                 <center>Google Poly</center>
               </a></li>
           </ul>
@@ -456,29 +458,29 @@
             <option value='center'> center </option>
           </select>
           <br>
-         
+
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:orbitron;cursor:pointer;max-width:10px;'>Orbitron</span>
-         
-            <br>
+
+          <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:roboto;cursor:pointer;'>Roboto</span>
-            <br>
+          <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:leaguemono;cursor:pointer;'>League Mono</span>
-            <br>
+          <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:knewave;cursor:pointer;'>Knewave</span>
-            <br>
+          <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:yatraone;cursor:pointer;'>Yatra One</span>
-            <br>
+          <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:greatvibes;cursor:pointer;'>Great Vibes</span>
-            <br>
+          <br>
           <span class='col-lg-3 phrasetxt' onclick='pushTxt(this)'
             style='color:crimson;font-family:amita;cursor:pointer;'>Amita</span>
-        
+
           <br>
           <br>
         </div>
@@ -488,7 +490,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="modal " id="music" tabindex="-1" role="dialog" aria-labelledby="assetsTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -655,8 +657,8 @@
 
 
 
-          <button type="button" class="close" id="ctaBtnGo" onClick= 'linkvisit()'>
-      
+          <button type="button" class="close" id="ctaBtnGo" onClick='linkvisit()'>
+
 
 
 

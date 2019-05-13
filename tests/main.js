@@ -4,6 +4,7 @@ import keyboardControls from 'aframe-keyboard-controls';
 import clickDragComponent from '../src/index';
 require('aframe-look-at-component');
 require('aframe');
+require('aframe-extras');
 require('aframe-orbit-controls-component-2');
 require('aframe-animation-component');
 require('aframe-particle-system-component');
